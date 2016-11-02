@@ -1,6 +1,7 @@
-#include <iostream>
+//#include <iostream>
+#include "include/sorting.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    HelloWorld();
     return 0;
 }

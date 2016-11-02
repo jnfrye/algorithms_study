@@ -2,6 +2,9 @@
 // Created by jfrye on 11/2/16.
 //
 
-#include "sorting.h"
+#include <iostream>
+#include "../include/sorting.h"
 
-void hello
+void HelloWorld() {
+    std::cout << "Hello World!" << std::endl;
+}
