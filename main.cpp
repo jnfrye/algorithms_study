@@ -11,8 +11,8 @@ int main() {
 
     InsertionSort(my_vec, true);
 
-    for(auto i = my_vec.begin(); i != my_vec.end(); ++i)
-        std::cout << *i << ' ';
+    for(const auto &item: my_vec)
+        std::cout << item << ' ';
 
     return 0;
 }
