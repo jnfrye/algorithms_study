@@ -2,10 +2,10 @@
 #include <vector>
 
 #include "include/sorting.h"
+#include "include/searching.h"
+
 
 int main() {
-    HelloWorld();
-
     std::vector<int> my_vec = {4, 2, 3};
     std::cout << LinearSearch(my_vec, 2) << std::endl;
 

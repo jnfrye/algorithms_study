@@ -7,16 +7,6 @@
 
 #include "../include/sorting.h"
 
-void HelloWorld() {
-    std::cout << "Hello World!" << std::endl;
-}
-
-long LinearSearch(const std::vector<int> &vec, const int value) {
-    for(int i = 0; i < vec.size(); i++)
-        if (vec[i] == value) return i;
-
-    throw std::runtime_error("Value not found!");
-}
 
 void InsertionSort(std::vector<int> &vec, const bool ascending /*= true*/) {
     for(int key_index = 1; key_index < vec.size(); key_index++) {
