@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 
+#include "../include/searching.h"
 #include "../include/sorting.h"
 
 
@@ -21,5 +22,17 @@ void InsertionSort(std::vector<int> &vec, const bool ascending /*= true*/) {
             search_index--;
         }
         vec[search_index + 1] = key_value;
+    }
+}
+
+void SelectionSort(std::vector<int> &vec) {
+    for (int index = 0; index < vec.size() - 1; index++) {
+        int min_index = MinIndex(vec, index);
+        if (min_index != index) {
+            // Swap the two values
+            int temp = vec[min_index];
+            vec[min_index] = vec[index];
+            vec[index] = temp;
+        }
     }
 }

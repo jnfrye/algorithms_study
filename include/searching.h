@@ -16,7 +16,7 @@
  * @return          Index that the value was found at.
  *          If value was not found, exception is thrown.
  */
-long LinearSearch(const std::vector<int> &vec, const int value);
+int LinearSearch(const std::vector<int> &vec, const int value);
 
 /** Find the index of the minimum value in a vector.
  *
@@ -27,6 +27,6 @@ long LinearSearch(const std::vector<int> &vec, const int value);
  * @param   begin_index Searching for minimum begins at this index.
  * @return              Index that the value was found at.
  */
-long MinIndex(const std::vector<int> &vec, const long begin_index = 0);
+int MinIndex(const std::vector<int> &vec, const int begin_index = 0);
 
 #endif //ALGORITHMS_STUDY_CPP_SEARCHING_H

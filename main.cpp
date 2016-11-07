@@ -17,7 +17,7 @@ int main() {
     std::cout << "Index of " << search_value << ": "
               << LinearSearch(my_vec, search_value) << std::endl;
     std::cout << "Index of minimum: " << MinIndex(my_vec) << std::endl;
-    long begin_index = 4;
+    int begin_index = 4;
     std::cout << "Index of minimum (starting at index " << begin_index << "): "
               << MinIndex(my_vec, begin_index) << std::endl;
 

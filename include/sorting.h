@@ -17,4 +17,12 @@
  */
 void InsertionSort(std::vector<int> &vec, const bool ascending = true);
 
+/** Sort the vector (in-place) in ascending order.
+ *
+ *  Uses the "selection sort" algorithm.
+ *
+ * @param   vec Vector to be sorted.
+ */
+void SelectionSort(std::vector<int> &vec);
+
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H
