@@ -14,3 +14,18 @@ long LinearSearch(const std::vector<int> &vec, const int value) {
 
     throw std::runtime_error("Value not found!");
 }
+
+long MinIndex(const std::vector<int> &vec) {
+    long min_index = 0;
+    int min_value = vec[min_index];
+
+    long search_index = 1;
+    while (search_index < vec.size()) {
+        if (vec[search_index] < min_value) {
+            min_value = vec[search_index];
+            min_index = search_index;
+        }
+        search_index++;
+    }
+    return min_index;
+}
