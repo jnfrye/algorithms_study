@@ -15,7 +15,7 @@ void HelloWorld();
  * @param   vec     Vector to be searched
  * @param   value   Value to be searched for
  * @return          Index that the value was found at.
- *      If value was not found, exception is thrown.
+ *          If value was not found, exception is thrown.
  */
 long LinearSearch(const std::vector<int> &vec, const int value);
 
@@ -26,7 +26,7 @@ long LinearSearch(const std::vector<int> &vec, const int value);
  *
  * @param   vec         Vector to be sorted
  * @param   ascending   If true, sort in ascending order.
- *                      Otherwise, sort in descending order.
+ *          Otherwise, sort in descending order.
  */
 void InsertionSort(std::vector<int> &vec, const bool ascending = true);
 
