@@ -9,6 +9,7 @@ void HelloWorld();
 
 /** Search the vector for a value, return index if found.
  *
+ *  Uses the "linear search" algorithm.
  *  Worst-case: O(n)
  *
  * @param   vec     Vector to be searched
@@ -20,6 +21,7 @@ long LinearSearch(const std::vector<int> &vec, const int value);
 
 /** Sort the vector (in-place) in ascending or descending order.
  *
+ *  Uses the "insertion sort" algorithm.
  *  Worst-case: O(n^2)
  *
  * @param   vec         Vector to be sorted
