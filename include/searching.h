@@ -20,6 +20,9 @@ long LinearSearch(const std::vector<int> &vec, const int value);
 
 /** Find the index of the minimum value in a vector.
  *
+ *  If there are two or more minima, the index of the first is returned.
+ *  Worst-case: O(n)
+ *
  * @param   vec         Vector to be searched.
  * @param   begin_index Searching for minimum begins at this index.
  * @return              Index that the value was found at.

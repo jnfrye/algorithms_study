@@ -6,7 +6,7 @@
 
 
 int main() {
-    std::vector<int> my_vec = {4, 2, 3, 1, 6, 3};
+    std::vector<int> my_vec = {4, 2, 1, 3, 1, 6, 3};
 
     std::cout << "Original vector:" << std::endl;
     for(const auto &item: my_vec)
