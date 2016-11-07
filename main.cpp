@@ -7,6 +7,7 @@
 
 int main() {
     std::vector<int> my_vec = {4, 2, 1, 3, 1, 6, 3};
+    std::vector<int> my_vec2(my_vec);
 
     std::cout << "Original vector:" << std::endl;
     for(const auto &item: my_vec)
@@ -23,8 +24,15 @@ int main() {
 
     InsertionSort(my_vec, true);
 
-    std::cout << "Sorted vector:" << std::endl;
+    std::cout << "Insertion sort of vector:" << std::endl;
     for(const auto &item: my_vec)
+        std::cout << item << ' ';
+    std::cout << std::endl;
+
+    SelectionSort(my_vec2);
+
+    std::cout << "Selection sort of vector:" << std::endl;
+    for(const auto &item: my_vec2)
         std::cout << item << ' ';
     std::cout << std::endl;
 
