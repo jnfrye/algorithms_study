@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <iostream>
+#include <assert.h>
 
 #include "../include/searching.h"
 
@@ -15,16 +16,17 @@ long LinearSearch(const std::vector<int> &vec, const int value) {
     throw std::runtime_error("Value not found!");
 }
 
-long MinIndex(const std::vector<int> &vec) {
-    long min_index = 0;
-    int min_value = vec[min_index];
+long MinIndex(const std::vector<int> &vec, const long begin_index /*= 0*/) {
+    assert(begin_index < vec.size() &&
+        "Cannot begin search at index larger than size of vector!");
 
-    long search_index = 1;
+    long min_index = begin_index;
+
+    long search_index = begin_index + 1;
     while (search_index < vec.size()) {
-        if (vec[search_index] < min_value) {
-            min_value = vec[search_index];
+        if (vec[search_index] < vec[min_index])
             min_index = search_index;
-        }
+
         search_index++;
     }
     return min_index;
