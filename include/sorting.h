@@ -20,6 +20,7 @@ void InsertionSort(std::vector<int> &vec, const bool ascending = true);
 /** Sort the vector (in-place) in ascending order.
  *
  *  Uses the "selection sort" algorithm.
+ *  Worst-case: O(n^2)
  *
  * @param   vec Vector to be sorted.
  */
