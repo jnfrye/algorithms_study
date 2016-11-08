@@ -6,8 +6,9 @@
 
 
 int main() {
-    std::vector<int> my_vec = {4, 2, 1, 3, 1, 6, 3};
+    std::vector<int> my_vec = {4, 2, 1, 3, 2, 6, 3};
     std::vector<int> my_vec2(my_vec);
+    std::vector<int> my_vec3(my_vec);
 
     std::cout << "Original vector:" << std::endl;
     for(const auto &item: my_vec)
@@ -33,6 +34,14 @@ int main() {
 
     std::cout << "Selection sort of vector:" << std::endl;
     for(const auto &item: my_vec2)
+        std::cout << item << ' ';
+    std::cout << std::endl;
+
+    // XXX Testing MergeSortedSubvectors
+    MergeSortedSubvectors(my_vec3, 2, 4, 6);
+
+    std::cout << "Merged sorted subvectors [2..4..6] " << std::endl;
+    for(const auto &item: my_vec3)
         std::cout << item << ' ';
     std::cout << std::endl;
 

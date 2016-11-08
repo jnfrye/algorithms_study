@@ -42,11 +42,10 @@ void MergeSortedSubvectors(
         std::vector<int> &vec, const int begin_index, const int middle_index,
         const int end_index) {
     // Extract the subvectors
-    std::vector<int>::const_iterator begin  = vec.begin() + begin_index;
-    std::vector<int>::const_iterator middle = vec.begin() + middle_index;
-    std::vector<int>::const_iterator end    = vec.begin() + end_index;
-    std::vector<int> subvec1(begin, middle);
-    std::vector<int> subvec2(middle, end);
+    std::vector<int> subvec1(
+        vec.begin() + begin_index, vec.begin() + middle_index);
+    std::vector<int> subvec2(
+        vec.begin() + middle_index, vec.begin() + end_index);
 
     // Add the sentinels (largest possible integer is used)
     subvec1.push_back(std::numeric_limits<int>::max());
