@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <limits>
 
 #include "../include/searching.h"
 #include "../include/sorting.h"
@@ -40,5 +41,28 @@ void SelectionSort(std::vector<int> &vec) {
 void MergeSortedSubvectors(
         std::vector<int> &vec, const int begin_index, const int middle_index,
         const int end_index) {
+    // Extract the subvectors
+    std::vector<int>::const_iterator begin  = vec.begin() + begin_index;
+    std::vector<int>::const_iterator middle = vec.begin() + middle_index;
+    std::vector<int>::const_iterator end    = vec.begin() + end_index;
+    std::vector<int> subvec1(begin, middle);
+    std::vector<int> subvec2(middle, end);
 
+    // Add the sentinels (largest possible integer is used)
+    subvec1.push_back(std::numeric_limits<int>::max());
+    subvec2.push_back(std::numeric_limits<int>::max());
+
+    int subvec1_index = 0;
+    int subvec2_index = 0;
+
+    for (int main_index = begin_index; main_index < end_index; main_index++) {
+        if (subvec1[subvec1_index] <= subvec2[subvec2_index]) {
+            vec[main_index] = subvec1[subvec1_index];
+            subvec1_index++;
+        }
+        else {
+            vec[main_index] = subvec2[subvec2_index];
+            subvec2_index++;
+        }
+    }
 }

@@ -33,7 +33,7 @@ void SelectionSort(std::vector<int> &vec);
  * @param vec           Vector whose subvectors are to be merged.
  * @param begin_index   Index of the first item of the first subvector.
  * @param middle_index  Index of the first item of the second subvector.
- * @param end_index     Index of the last item of the second subvector.
+ * @param end_index     Index after the last item of the second subvector.
  */
 void MergeSortedSubvectors(
         std::vector<int> &vec, const int begin_index, const int middle_index,
