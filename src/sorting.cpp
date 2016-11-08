@@ -36,3 +36,9 @@ void SelectionSort(std::vector<int> &vec) {
         }
     }
 }
+
+void MergeSortedSubvectors(
+        std::vector<int> &vec, const int begin_index, const int middle_index,
+        const int end_index) {
+
+}

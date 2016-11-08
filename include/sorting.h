@@ -26,4 +26,17 @@ void InsertionSort(std::vector<int> &vec, const bool ascending = true);
  */
 void SelectionSort(std::vector<int> &vec);
 
+/** Merge (in-place) two adjacent sorted subvectors into one sorted subvector.
+ *
+ *  Worst-case: O(n)
+ *
+ * @param vec           Vector whose subvectors are to be merged.
+ * @param begin_index   Index of the first item of the first subvector.
+ * @param middle_index  Index of the first item of the second subvector.
+ * @param end_index     Index of the last item of the second subvector.
+ */
+void MergeSortedSubvectors(
+        std::vector<int> &vec, const int begin_index, const int middle_index,
+        const int end_index);
+
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H
