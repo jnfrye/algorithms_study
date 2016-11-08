@@ -23,6 +23,7 @@ int main() {
     std::cout << "Index of minimum (starting at index " << begin_index << "): "
               << MinIndex(my_vec, begin_index) << std::endl;
 
+    // XXX Testing InsertionSort
     InsertionSort(my_vec, true);
 
     std::cout << "Insertion sort of vector:" << std::endl;
@@ -30,6 +31,7 @@ int main() {
         std::cout << item << ' ';
     std::cout << std::endl;
 
+    // XXX Testing SelectionSort
     SelectionSort(my_vec2);
 
     std::cout << "Selection sort of vector:" << std::endl;
