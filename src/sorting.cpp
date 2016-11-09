@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include <cmath>
 
 #include "searching.h"
 #include "sorting.h"
@@ -63,5 +64,17 @@ void MergeSortedSubvectors(
             vec[main_index] = subvec2[subvec2_index];
             subvec2_index++;
         }
+    }
+}
+
+void MergeSort(
+        std::vector<int> &vec, const int begin_index, const int end_index) {
+    if (begin_index < end_index - 1) {
+        int middle_index = static_cast<int>(
+            std::floor((begin_index + end_index)/2.));
+
+        MergeSort(vec, begin_index, middle_index);
+        MergeSort(vec, middle_index, end_index);
+        MergeSortedSubvectors(vec, begin_index, middle_index, end_index);
     }
 }

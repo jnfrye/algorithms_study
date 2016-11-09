@@ -39,4 +39,16 @@ void MergeSortedSubvectors(
         std::vector<int> &vec, const int begin_index, const int middle_index,
         const int end_index);
 
+/** Sort the vector (in-place) in ascending order.
+ *
+ *  Uses the "merge sort" algorithm.
+ *  Worst-case performance: O(n log n)
+ *
+ * @param vec
+ * @param begin_index
+ * @param end_index
+ */
+void MergeSort(
+        std::vector<int> &vec, const int begin_index, const int end_index);
+
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H

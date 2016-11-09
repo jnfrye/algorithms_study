@@ -40,9 +40,9 @@ int main() {
     std::cout << std::endl;
 
     // XXX Testing MergeSortedSubvectors
-    MergeSortedSubvectors(my_vec3, 2, 4, 6);
+    MergeSort(my_vec3, 0, static_cast<int>(my_vec3.size()));
 
-    std::cout << "Merged sorted subvectors [2..4..6] " << std::endl;
+    std::cout << "Merged sort of vector:" << std::endl;
     for(const auto &item: my_vec3)
         std::cout << item << ' ';
     std::cout << std::endl;
