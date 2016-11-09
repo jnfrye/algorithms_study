@@ -9,6 +9,15 @@
 /** Sort the vector (in-place) in ascending or descending order.
  *
  *  Uses the "insertion sort" algorithm.
+ *
+ *  In insertion sort, we start with the second item in the vector and compare
+ *  it to each item before it until a smaller one is found (or run out of
+ *  items), and we place it in front of that (there's only the first item in the
+ *  vector, so it swaps with this one if smaller than it). Then we compare the
+ *  third item to each item before it until we find one that's smaller (or run
+ *  out of items), and put it in front of that one, and so on for the rest of
+ *  the items in the vector.
+ *
  *  Worst-case performance: O(n^2)
  *
  * @param   vec         Vector to be sorted
@@ -20,6 +29,11 @@ void InsertionSort(std::vector<int> &vec, const bool ascending = true);
 /** Sort the vector (in-place) in ascending order.
  *
  *  Uses the "selection sort" algorithm.
+ *
+ *  In selection sort, the smallest item is found and moved to the first spot in
+ *  the vector, then the second smallest item is found and moved to the second
+ *  spot in the vector, and so on.
+ *
  *  Worst-case performance: O(n^2)
  *
  * @param   vec Vector to be sorted.
