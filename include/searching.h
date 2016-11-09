@@ -9,7 +9,7 @@
 /** Search the vector for a value, return index if found.
  *
  *  Uses the "linear search" algorithm.
- *  Worst-case: O(n)
+ *  Worst-case performance: O(n)
  *
  * @param   vec     Vector to be searched
  * @param   value   Value to be searched for
@@ -21,7 +21,7 @@ int LinearSearch(const std::vector<int> &vec, const int value);
 /** Find the index of the minimum value in a vector.
  *
  *  If there are two or more minima, the index of the first is returned.
- *  Worst-case: O(n)
+ *  Worst-case performance: O(n)
  *
  * @param   vec         Vector to be searched.
  * @param   begin_index Searching for minimum begins at this index.

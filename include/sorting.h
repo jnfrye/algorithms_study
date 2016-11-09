@@ -9,7 +9,7 @@
 /** Sort the vector (in-place) in ascending or descending order.
  *
  *  Uses the "insertion sort" algorithm.
- *  Worst-case: O(n^2)
+ *  Worst-case performance: O(n^2)
  *
  * @param   vec         Vector to be sorted
  * @param   ascending   If true, sort in ascending order.
@@ -20,7 +20,7 @@ void InsertionSort(std::vector<int> &vec, const bool ascending = true);
 /** Sort the vector (in-place) in ascending order.
  *
  *  Uses the "selection sort" algorithm.
- *  Worst-case: O(n^2)
+ *  Worst-case performance: O(n^2)
  *
  * @param   vec Vector to be sorted.
  */
@@ -28,7 +28,7 @@ void SelectionSort(std::vector<int> &vec);
 
 /** Merge (in-place) two adjacent sorted subvectors into one sorted subvector.
  *
- *  Worst-case: O(n)
+ *  Worst-case performance: O(n)
  *
  * @param vec           Vector whose subvectors are to be merged.
  * @param begin_index   Index of the first item of the first subvector.
@@ -44,9 +44,9 @@ void MergeSortedSubvectors(
  *  Uses the "merge sort" algorithm.
  *  Worst-case performance: O(n log n)
  *
- * @param vec
- * @param begin_index
- * @param end_index
+ * @param vec           Vector to be sorted
+ * @param begin_index   Index of the first item to be merge-sorted.
+ * @param end_index     Index after the last item to be merge-sorted.
  */
 void MergeSort(
         std::vector<int> &vec, const int begin_index, const int end_index);
