@@ -56,6 +56,13 @@ void MergeSortedSubvectors(
 /** Sort the vector (in-place) in ascending order.
  *
  *  Uses the "merge sort" algorithm.
+ *
+ *  Merge sort is a recursive algorithm. Consider a vector that is a power of
+ *  two. The idea is to merge each pair of adjacent items into sorted 2-item
+ *  subvectors, then merge each pair of adjacent 2-item subvectors into sorted
+ *  4-item subvectors, and so on until the whole vector is sorted. If the vector
+ *  is not a power of two, it ends up working out anyway lol.
+ *
  *  Worst-case performance: O(n log n)
  *
  * @param vec           Vector to be sorted
