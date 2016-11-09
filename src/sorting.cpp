@@ -6,8 +6,8 @@
 #include <vector>
 #include <limits>
 
-#include "../include/searching.h"
-#include "../include/sorting.h"
+#include "searching.h"
+#include "sorting.h"
 
 
 void InsertionSort(std::vector<int> &vec, const bool ascending /*= true*/) {

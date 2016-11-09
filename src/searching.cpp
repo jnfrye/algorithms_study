@@ -6,7 +6,7 @@
 #include <iostream>
 #include <assert.h>
 
-#include "../include/searching.h"
+#include "searching.h"
 
 
 int LinearSearch(const std::vector<int> &vec, const int value) {
