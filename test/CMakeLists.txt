@@ -5,7 +5,7 @@ file(GLOB SOURCES "../src/*.cpp")
 # Add googletest stuff
 set(GTEST_ROOT ../ext/googletest-master/googletest)
 include_directories(${GTEST_ROOT}/include)
-set(TEST_SOURCES sorting_test.cpp)
+file(GLOB TEST_SOURCES "./*.cpp")
 
 # Link it all together
 add_executable(run_tests ${TEST_SOURCES} ${SOURCES})
