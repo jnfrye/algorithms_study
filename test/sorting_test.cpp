@@ -43,16 +43,16 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
     std::string error_msg =
         "Sorted vector did not match with vector sorted by hand!";
 
-    auto original_vec(vec);
+    auto test_vec(vec); // copy the vector so we don't alter it
 
-    InsertionSort(vec);
-    EXPECT_EQ(vec, vec_sorted) << error_msg;
+    InsertionSort(test_vec);
+    EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 
-    vec = original_vec; // reset vector
-    SelectionSort(vec);
-    EXPECT_EQ(vec, vec_sorted) << error_msg;
+    test_vec = vec; // reset vector
+    SelectionSort(test_vec);
+    EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 
-    vec = original_vec; // reset vector
-    MergeSort(vec, 0, vec.size());
-    EXPECT_EQ(vec, vec_sorted) << error_msg;
+    test_vec = vec; // reset vector
+    MergeSort(test_vec, 0, test_vec.size());
+    EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 }
