@@ -3,8 +3,9 @@
 
 #include <vector>
 
-#include "sorting.h"
 #include "gtest/gtest.h"
+
+#include "sorting.h"
 
 TEST(InsertionSortTest, Size1Vector) {
     std::vector<int> singleton = {1};
