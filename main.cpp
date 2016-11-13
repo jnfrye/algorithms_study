@@ -24,9 +24,9 @@ int main() {
               << MinIndex(my_vec, begin_index) << std::endl;
 
     // XXX Testing InsertionSort
-    InsertionSort(my_vec, true);
+    InsertionSortRecursive(my_vec, my_vec.size());
 
-    std::cout << "Insertion sort of vector:" << std::endl;
+    std::cout << "Recursive insertion sort of vector:" << std::endl;
     for(const auto &item: my_vec)
         std::cout << item << ' ';
     std::cout << std::endl;

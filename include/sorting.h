@@ -42,6 +42,16 @@ void InsertionSort(std::vector<int> &vec, const bool ascending = true);
 
 /** Sort the vector (in-place) in ascending order.
  *
+ *  A recursive version of the insertion sort algorithm is used.
+ *
+ * @param vec            Vector to be sorted.
+ * @param subvector_size Size of subvector to be sorted (assumed to start from
+ *        head of vector).
+ */
+void InsertionSortRecursive(std::vector<int> &vec, const int subvector_size);
+
+/** Sort the vector (in-place) in ascending order.
+ *
  *  Uses the "selection sort" algorithm.
  *
  *  In selection sort, the smallest item is found and moved to the first spot in

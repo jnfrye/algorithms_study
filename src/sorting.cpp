@@ -32,6 +32,13 @@ void InsertionSort(std::vector<int> &vec, const bool ascending /*= true*/) {
     }
 }
 
+void InsertionSortRecursive(std::vector<int> &vec, const int subvector_size) {
+    if (subvector_size > 1)
+        InsertionSortRecursive(vec, subvector_size - 1);
+
+    InsertIntoSortedSubvector(vec, subvector_size - 1);
+}
+
 void SelectionSort(std::vector<int> &vec) {
     for (int index = 0; index < vec.size() - 1; index++) {
         int min_index = MinIndex(vec, index);
