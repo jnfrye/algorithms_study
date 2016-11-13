@@ -32,7 +32,7 @@ TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
     int comparison_index = std::distance(vec.begin(), iterator);
 
     EXPECT_EQ(index, 3) << "Search returned incorrect index.";
-    EXPECT_EQ(index, comparison_index) 
+    EXPECT_EQ(index, comparison_index)
         << "Search disagreed with standard library search.";
 }
 
