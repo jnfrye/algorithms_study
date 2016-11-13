@@ -6,6 +6,20 @@
 #define ALGORITHMS_STUDY_CPP_SORTING_H
 
 
+/** Insert value into correct place in sorted vector.
+ *
+ *  It is assumed that the vector is sorted in ascending order, from index 0
+ *  to `index - 1`.
+ *
+ * @param   vec         Vector whose head is sorted.
+ * @param   index       Index of the item to be inserted into its place in the
+ *          sorted head.
+ * @param   ascending   If true, sort in ascending order.
+ *          Otherwise, sort in descending order.
+ */
+void InsertIntoSortedSubvector(
+        std::vector<int> &vec, const int index, const bool ascending = true);
+
 /** Sort the vector (in-place) in ascending or descending order.
  *
  *  Uses the "insertion sort" algorithm.
