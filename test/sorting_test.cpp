@@ -56,3 +56,12 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
     MergeSort(test_vec, 0, test_vec.size());
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 }
+
+TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors) {
+    std::vector<int> test_vec =     {2, 5, 6, 3, 5, 5, 8};
+    std::vector<int> expected_vec = {2, 3, 5, 5, 5, 6, 8};
+
+    MergeSortedSubvectors(test_vec, 0, 3, test_vec.size());
+    EXPECT_EQ(test_vec, expected_vec)
+        << "Merged vector does not match expected vector.";
+}
