@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <iostream>
+#include <cmath>
 #include <assert.h>
 
 #include "searching.h"
@@ -30,4 +31,23 @@ int MinIndex(const std::vector<int> &vec, const int begin_index /*= 0*/) {
         search_index++;
     }
     return min_index;
+}
+
+int BinarySearch(
+        const std::vector<int> &vec, const int begin_index, const int end_index,
+        const int value) {
+
+    int middle_index = static_cast<int>(
+        std::floor((begin_index + end_index)/2.));
+
+    if (end_index - begin_index > 1) {
+        if (value < vec[middle_index])
+            BinarySearch(vec, begin_index, middle_index, value);
+        else
+            BinarySearch(vec, middle_index, end_index, value);
+    }
+    else if (vec[middle_index] == value)
+        return middle_index;
+    else
+        throw std::runtime_error("Value not found!");
 }

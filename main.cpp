@@ -31,6 +31,12 @@ int main() {
         std::cout << item << ' ';
     std::cout << std::endl;
 
+    // XXX Demonstrating binary search
+    int search_value2 = 4;
+    std::cout << "(Binary search) Index of " << search_value2 << ": "
+              << BinarySearch(my_vec, 0, my_vec.size(), search_value2)
+              << std::endl;
+
     // XXX Testing SelectionSort
     SelectionSort(my_vec2);
 
