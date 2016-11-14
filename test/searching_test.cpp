@@ -4,11 +4,11 @@
 #include <string>       // std::string
 #include <vector>       // std::vector
 #include <algorithm>    // std::find
-#include <exception>    // std::runtime_error
 
 #include "gtest/gtest.h"
 
 #include "searching.h"
+#include "sorting.h"
 
 
 class GeneralSearchingTest: public ::testing::Test {
@@ -24,15 +24,26 @@ protected:
 };
 
 TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
-    int index = LinearSearch(vec, 2);
+    int search_value = 2;
+    int linear_search_result = LinearSearch(vec, search_value);
 
     // We can also find the index using the std::find function
-    auto iterator = std::find(vec.begin(), vec.end(), 2);
-    // convert from iterator to integer index
-    int comparison_index = std::distance(vec.begin(), iterator);
+    int comparison_index = (int)std::distance(
+        vec.begin(), std::find(vec.begin(), vec.end(), search_value));
 
-    EXPECT_EQ(index, 3) << "Search returned incorrect index.";
-    EXPECT_EQ(index, comparison_index)
+    EXPECT_EQ(linear_search_result, comparison_index)
+        << "Search disagreed with standard library search.";
+
+    // To test binary search, we first sort the vector
+    InsertionSort(vec);
+    int binary_search_result = BinarySearch(
+        vec, 0, (int)vec.size(), search_value);
+
+    // Get the comparison index using standard library again
+    comparison_index = (int)std::distance(
+        vec.begin(), std::find(vec.begin(), vec.end(), search_value));
+
+    EXPECT_EQ(binary_search_result, comparison_index)
         << "Search disagreed with standard library search.";
 }
 
