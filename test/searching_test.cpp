@@ -49,4 +49,8 @@ TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
 
 TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
     EXPECT_THROW(LinearSearch(vec, 20), std::runtime_error);
+
+    // To test binary search, we first sort the vector
+    InsertionSort(vec);
+    EXPECT_THROW(BinarySearch(vec, 0, vec.size(), 20), std::runtime_error);
 }
