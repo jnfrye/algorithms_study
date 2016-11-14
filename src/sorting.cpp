@@ -21,13 +21,13 @@ void InsertIntoSortedSubvector(
     while(search_index >= 0 &&
             (ascending == (value_to_be_inserted < vec[search_index]))) {
         vec[search_index + 1] = vec[search_index];
-        search_index--;
+        --search_index;
     }
     vec[search_index + 1] = value_to_be_inserted;
 }
 
 void InsertionSort(std::vector<int> &vec, const bool ascending /*= true*/) {
-    for(int key_index = 1; key_index < vec.size(); key_index++) {
+    for(int key_index = 1; key_index < vec.size(); ++key_index) {
         InsertIntoSortedSubvector(vec, key_index, ascending);
     }
 }
@@ -40,7 +40,7 @@ void InsertionSortRecursive(std::vector<int> &vec, const int subvector_size) {
 }
 
 void SelectionSort(std::vector<int> &vec) {
-    for (int index = 0; index < vec.size() - 1; index++) {
+    for (int index = 0; index < vec.size() - 1; ++index) {
         int min_index = MinIndex(vec, index);
         if (min_index != index) {
             // Swap the two values
@@ -67,14 +67,14 @@ void MergeSortedSubvectors(
     int subvec1_index = 0;
     int subvec2_index = 0;
 
-    for (int main_index = begin_index; main_index < end_index; main_index++) {
+    for (int main_index = begin_index; main_index < end_index; ++main_index) {
         if (subvec1[subvec1_index] <= subvec2[subvec2_index]) {
             vec[main_index] = subvec1[subvec1_index];
-            subvec1_index++;
+            ++subvec1_index;
         }
         else {
             vec[main_index] = subvec2[subvec2_index];
-            subvec2_index++;
+            ++subvec2_index;
         }
     }
 }
