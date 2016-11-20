@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 
-#include "sorting.h"
-#include "searching.h"
+#include "algorithm/vector/sorting.h"
+#include "algorithm/vector/searching.h"
 
 
 int main() {

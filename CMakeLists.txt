@@ -9,7 +9,7 @@ add_subdirectory(test)
 
 # Gather sources and includes
 include_directories(include)
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/vector/*.cpp")
 set(SOURCE_FILES main.cpp ${SOURCES})
 
 # Add sources to main executable

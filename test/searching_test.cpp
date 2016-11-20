@@ -7,8 +7,8 @@
 
 #include "gtest/gtest.h"
 
-#include "searching.h"
-#include "sorting.h"
+#include "algorithm/vector/searching.h"
+#include "algorithm/vector/sorting.h"
 
 
 class GeneralSearchingTest: public ::testing::Test {
