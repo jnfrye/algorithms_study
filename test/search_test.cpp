@@ -3,7 +3,9 @@
 
 #include <string>       // std::string
 #include <vector>       // std::vector
+#include <tuple>        // std::tuple
 #include <algorithm>    // std::find
+#include <cmath>        // std::floor
 
 #include "gtest/gtest.h"
 
@@ -19,7 +21,7 @@ public:
 protected:
     virtual void SetUp() {
         singleton = {5};
-        vec = {5, 3, 6, 2, 8, 3, 1};
+        vec = {-5, -3, 6, 2, 8, -3, 1};
     }
 };
 
@@ -53,4 +55,12 @@ TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
     // To test binary search, we first sort the vector
     InsertionSort(vec);
     EXPECT_THROW(BinarySearch(vec, 0, vec.size(), 20), std::runtime_error);
+}
+
+TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector) {
+    auto results  = FindMaxCrossingSubvector(
+        vec, 0, (int)std::floor(vec.size()/2.), (int)vec.size());
+
+    EXPECT_EQ(results, std::make_tuple(2, 5, 16))
+        << "Max crossing subvector does not match expected subvector.";
 }
