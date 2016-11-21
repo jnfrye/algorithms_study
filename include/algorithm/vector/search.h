@@ -48,4 +48,25 @@ int BinarySearch(
         const std::vector<int> &vec, const int begin_index, const int end_index,
         const int value);
 
+/** Search vector for the "crossing" congruent subvector with the largest sum.
+ *
+ *  A subvector is said to be "crossing" if it includes the two items straddling
+ *  the midpoint (that is, items at indices `middle_index` and
+ *  `middle_index - 1`.
+ *
+ * @param   vec           Vector to be searched
+ * @param   begin_index   First index in the search range.
+ * @param   middle_index  Index of the item right after the midpoint.
+ * @param   end_index     Index after the last index in the search range.
+ * @returns               `std::tuple` with three items:
+ *          1. Beginning index of the result subvector.
+ *          2. Index after the ending index of the result subvector.
+ *          3. Sum of the result subvector.
+ */
+std::tuple<int, int, int> FindMaxCrossingSubvector(
+        const std::vector<int> vec,
+        const int begin_index,
+        const int middle_index,
+        const int end_index);
+
 #endif //ALGORITHMS_STUDY_CPP_SEARCHING_H

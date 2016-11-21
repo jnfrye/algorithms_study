@@ -3,8 +3,10 @@
 //
 
 #include <vector>
+#include <tuple>
 #include <iostream>
 #include <cmath>
+#include <limits>
 #include <assert.h>
 
 #include "algorithm/vector/search.h"
@@ -51,3 +53,38 @@ int BinarySearch(
     else
         throw std::runtime_error("Value not found!");
 }
+
+std::tuple<int, int, int> FindMaxCrossingSubvector(
+        const std::vector<int> vec,
+        const int begin_index,
+        const int middle_index,
+        const int end_index) {
+    // This is the left-hand sentinel
+    int max_left_sum = -std::numeric_limits<int>::max();
+    int max_left_index;
+
+    int current_sum = 0;
+    for (int left_index = middle_index - 1; left_index >= begin_index;
+            --left_index) {
+        current_sum += vec[left_index];
+        if (current_sum > max_left_sum) {
+            max_left_sum = current_sum;
+            max_left_index = left_index;
+        }
+    }
+    // This is the right-and sentinel
+    int max_right_sum = -std::numeric_limits<int>::max();
+    int max_right_index;
+
+    current_sum = 0;
+    for (int right_index = middle_index; right_index < end_index;
+            ++right_index) {
+        current_sum += vec[right_index];
+        if (current_sum > max_right_sum) {
+            max_right_sum = current_sum;
+            max_right_index = right_index;
+        }
+    }
+    return std::make_tuple(
+        max_left_index, max_right_index, max_left_sum + max_right_sum);
+};
