@@ -59,6 +59,10 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
         const int begin_index,
         const int middle_index,
         const int end_index) {
+    assert(end_index - begin_index > 1 &&
+        "Vector must have at least two items "
+        "to check for crossing subvectors!");
+
     // This is the left-hand sentinel
     int max_left_sum = -std::numeric_limits<int>::max();
     int max_left_index;
@@ -87,4 +91,4 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
     }
     return std::make_tuple(
         max_left_index, max_right_index, max_left_sum + max_right_sum);
-};
+}
