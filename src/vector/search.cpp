@@ -86,7 +86,7 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
         current_sum += vec[right_index];
         if (current_sum > max_right_sum) {
             max_right_sum = current_sum;
-            max_right_index = right_index;
+            max_right_index = right_index + 1;
         }
     }
     return std::make_tuple(
