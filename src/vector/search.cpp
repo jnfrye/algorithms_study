@@ -97,5 +97,31 @@ std::tuple<int, int, int> FindMaxSubvector(
         const std::vector<int> vec,
         const int begin_index,
         const int end_index) {
+    // Base case; return the only entry
+    if (end_index - begin_index == 1)
+        return std::make_tuple(begin_index, end_index, vec[begin_index]);
 
+    else {
+        int middle_index = static_cast<int>(
+            std::floor((begin_index + end_index)/2.));
+
+        // Recursively split the problem
+        auto left_results = FindMaxSubvector(vec, begin_index, middle_index);
+        auto right_results = FindMaxSubvector(vec, middle_index, end_index);
+        auto crossing_results = FindMaxCrossingSubvector(
+            vec, begin_index, middle_index, end_index);
+
+        // These are the max sums found amongst the three partitions
+        int left_sum        = std::get<2>(left_results);
+        int right_sum       = std::get<2>(right_results);
+        int crossing_sum    = std::get<2>(crossing_results);
+
+        // Return the max amongst these
+        if (left_sum >= right_sum && left_sum >= crossing_sum)
+            return left_results;
+        else if (right_sum >= left_sum && right_sum >= crossing_sum)
+            return right_results;
+        else
+            return crossing_results;
+    }
 }

@@ -21,7 +21,7 @@ public:
 protected:
     virtual void SetUp() {
         singleton = {5};
-        vec = {-5, -3, 6, 2, 8, -3, 1};
+        vec = {-10, 3, -5, -3, 6, 2, 8, -24, 10, 11, -3};
     }
 };
 
@@ -61,6 +61,13 @@ TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector) {
     auto results  = FindMaxCrossingSubvector(
         vec, 0, (int)std::floor(vec.size()/2.), (int)vec.size());
 
-    EXPECT_EQ(results, std::make_tuple(2, 5, 16))
+    EXPECT_EQ(results, std::make_tuple(4, 7, 16))
         << "Max crossing subvector does not match expected subvector.";
+}
+
+TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector) {
+    auto results = FindMaxSubvector(vec, 0, (int)vec.size());
+
+    EXPECT_EQ(results, std::make_tuple(8, 10, 21))
+        << "Max subvector does not match expected subvector.";
 }
