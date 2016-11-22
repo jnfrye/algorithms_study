@@ -92,3 +92,10 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
     return std::make_tuple(
         max_left_index, max_right_index, max_left_sum + max_right_sum);
 }
+
+std::tuple<int, int, int> FindMaxSubvector(
+        const std::vector<int> vec,
+        const int begin_index,
+        const int end_index) {
+
+}

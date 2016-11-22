@@ -36,7 +36,7 @@ int MinIndex(const std::vector<int> &vec, const int begin_index = 0);
  *  Recursive algorithm.
  *  Throws an exception if index is not found.
  *
- *  Worst-case performance: O(log n)
+ *  Worst-case performance: Theta(log n)
  *
  * @param vec           Vector to be searched.
  * @param begin_index   First index in the search range.
@@ -54,6 +54,8 @@ int BinarySearch(
  *  the midpoint (that is, items at indices `middle_index` and
  *  `middle_index - 1`.
  *
+ *  Worst-case performance: Theta(n)
+ *
  * @param   vec           Vector to be searched
  * @param   begin_index   First index in the search range.
  * @param   middle_index  Index of the item right after the midpoint.
@@ -67,6 +69,25 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
         const std::vector<int> vec,
         const int begin_index,
         const int middle_index,
+        const int end_index);
+
+/** Search vector for the congruent subvector with the largest sum.
+ *
+ *  Recursive function.
+ *
+ *  Worst-case performance: Theta(n lg n)
+ *
+ * @param   vec         Vector to be searched
+ * @param   begin_index First index in the search range.
+ * @param   end_index   Index after the last index in the search range.
+ * @returns             `std::tuple` with three items:
+ *          1. Beginning index of the result subvector.
+ *          2. Index after the ending index of the result subvector.
+ *          3. Sum of the result subvector.
+ */
+std::tuple<int, int, int> FindMaxSubvector(
+        const std::vector<int> vec,
+        const int begin_index,
         const int end_index);
 
 #endif //ALGORITHMS_STUDY_CPP_SEARCHING_H
