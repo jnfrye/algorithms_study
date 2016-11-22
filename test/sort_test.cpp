@@ -6,7 +6,7 @@
 
 #include "gtest/gtest.h"
 
-#include "algorithm/vector/sort.h"
+#include "algorithm/vector/sort.hpp"
 
 
 class GeneralSortingTest: public ::testing::Test {

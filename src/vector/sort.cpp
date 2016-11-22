@@ -7,8 +7,8 @@
 #include <limits>
 #include <cmath>
 
-#include "algorithm/vector/search.h"
-#include "algorithm/vector/sort.h"
+#include "algorithm/vector/search.hpp"
+#include "algorithm/vector/sort.hpp"
 
 
 void InsertIntoSortedSubvector(

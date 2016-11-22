@@ -9,7 +9,7 @@
 #include <limits>
 #include <assert.h>
 
-#include "algorithm/vector/search.h"
+#include "algorithm/vector/search.hpp"
 
 
 int LinearSearch(const std::vector<int> &vec, const int value) {
