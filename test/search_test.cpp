@@ -25,6 +25,8 @@ protected:
     }
 };
 
+/** Basic test of vector item search algorithms.
+ */
 TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
     int search_value = 2;
     int linear_search_result = LinearSearch(vec, search_value);
@@ -49,6 +51,8 @@ TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
         << "Search disagreed with standard library search.";
 }
 
+/** Item search algorithms should throw exception if item not found.
+ */
 TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
     EXPECT_THROW(LinearSearch(vec, 20), std::runtime_error);
 
@@ -57,6 +61,8 @@ TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
     EXPECT_THROW(BinarySearch(vec, 0, vec.size(), 20), std::runtime_error);
 }
 
+/** Basic test of crossing subvector max sum search.
+ */
 TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector) {
     auto results  = FindMaxCrossingSubvector(
         vec, 0, (int)std::floor(vec.size()/2.), (int)vec.size());
@@ -65,9 +71,20 @@ TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector) {
         << "Max crossing subvector does not match expected subvector.";
 }
 
+/** Basic test of subvector max sum search.
+ */
 TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector) {
     auto results = FindMaxSubvector(vec, 0, (int)vec.size());
 
     EXPECT_EQ(results, std::make_tuple(8, 10, 21))
         << "Max subvector does not match expected subvector.";
+}
+
+/** Max subvector sum of a singleton should be the value of the item contained.
+ */
+TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself) {
+    auto results = FindMaxSubvector(singleton, 0, (int)singleton.size());
+
+    EXPECT_EQ(results, std::make_tuple(0, 1, singleton[0]))
+        << "Max subvector sum of singleton should be the singleton.";
 }
