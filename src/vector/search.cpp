@@ -54,6 +54,7 @@ int BinarySearch(
         throw std::runtime_error("Value not found!");
 }
 
+// TODO I should change this to std::map<std::str, int> instead of tuple
 std::tuple<int, int, int> FindMaxCrossingSubvector(
         const std::vector<int> vec,
         const int begin_index,
@@ -93,6 +94,7 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
         max_left_index, max_right_index, max_left_sum + max_right_sum);
 }
 
+// TODO I should change this to std::map<std::str, int> instead of tuple
 std::tuple<int, int, int> FindMaxSubvector(
         const std::vector<int> vec,
         const int begin_index,
