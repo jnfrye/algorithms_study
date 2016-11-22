@@ -13,6 +13,8 @@
 #include "algorithm/vector/sort.hpp"
 
 
+/** General test fixture for vector search algorithms.
+ */
 class GeneralSearchingTest: public ::testing::Test {
 public:
     std::vector<int> singleton;
