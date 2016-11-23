@@ -47,11 +47,10 @@ protected:
         for (int i = 0; i < random_vec.size(); i++)
             random_vec[i] = std::rand() % 41 - 20; // range -20 to 20
 
-        // The random positive vector is just the absolute value of the
-        // random vector above.
+        // Fill the positive vector with random values above zero
         random_positive_vec = random_vec;
         for (int i = 0; i < random_positive_vec.size(); i++)
-            random_positive_vec[i] = std::abs(random_positive_vec[i]);
+            random_positive_vec[i] = std::rand() % 20 + 1; // range 1 to 20
 
         // The random negative vector is just the negative of the random
         // positive vector above.
@@ -159,4 +158,22 @@ TEST_F(RandomizedSearchingTest,
         std::make_tuple(0, random_positive_vec.size(), expected_sum))
         << "Max crossing subvector of a positive vector should be the entire "
            "vector.";
+}
+
+/** Max subvector of a negative vector should be the least negative item.
+ */
+TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
+    auto results = FindMaxSubvector(
+        random_negative_vec, 0, (int)random_negative_vec.size());
+
+    auto max_iterator = std::max_element(
+        random_negative_vec.begin(), random_negative_vec.end());
+    int max_value = *max_iterator;
+    int max_index = (int)std::distance(
+        random_negative_vec.begin(), max_iterator);
+
+    EXPECT_EQ(results,
+        std::make_tuple(max_index, max_index + 1, max_value))
+        << "Max subvector of a negative vector should be the least negative "
+           "item.";
 }
