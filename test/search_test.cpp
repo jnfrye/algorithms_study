@@ -141,3 +141,22 @@ TEST_F(RandomizedSearchingTest,
         << "Max crossing subvector of a negative vector should be the smallest"
            " one.";
 }
+
+/** Max crossing subvector of a positive vector should be the entire vector.
+ */
+TEST_F(RandomizedSearchingTest,
+        MaxCrossingSubvectorOfRandomPosVecIsEntireVec) {
+    int middle_index = (int)std::floor(random_positive_vec.size()/2.);
+    auto results = FindMaxCrossingSubvector(
+        random_positive_vec, 0, middle_index,
+        (int)random_positive_vec.size());
+
+    int expected_sum = 0;
+    for (int i = 0; i < random_positive_vec.size(); ++i)
+        expected_sum += random_positive_vec[i];
+
+    EXPECT_EQ(results,
+        std::make_tuple(0, random_positive_vec.size(), expected_sum))
+        << "Max crossing subvector of a positive vector should be the entire "
+           "vector.";
+}
