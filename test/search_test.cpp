@@ -5,7 +5,7 @@
 #include <vector>       // std::vector
 #include <tuple>        // std::tuple
 #include <algorithm>    // std::find
-#include <cmath>        // std::floor
+#include <ctime>        // std::time
 
 #include "gtest/gtest.h"
 
@@ -24,6 +24,40 @@ protected:
     virtual void SetUp() {
         singleton = {5};
         vec = {-10, 3, -5, -3, 6, 2, 8, -24, 10, 11, -3};
+    }
+};
+
+/** Randomized test fixture for vector search algorithms.
+ */
+class RandomizedSearchingTest: public ::testing::Test {
+public:
+    std::vector<int> random_singleton;
+    std::vector<int> random_vec;
+    std::vector<int> random_negative_vec;
+    std::vector<int> random_positive_vec;
+
+protected:
+    virtual void SetUp() {
+        std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
+
+        int random_size = std::rand() % 20 + 2; // range of 2 to 21
+        random_vec = std::vector<int>((unsigned int)random_size);
+
+        // Fill the vector with random values
+        for (int i = 0; i < random_vec.size(); i++)
+            random_vec[i] = std::rand() % 41 - 20; // range -20 to 20
+
+        // The random positive vector is just the absolute value of the
+        // random vector above.
+        random_positive_vec = random_vec;
+        for (int i = 0; i < random_positive_vec.size(); i++)
+            random_positive_vec[i] = std::abs(random_positive_vec[i]);
+
+        // The random negative vector is just the negative of the random
+        // positive vector above.
+        random_negative_vec = random_positive_vec;
+        for (int i = 0; i < random_negative_vec.size(); i++)
+            random_negative_vec[i] *= -1;
     }
 };
 
@@ -89,4 +123,21 @@ TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself) {
 
     EXPECT_EQ(results, std::make_tuple(0, 1, singleton[0]))
         << "Max subvector sum of singleton should be the singleton.";
+}
+
+/** Max crossing subvector of a negative vector should be the smallest one.
+ */
+TEST_F(RandomizedSearchingTest,
+        MaxCrossingSubvectorOfRandomNegVecIsSmallestOne) {
+    int middle_index = (int)std::floor(random_negative_vec.size()/2.);
+    auto results = FindMaxCrossingSubvector(
+        random_negative_vec, 0, middle_index,
+        (int)random_negative_vec.size());
+
+    int middle_sum = random_negative_vec[middle_index - 1] +
+        random_negative_vec[middle_index];
+    EXPECT_EQ(results,
+        std::make_tuple(middle_index - 1, middle_index + 1, middle_sum))
+        << "Max crossing subvector of a negative vector should be the smallest"
+           " one.";
 }
