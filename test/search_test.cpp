@@ -124,10 +124,16 @@ TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector) {
 /** Max subvector sum of a singleton should be the value of the item contained.
  */
 TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself) {
-    auto results = FindMaxSubvectorDAC(singleton, 0, (int) singleton.size());
+    std::string error_message =
+        "Max subvector sum of singleton should be the singleton.";
 
-    EXPECT_EQ(results, std::make_tuple(0, 1, singleton[0]))
-        << "Max subvector sum of singleton should be the singleton.";
+    auto DAC_results = FindMaxSubvectorDAC(singleton, 0, (int)singleton.size());
+    auto BF_results = FindMaxSubvectorBF(singleton, 0, (int)singleton.size());
+
+    auto expected_results = std::make_tuple(0, 1, singleton[0]);
+
+    EXPECT_EQ(DAC_results, expected_results) << error_message;
+    EXPECT_EQ(BF_results, expected_results) << error_message;
 }
 
 /** Max crossing subvector of a negative vector should be the smallest one.
