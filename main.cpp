@@ -1,57 +1,45 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <cmath>
 
 #include "algorithm/vector/sort.hpp"
 #include "algorithm/vector/search.hpp"
 
 
 int main() {
-    std::vector<int> my_vec = {4, 2, 1, 3, 2, 6, 3};
-    std::vector<int> my_vec2(my_vec);
-    std::vector<int> my_vec3(my_vec);
+    // ---- Testing the run time of my max subvector algorithms ----
+    std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
 
-    std::cout << "Original vector:" << std::endl;
-    for(const auto &item: my_vec)
-        std::cout << item << ' ';
-    std::cout << std::endl;
+    // Fill a vector with random integers
+    int max_exponent = 12;
+    int vec_size = (int)pow(2, max_exponent);
+    std::vector<int> vec(vec_size);
+    for (int i = 0; i < vec.size(); i++)
+        vec[i] = std::rand() % 41 - 20; // range -20 to 20
 
-    int search_value = 2;
-    std::cout << "Index of " << search_value << ": "
-              << LinearSearch(my_vec, search_value) << std::endl;
-    std::cout << "Index of minimum: " << MinIndex(my_vec) << std::endl;
-    int begin_index = 4;
-    std::cout << "Index of minimum (starting at index " << begin_index << "): "
-              << MinIndex(my_vec, begin_index) << std::endl;
+    for (int exponent = 1; exponent <= max_exponent; ++exponent) {
+        int end_index = (int)pow(2, exponent);
 
-    // XXX Testing InsertionSort
-    InsertionSortRecursive(my_vec, my_vec.size());
+        auto begin_time = clock();
+        auto DAC_results = FindMaxSubvectorDAC(vec, 0, end_index);
+        auto end_time = clock();
+        double DAC_time = double(end_time - begin_time) / CLOCKS_PER_SEC;
+        std::cout << "SIZE: " << end_index << "\tDAC: " << DAC_time;
 
-    std::cout << "Recursive insertion sort of vector:" << std::endl;
-    for(const auto &item: my_vec)
-        std::cout << item << ' ';
-    std::cout << std::endl;
+        begin_time = clock();
+        auto BF_results = FindMaxSubvectorBF(vec, 0, end_index);
+        end_time = clock();
+        double BF_time = double(end_time - begin_time) / CLOCKS_PER_SEC;
+        std::cout << "\tBF: " << BF_time;
 
-    // XXX Demonstrating binary search
-    int search_value2 = 4;
-    std::cout << "(Binary search) Index of " << search_value2 << ": "
-              << BinarySearch(my_vec, 0, my_vec.size(), search_value2)
-              << std::endl;
+        if (DAC_time < BF_time)
+            std::cout << "\tDAC";
+        else
+            std::cout << "\tBF";
 
-    // XXX Testing SelectionSort
-    SelectionSort(my_vec2);
-
-    std::cout << "Selection sort of vector:" << std::endl;
-    for(const auto &item: my_vec2)
-        std::cout << item << ' ';
-    std::cout << std::endl;
-
-    // XXX Testing MergeSortedSubvectors
-    MergeSort(my_vec3, 0, static_cast<int>(my_vec3.size()));
-
-    std::cout << "Merged sort of vector:" << std::endl;
-    for(const auto &item: my_vec3)
-        std::cout << item << ' ';
-    std::cout << std::endl;
+        std::cout << std::endl;
+    }
 
     return 0;
 }
