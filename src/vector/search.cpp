@@ -95,7 +95,7 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
 }
 
 // TODO I should change this to std::map<std::str, int> instead of tuple
-std::tuple<int, int, int> FindMaxSubvector(
+std::tuple<int, int, int> FindMaxSubvectorDAC(
         const std::vector<int> vec,
         const int begin_index,
         const int end_index) {
@@ -108,8 +108,8 @@ std::tuple<int, int, int> FindMaxSubvector(
             std::floor((begin_index + end_index)/2.));
 
         // Recursively split the problem
-        auto left_results = FindMaxSubvector(vec, begin_index, middle_index);
-        auto right_results = FindMaxSubvector(vec, middle_index, end_index);
+        auto left_results = FindMaxSubvectorDAC(vec, begin_index, middle_index);
+        auto right_results = FindMaxSubvectorDAC(vec, middle_index, end_index);
         auto crossing_results = FindMaxCrossingSubvector(
             vec, begin_index, middle_index, end_index);
 

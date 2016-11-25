@@ -73,6 +73,7 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
 
 /** Search vector for the congruent subvector with the largest sum.
  *
+ *  DAC stands for "divide and conquer", which is the algorithm used here.
  *  Recursive function.
  *
  *  Worst-case performance: Theta(n lg n)
@@ -85,7 +86,7 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
  *          2. Index after the ending index of the result subvector.
  *          3. Sum of the result subvector.
  */
-std::tuple<int, int, int> FindMaxSubvector(
+std::tuple<int, int, int> FindMaxSubvectorDAC(
         const std::vector<int> vec,
         const int begin_index,
         const int end_index);
