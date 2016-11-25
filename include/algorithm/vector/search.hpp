@@ -91,4 +91,23 @@ std::tuple<int, int, int> FindMaxSubvectorDAC(
         const int begin_index,
         const int end_index);
 
+/** Search vector for the congruent subvector with the largest sum.
+ *
+ * BF stands for "brute force", which is the algorithm used here.
+ *
+ * Worst-case performance: Theta(n^2)
+ *
+ * @param   vec         Vector to be searched
+ * @param   begin_index First index in the search range.
+ * @param   end_index   Index after the last index in the search range.
+ * @returns             `std::tuple` with three items:
+ *          1. Beginning index of the result subvector.
+ *          2. Index after the ending index of the result subvector.
+ *          3. Sum of the result subvector.
+ */
+std::tuple<int, int, int> FindMaxSubvectorBF(
+        const std::vector<int> vec,
+        const int begin_index,
+        const int end_index);
+
 #endif //ALGORITHMS_STUDY_CPP_SEARCHING_H

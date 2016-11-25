@@ -127,3 +127,10 @@ std::tuple<int, int, int> FindMaxSubvectorDAC(
             return crossing_results;
     }
 }
+
+std::tuple<int, int, int> FindMaxSubvectorBF(
+        const std::vector<int> vec,
+        const int begin_index,
+        const int end_index) {
+
+}
