@@ -140,17 +140,20 @@ TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself) {
  */
 TEST_F(RandomizedSearchingTest,
         MaxCrossingSubvectorOfRandomNegVecIsSmallestOne) {
+    std::string error_message = "Max crossing subvector of a negative vector "
+        "should be the smallest one.";
+
     int middle_index = (int)std::floor(random_negative_vec.size()/2.);
+
     auto results = FindMaxCrossingSubvector(
         random_negative_vec, 0, middle_index,
         (int)random_negative_vec.size());
 
     int middle_sum = random_negative_vec[middle_index - 1] +
         random_negative_vec[middle_index];
-    EXPECT_EQ(results,
-        std::make_tuple(middle_index - 1, middle_index + 1, middle_sum))
-        << "Max crossing subvector of a negative vector should be the smallest"
-           " one.";
+    auto expected_results = std::make_tuple(
+        middle_index - 1, middle_index + 1, middle_sum);
+    EXPECT_EQ(results, expected_results) << error_message;
 }
 
 /** Max crossing subvector of a positive vector should be the entire vector.
