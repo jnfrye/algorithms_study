@@ -132,5 +132,21 @@ std::tuple<int, int, int> FindMaxSubvectorBF(
         const std::vector<int> vec,
         const int begin_index,
         const int end_index) {
+    int max_left_index;
+    int max_right_index;
+    int max_sum = -std::numeric_limits<int>::max();
 
+    for (int left_index = begin_index; left_index < end_index; ++left_index) {
+        int sum = 0;
+        for (int right_index = left_index;
+                right_index < end_index; ++right_index) {
+            sum += vec[right_index];
+            if (sum >= max_sum) {
+                max_left_index = left_index;
+                max_right_index = right_index + 1;
+                max_sum = sum;
+            }
+        }
+    }
+    return std::make_tuple(max_left_index, max_right_index, max_sum);
 }
