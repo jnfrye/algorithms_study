@@ -174,6 +174,27 @@ TEST_F(RandomizedSearchingTest,
            "vector.";
 }
 
+/** Max subvector of a positive vector should be the entire vector.
+ */
+TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec) {
+    std::string error_message =
+        "Max subvector of a positive vector should be the entire vector.";
+
+    auto DAC_results = FindMaxSubvectorDAC(
+        random_positive_vec, 0, (int)random_positive_vec.size());
+    auto BF_results = FindMaxSubvectorBF(
+        random_positive_vec, 0, (int)random_positive_vec.size());
+
+    int expected_sum = 0;
+    for (int i = 0; i < random_positive_vec.size(); ++i)
+        expected_sum += random_positive_vec[i];
+    auto expected_results = std::make_tuple(
+        0, random_positive_vec.size(), expected_sum);
+
+    EXPECT_EQ(DAC_results, expected_results) << error_message;
+    EXPECT_EQ(BF_results, expected_results) << error_message;
+}
+
 /** Max subvector of a negative vector should be the least negative item.
  */
 TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
