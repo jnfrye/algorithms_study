@@ -5,6 +5,8 @@
 #ifndef ALGORITHMS_STUDY_CPP_SEARCHING_H
 #define ALGORITHMS_STUDY_CPP_SEARCHING_H
 
+#include <tuple>
+
 
 /** Search the vector for a value, return index if found.
  *
