@@ -178,17 +178,21 @@ TEST_F(RandomizedSearchingTest,
 /** Max subvector of a negative vector should be the least negative item.
  */
 TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
-    auto results = FindMaxSubvectorDAC(
-            random_negative_vec, 0, (int) random_negative_vec.size());
+    std::string error_message =
+        "Max subvector of a negative vector should be the least negative item.";
+
+    auto DAC_results = FindMaxSubvectorDAC(
+        random_negative_vec, 0, (int)random_negative_vec.size());
+    auto BF_results = FindMaxSubvectorBF(
+        random_negative_vec, 0, (int)random_negative_vec.size());
 
     auto max_iterator = std::max_element(
         random_negative_vec.begin(), random_negative_vec.end());
     int max_value = *max_iterator;
     int max_index = (int)std::distance(
         random_negative_vec.begin(), max_iterator);
-
-    EXPECT_EQ(results,
-        std::make_tuple(max_index, max_index + 1, max_value))
-        << "Max subvector of a negative vector should be the least negative "
-           "item.";
+    auto expected_results =
+        std::make_tuple(max_index, max_index + 1, max_value);
+    EXPECT_EQ(DAC_results, expected_results) << error_message;
+    EXPECT_EQ(BF_results, expected_results) << error_message;
 }
