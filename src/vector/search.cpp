@@ -94,13 +94,13 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
         max_left_index, max_right_index, max_left_sum + max_right_sum);
 }
 
-// TODO I should change this to std::map<std::str, int> instead of tuple
-// TODO I also want to make it so all of these algorithms always return the...
-// TODO ...same thing. There is possible degeneracy in this problem since...
-// TODO ...there can be multiple subvectors with the same max sum. Ideas:
+// TODO I should change this to std::map<std::str, int> instead of tuple.
+// TODO I also want to make it so all of these algorithms always return the
+// TODO same thing. There is possible degeneracy in this problem since
+// TODO there can be multiple subvectors with the same max sum. Ideas:
 // TODO     * Return the first of the shortest of them
-// TODO ... I don't really want to do this now, so I'm going to the modify...
-// TODO ...the tests that are failing so they only check the max sum.
+// TODO I don't really want to do this now, so I'm going to the modify
+// TODO the tests that are failing so they only check the max sum.
 std::tuple<int, int, int> FindMaxSubvectorDAC(
         const std::vector<int> vec,
         const int begin_index,
