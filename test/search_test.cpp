@@ -196,3 +196,19 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
     EXPECT_EQ(DAC_results, expected_results) << error_message;
     EXPECT_EQ(BF_results, expected_results) << error_message;
 }
+
+/** Algorithms for max subvector of a random vector should have same result.
+ */
+TEST_F(RandomizedSearchingTest,
+        MaxSubvectorAlgorithmsOnRandomVectorShouldAgree) {
+    std::string error_message =
+        "Algorithms for max subvector of a random vector should have same "
+        "result.";
+
+    auto DAC_results = FindMaxSubvectorDAC(
+        random_vec, 0, (int)random_vec.size());
+    auto BF_results = FindMaxSubvectorBF(
+        random_vec, 0, (int)random_vec.size());
+
+    EXPECT_EQ(DAC_results, BF_results) << error_message;
+}
