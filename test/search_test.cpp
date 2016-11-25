@@ -146,8 +146,7 @@ TEST_F(RandomizedSearchingTest,
     int middle_index = (int)std::floor(random_negative_vec.size()/2.);
 
     auto results = FindMaxCrossingSubvector(
-        random_negative_vec, 0, middle_index,
-        (int)random_negative_vec.size());
+        random_negative_vec, 0, middle_index, (int)random_negative_vec.size());
 
     int middle_sum = random_negative_vec[middle_index - 1] +
         random_negative_vec[middle_index];
@@ -193,8 +192,14 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
         random_negative_vec.begin(), max_iterator);
     auto expected_results =
         std::make_tuple(max_index, max_index + 1, max_value);
-    EXPECT_EQ(DAC_results, expected_results) << error_message;
-    EXPECT_EQ(BF_results, expected_results) << error_message;
+
+    // TODO For now I'm only testing the max subvector sum, not the indices,
+    // TODO because if there's multiple subvectors with the same max sum the
+    // TODO algorithms sometimes return different subvectors.
+    EXPECT_EQ(std::get<2>(DAC_results), std::get<2>(expected_results))
+        << error_message;
+    EXPECT_EQ(std::get<2>(BF_results), std::get<2>(expected_results))
+        << error_message;
 }
 
 /** Algorithms for max subvector of a random vector should have same result.
@@ -210,5 +215,9 @@ TEST_F(RandomizedSearchingTest,
     auto BF_results = FindMaxSubvectorBF(
         random_vec, 0, (int)random_vec.size());
 
-    EXPECT_EQ(DAC_results, BF_results) << error_message;
+    // TODO For now I'm only testing the max subvector sum, not the indices,
+    // TODO because if there's multiple subvectors with the same max sum the
+    // TODO algorithms sometimes return different subvectors.
+    EXPECT_EQ(std::get<2>(DAC_results), std::get<2>(BF_results))
+        << error_message;
 }
