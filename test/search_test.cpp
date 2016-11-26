@@ -114,11 +114,13 @@ TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector) {
 
     auto DAC_results = FindMaxSubvectorDAC(vec, 0, (int)vec.size());
     auto BF_results = FindMaxSubvectorBF(vec, 0, (int)vec.size());
+    auto Kadane_results = FindMaxSubvector(vec, 0, (int)vec.size());
 
     auto expected_results = std::make_tuple(8, 10, 21);
 
     EXPECT_EQ(DAC_results, expected_results) << error_message;
     EXPECT_EQ(BF_results, expected_results) << error_message;
+    EXPECT_EQ(Kadane_results, expected_results) << error_message;
 }
 
 /** Max subvector sum of a singleton should be the value of the item contained.
