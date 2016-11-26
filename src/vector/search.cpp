@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
+#include <algorithm>
 #include <assert.h>
 
 #include "algorithm/vector/search.hpp"
@@ -161,4 +162,12 @@ std::tuple<int, int, int> FindMaxSubvector(
         const std::vector<int> vec,
         const int begin_index,
         const int end_index) {
+    int overall_max = vec[begin_index];
+    int max_upto_here = vec[begin_index];
+
+    for (int index = 1; index < end_index; ++index) {
+        max_upto_here = std::max(vec[index], max_upto_here + vec[index]);
+        overall_max = std::max(max_upto_here, overall_max);
+    }
+    return std::make_tuple(-1, -1, overall_max);
 }
