@@ -156,3 +156,9 @@ std::tuple<int, int, int> FindMaxSubvectorBF(
     }
     return std::make_tuple(max_left_index, max_right_index, max_sum);
 }
+
+std::tuple<int, int, int> FindMaxSubvector(
+        const std::vector<int> vec,
+        const int begin_index,
+        const int end_index) {
+}
