@@ -184,6 +184,9 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec) {
         random_positive_vec, 0, (int)random_positive_vec.size());
     auto BF_results = FindMaxSubvectorBF(
         random_positive_vec, 0, (int)random_positive_vec.size());
+    // TODO Disabled until kadane algorithm fully implemented
+    //auto Kadane_results = FindMaxSubvector(
+    //    random_positive_vec, 0, (int)random_positive_vec.size());
 
     int expected_sum = 0;
     for (int i = 0; i < random_positive_vec.size(); ++i)
@@ -193,6 +196,8 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec) {
 
     EXPECT_EQ(DAC_results, expected_results) << error_message;
     EXPECT_EQ(BF_results, expected_results) << error_message;
+    // TODO Disabled until kadane algorithm fully implemented
+    //EXPECT_EQ(Kadane_results, expected_results) << error_message;
 }
 
 /** Max subvector of a negative vector should be the least negative item.
@@ -204,6 +209,8 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
     auto DAC_results = FindMaxSubvectorDAC(
         random_negative_vec, 0, (int)random_negative_vec.size());
     auto BF_results = FindMaxSubvectorBF(
+        random_negative_vec, 0, (int)random_negative_vec.size());
+    auto Kadane_results = FindMaxSubvector(
         random_negative_vec, 0, (int)random_negative_vec.size());
 
     auto max_iterator = std::max_element(
@@ -221,6 +228,8 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
         << error_message;
     EXPECT_EQ(std::get<2>(BF_results), std::get<2>(expected_results))
         << error_message;
+    EXPECT_EQ(std::get<2>(Kadane_results), std::get<2>(expected_results))
+        << error_message;
 }
 
 /** Algorithms for max subvector of a random vector should have same result.
@@ -235,10 +244,14 @@ TEST_F(RandomizedSearchingTest,
         random_vec, 0, (int)random_vec.size());
     auto BF_results = FindMaxSubvectorBF(
         random_vec, 0, (int)random_vec.size());
+    auto Kadane_results = FindMaxSubvector(
+        random_vec, 0, (int)random_vec.size());
 
     // TODO For now I'm only testing the max subvector sum, not the indices,
     // TODO because if there's multiple subvectors with the same max sum the
     // TODO algorithms sometimes return different subvectors.
-    EXPECT_EQ(std::get<2>(DAC_results), std::get<2>(BF_results))
+    ASSERT_EQ(std::get<2>(DAC_results), std::get<2>(BF_results))
+        << error_message;
+    EXPECT_EQ(std::get<2>(Kadane_results), std::get<2>(BF_results))
         << error_message;
 }
