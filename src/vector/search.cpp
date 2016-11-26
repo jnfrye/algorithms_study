@@ -163,11 +163,29 @@ std::tuple<int, int, int> FindMaxSubvector(
         const int begin_index,
         const int end_index) {
     int overall_max = vec[begin_index];
-    int max_upto_here = vec[begin_index];
+    int max_ending_here = vec[begin_index];
+
+    int overall_max_left_index = begin_index;
+    int overall_max_right_index = begin_index + 1;
+    int max_ending_here_left_index = begin_index;
 
     for (int index = 1; index < end_index; ++index) {
-        max_upto_here = std::max(vec[index], max_upto_here + vec[index]);
-        overall_max = std::max(max_upto_here, overall_max);
+        if (max_ending_here > 0)
+            // If the previous max ending here is positive, the max ending
+            // at the next index will be increased by adding it...
+            max_ending_here += vec[index];
+        else {
+            // ...Otherwise, it would only decrease the max ending at the next
+            // index, so we discard it.
+            max_ending_here = vec[index];
+            max_ending_here_left_index = index;
+        }
+        if (max_ending_here > overall_max) {
+            overall_max = max_ending_here;
+            overall_max_left_index = max_ending_here_left_index;
+            overall_max_right_index = index + 1;
+        }
     }
-    return std::make_tuple(-1, -1, overall_max);
+    return std::make_tuple(
+        overall_max_left_index, overall_max_right_index, overall_max);
 }

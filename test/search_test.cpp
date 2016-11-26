@@ -184,9 +184,8 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec) {
         random_positive_vec, 0, (int)random_positive_vec.size());
     auto BF_results = FindMaxSubvectorBF(
         random_positive_vec, 0, (int)random_positive_vec.size());
-    // TODO Disabled until kadane algorithm fully implemented
-    //auto Kadane_results = FindMaxSubvector(
-    //    random_positive_vec, 0, (int)random_positive_vec.size());
+    auto Kadane_results = FindMaxSubvector(
+        random_positive_vec, 0, (int)random_positive_vec.size());
 
     int expected_sum = 0;
     for (int i = 0; i < random_positive_vec.size(); ++i)
@@ -196,8 +195,7 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec) {
 
     EXPECT_EQ(DAC_results, expected_results) << error_message;
     EXPECT_EQ(BF_results, expected_results) << error_message;
-    // TODO Disabled until kadane algorithm fully implemented
-    //EXPECT_EQ(Kadane_results, expected_results) << error_message;
+    EXPECT_EQ(Kadane_results, expected_results) << error_message;
 }
 
 /** Max subvector of a negative vector should be the least negative item.
