@@ -129,11 +129,14 @@ TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself) {
 
     auto DAC_results = FindMaxSubvectorDAC(singleton, 0, (int)singleton.size());
     auto BF_results = FindMaxSubvectorBF(singleton, 0, (int)singleton.size());
+    auto Kadane_results = FindMaxSubvector(
+        singleton, 0, (int)singleton.size());
 
     auto expected_results = std::make_tuple(0, 1, singleton[0]);
 
     EXPECT_EQ(DAC_results, expected_results) << error_message;
     EXPECT_EQ(BF_results, expected_results) << error_message;
+    EXPECT_EQ(Kadane_results, expected_results) << error_message;
 }
 
 /** Max crossing subvector of a negative vector should be the smallest one.
