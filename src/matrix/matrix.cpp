@@ -12,7 +12,7 @@ void PrintMatrix(const Matrix A) {
     }
 }
 
-Matrix Multiply(const Matrix A, const Matrix B) {
+Matrix MatrixMultiplyBF(const Matrix A, const Matrix B) {
     // Pre-conditions
     if (A.size() == 0 || B.size() == 0)
         throw std::runtime_error("Cannot multiply empty matrices!");
