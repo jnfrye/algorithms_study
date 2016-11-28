@@ -11,7 +11,7 @@ typedef std::vector<Row> Matrix;
 
 /** Display matrix in a nice format.
  */
-void PrintMatrix(const Matrix A)
+void PrintMatrix(const Matrix A);
 
 /** Multiply two matrices using the brute force algorithm.
  *
