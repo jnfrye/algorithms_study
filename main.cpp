@@ -15,7 +15,8 @@ int main() {
     PrintMatrix(A);
     std::cout << std::endl;
 
-    Matrix B = A;
+    Matrix B = {{5, 6},
+                {7, 8}};
     PrintMatrix(B);
     std::cout << std::endl;
 

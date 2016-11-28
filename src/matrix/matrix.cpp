@@ -25,7 +25,7 @@ Matrix MatrixMultiplyBF(const Matrix A, const Matrix B) {
     for (int row = 0; row < A.size(); ++row)
         for (int col = 0; col < B[0].size(); ++col)
             for (int k = 0; k < B.size(); ++k)
-                C[row][col] += A[row][k] + B[k][col];
+                C[row][col] += A[row][k] * B[k][col];
 
     // Post-conditions
     if (C.size() != A.size())
