@@ -1,0 +1,9 @@
+/** Basic matrix operations.
+ */
+
+#ifndef ALGORITHMS_STUDY_CPP_MATRIX_HPP
+#define ALGORITHMS_STUDY_CPP_MATRIX_HPP
+
+
+
+#endif //ALGORITHMS_STUDY_CPP_MATRIX_HPP

@@ -9,8 +9,9 @@ add_subdirectory(test)
 
 # Gather sources and includes
 include_directories(include)
-file(GLOB SOURCES "src/vector/*.cpp")
-set(SOURCE_FILES main.cpp ${SOURCES})
+file(GLOB VECTOR_SOURCES "src/vector/*.cpp")
+file(GLOB MATRIX_SOURCES "src/matrix/*.cpp")
+set(SOURCE_FILES main.cpp ${VECTOR_SOURCES} ${MATRIX_SOURCES})
 
 # Add sources to main executable
 add_executable(algorithms_study_cpp ${SOURCE_FILES})
