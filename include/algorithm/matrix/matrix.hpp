@@ -9,9 +9,13 @@
 typedef std::vector<int> Row;
 typedef std::vector<Row> Matrix;
 
+/** Display matrix in a nice format.
+ */
+void PrintMatrix(const Matrix A)
+
 /**
  *
  */
-Matrix Multiply(Matrix A, Matrix B);
+Matrix Multiply(const Matrix A, const Matrix B);
 
 #endif //ALGORITHMS_STUDY_CPP_MATRIX_HPP

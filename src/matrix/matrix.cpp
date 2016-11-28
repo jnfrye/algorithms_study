@@ -1,9 +1,18 @@
 #include "algorithm/matrix/matrix.hpp"
 
 #include <stdexcept>
+#include <iostream>
 
 
-Matrix Multiply(Matrix A, Matrix B) {
+void PrintMatrix(const Matrix A) {
+    for (int row = 0; row < A.size(); ++row) {
+        for (int col = 0; col < A[0].size(); ++col)
+            std::cout << A[row][col] << "\t";
+        std::cout << std::endl;
+    }
+}
+
+Matrix Multiply(const Matrix A, const Matrix B) {
     // Pre-conditions
     if (A.size() == 0 || B.size() == 0)
         throw std::runtime_error("Cannot multiply empty matrices!");
