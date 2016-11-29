@@ -14,6 +14,6 @@
  * @param max   (Inclusive) upper bound for random range.
  * @return      Random number in desired range.
  */
-int random_interval(const int min, const int max);
+int RandomInterval(const int min, const int max);
 
 #endif //ALGORITHMS_STUDY_CPP_RANDOM_HPP
