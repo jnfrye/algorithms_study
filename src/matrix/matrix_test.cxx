@@ -69,4 +69,18 @@ TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
 
 }
 
+/** Matrix multiplication should be associative
+ */
 
+TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
+    std::string error_message = "Matrix multiplication should be associative!";
+
+    auto left_side = MatrixMultiplyBF(
+        random_matrix1,
+        MatrixMultiplyBF(random_matrix2, random_matrix3));
+    auto right_side = MatrixMultiplyBF(
+        MatrixMultiplyBF(random_matrix1, random_matrix2),
+        random_matrix3);
+
+    EXPECT_EQ(left_side, right_side) << error_message;
+}
