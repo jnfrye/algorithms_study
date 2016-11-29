@@ -11,6 +11,7 @@
 
 #include "algorithm/vector/search.hpp"
 #include "algorithm/vector/sort.hpp"
+#include "algorithm/random.hpp"
 
 
 /** General test fixture for vector search algorithms.
@@ -40,23 +41,14 @@ protected:
     virtual void SetUp() {
         std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
 
-        int random_size = std::rand() % 20 + 2; // range of 2 to 21
+        int random_size = RandomInterval(2, 21);
         random_vec = std::vector<int>((unsigned int)random_size);
+        random_positive_vec = std::vector<int>((unsigned int)random_size);
+        random_negative_vec = std::vector<int>((unsigned int)random_size);
 
-        // Fill the vector with random values
-        for (int i = 0; i < random_vec.size(); i++)
-            random_vec[i] = std::rand() % 41 - 20; // range -20 to 20
-
-        // Fill the positive vector with random values above zero
-        random_positive_vec = random_vec;
-        for (int i = 0; i < random_positive_vec.size(); i++)
-            random_positive_vec[i] = std::rand() % 20 + 1; // range 1 to 20
-
-        // The random negative vector is just the negative of the random
-        // positive vector above.
-        random_negative_vec = random_positive_vec;
-        for (int i = 0; i < random_negative_vec.size(); i++)
-            random_negative_vec[i] *= -1;
+        RandomlyFillVector(random_vec, -20, 20);
+        RandomlyFillVector(random_positive_vec, 1, 20);
+        RandomlyFillVector(random_negative_vec, -20, -1);
     }
 };
 
