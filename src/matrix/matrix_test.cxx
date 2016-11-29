@@ -4,6 +4,7 @@
 #include "gtest/gtest.h"
 
 #include "algorithm/matrix/matrix.hpp"
+#include "algorithm/random.hpp"
 
 
 /** General test fixture for basic matrix functions.
@@ -24,6 +25,33 @@ protected:
             {10},
             {-3},
             {7}};
+    }
+};
+
+/** General test fixture for basic matrix functions.
+ */
+class RandomizedMatrixTest: public ::testing::Test {
+public:
+    Matrix random_matrix1;
+    Matrix random_matrix2;
+    Matrix random_matrix3;
+
+protected:
+    virtual void SetUp() {
+        std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
+
+        int rows1 = RandomInterval(1, 12);
+        int rows2 = RandomInterval(1, 12);
+        int rows3 = RandomInterval(1, 12);
+        int cols3 = RandomInterval(1, 12);
+
+        random_matrix1 = Matrix(rows1, std::vector<int>(rows2));
+        random_matrix2 = Matrix(rows2, std::vector<int>(rows3));
+        random_matrix3 = Matrix(rows3, std::vector<int>(cols3));
+
+        RandomlyFillMatrix(random_matrix1, -12, 12);
+        RandomlyFillMatrix(random_matrix2, -12, 12);
+        RandomlyFillMatrix(random_matrix3, -12, 12);
     }
 };
 
