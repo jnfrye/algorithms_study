@@ -6,18 +6,21 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 ### MAIN EXECUTABLE
 # Gather sources and includes
 include_directories(include)
+file(GLOB MISC_SOURCES "src/*.cpp")
 file(GLOB VECTOR_SOURCES "src/vector/*.cpp")
 file(GLOB MATRIX_SOURCES "src/matrix/*.cpp")
-set(SOURCES ${VECTOR_SOURCES} ${MATRIX_SOURCES})
+set(SOURCES ${MISC_SOURCES} ${VECTOR_SOURCES} ${MATRIX_SOURCES})
 
 # Add sources to main executable
 add_executable(algorithms_study main.cpp ${SOURCES})
 
 ### UNIT TESTING
 # Gather test sources
+file(GLOB MISC_TEST_SOURCES "src/*.cxx")
 file(GLOB VECTOR_TEST_SOURCES "src/vector/*.cxx")
 file(GLOB MATRIX_TEST_SOURCES "src/matrix/*.cxx")
-set(TEST_SOURCES ${VECTOR_TEST_SOURCES} ${MATRIX_TEST_SOURCES})
+set(TEST_SOURCES ${MISC_TEST_SOURCES} ${VECTOR_TEST_SOURCES}
+    ${MATRIX_TEST_SOURCES})
 
 # Add googletest stuff
 add_subdirectory(ext/googletest-master)
