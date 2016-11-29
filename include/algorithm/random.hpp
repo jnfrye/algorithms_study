@@ -6,6 +6,9 @@
 #ifndef ALGORITHMS_STUDY_CPP_RANDOM_HPP
 #define ALGORITHMS_STUDY_CPP_RANDOM_HPP
 
+#include "algorithm/matrix/matrix.hpp"
+
+
 /** Generate a random integer in an inclusive interval.
  *
  * That is, returned integer could be `min`, `max`, or any integer between.

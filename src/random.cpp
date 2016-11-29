@@ -1,4 +1,3 @@
-#include "algorithm/matrix/matrix.hpp"
 #include "algorithm/random.hpp"
 
 #include <random>
@@ -13,7 +12,7 @@ int RandomInterval(const int min, const int max) {
     return random_distribution(rng);
 }
 
-inline void RandomlyFillMatrix(
+void RandomlyFillMatrix(
         Matrix &A, const int lower_bound, const int upper_bound) {
     for (int row = 0; row < A.size(); ++row)
         for (int col = 0; col < A[0].size(); ++col)
