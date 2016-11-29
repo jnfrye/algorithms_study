@@ -71,7 +71,6 @@ TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
 
 /** Matrix multiplication should be associative
  */
-
 TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
     std::string error_message = "Matrix multiplication should be associative!";
 
