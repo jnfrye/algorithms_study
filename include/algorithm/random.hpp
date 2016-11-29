@@ -16,4 +16,13 @@
  */
 int RandomInterval(const int min, const int max);
 
+/** Fill a matrix with random values in the specified range.
+ *
+ * @param A             Matrix to be filled.
+ * @param lower_bound   Lowest possible random value.
+ * @param upper_bound   Highest possible random value.
+ */
+void RandomlyFillMatrix(
+        Matrix &A, const int lower_bound, const int upper_bound);
+
 #endif //ALGORITHMS_STUDY_CPP_RANDOM_HPP
