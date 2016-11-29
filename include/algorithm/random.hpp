@@ -19,6 +19,15 @@
  */
 int RandomInterval(const int min, const int max);
 
+/** Fill a vector with random values in the specified range.
+ *
+ * @param vec           Vector to be filled.
+ * @param lower_bound   Lowest possible random value.
+ * @param upper_bound   Highest possible random value.
+ */
+void RandomlyFillVector(
+        std::vector<int> &vec, const int lower_bound, const int upper_bound)
+
 /** Fill a matrix with random values in the specified range.
  *
  * @param A             Matrix to be filled.
