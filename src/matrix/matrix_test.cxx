@@ -72,6 +72,19 @@ TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
 
 }
 
+TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive) {
+    std::string error_message = "Matrix multiplication should be left-"
+        "distributive.";
+
+    auto result_left_side = MatrixMultiplyBF(
+        random_matrix1, MatrixAdd(random_matrix2a, random_matrix2b));
+    auto result_right_side = MatrixAdd(
+        MatrixMultiplyBF(random_matrix1, random_matrix2a),
+        MatrixMultiplyBF(random_matrix1, random_matrix2b));
+
+    EXPECT_EQ(result_left_side, result_right_side) << error_message;
+}
+
 /** Matrix multiplication should be associative
  */
 TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
