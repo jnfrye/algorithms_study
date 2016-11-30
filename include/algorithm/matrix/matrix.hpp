@@ -11,7 +11,7 @@ typedef std::vector<Row> Matrix;
 
 /** Display matrix in a nice format.
  */
-void PrintMatrix(const Matrix A);
+void PrintMatrix(const Matrix &A);
 
 /** Multiply a matrix by a scalar.
  *
@@ -19,7 +19,7 @@ void PrintMatrix(const Matrix A);
  * @param A         Matrix to get multiplied by scalar.
  * @return          Result of scalar multiplied by matrix.
  */
-Matrix MatrixScalarMultiply(const int scalar, const Matrix& A);
+Matrix MatrixScalarMultiply(const int scalar, const Matrix &A);
 
 /** Add two matrices.
  *
@@ -27,7 +27,7 @@ Matrix MatrixScalarMultiply(const int scalar, const Matrix& A);
  * @param B Right-hand matrix
  * @return  Result matrix.
  */
-Matrix MatrixAdd(const Matrix A, const Matrix B);
+Matrix MatrixAdd(const Matrix &A, const Matrix &B);
 
 /** Multiply two matrices using the brute force algorithm.
  *
@@ -37,6 +37,6 @@ Matrix MatrixAdd(const Matrix A, const Matrix B);
  * @param B Right-hand matrix
  * @return  Result matrix.
  */
-Matrix MatrixMultiplyBF(const Matrix A, const Matrix B);
+Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B);
 
 #endif //ALGORITHMS_STUDY_CPP_MATRIX_HPP

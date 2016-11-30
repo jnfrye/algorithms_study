@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-void PrintMatrix(const Matrix A) {
+void PrintMatrix(const Matrix &A) {
     for (int row = 0; row < A.size(); ++row) {
         for (int col = 0; col < A[0].size(); ++col)
             std::cout << A[row][col] << "\t";
@@ -12,7 +12,7 @@ void PrintMatrix(const Matrix A) {
     }
 }
 
-Matrix MatrixScalarMultiply(const int scalar, const Matrix& A) {
+Matrix MatrixScalarMultiply(const int scalar, const Matrix &A) {
     Matrix C(A);    // copy matrix A
     for (int row = 0; row < C.size(); ++row)
         for (int col = 0; col < C[0].size(); ++col)
@@ -21,7 +21,7 @@ Matrix MatrixScalarMultiply(const int scalar, const Matrix& A) {
     return C;
 }
 
-Matrix MatrixAdd(const Matrix A, const Matrix B) {
+Matrix MatrixAdd(const Matrix &A, const Matrix &B) {
     // Pre-conditions
     if (A.size() != B.size() || A[0].size() != B[0].size())
         throw std::runtime_error("Cannot add matrices of different sizes!");
@@ -35,7 +35,7 @@ Matrix MatrixAdd(const Matrix A, const Matrix B) {
     return C;
 }
 
-Matrix MatrixMultiplyBF(const Matrix A, const Matrix B) {
+Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B) {
     // Pre-conditions
     if (A.size() == 0 || B.size() == 0)
         throw std::runtime_error("Cannot multiply empty matrices!");
