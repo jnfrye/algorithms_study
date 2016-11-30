@@ -28,7 +28,7 @@ protected:
     }
 };
 
-/** General test fixture for basic matrix functions.
+/** Randomized test fixture for basic matrix functions.
  */
 class RandomizedMatrixTest: public ::testing::Test {
 public:
