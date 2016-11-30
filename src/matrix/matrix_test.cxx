@@ -72,9 +72,11 @@ TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
 
 }
 
+/** Matrix multiplication should be left-distributive over addition.
+ */
 TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive) {
     std::string error_message = "Matrix multiplication should be left-"
-        "distributive.";
+        "distributive over addition.";
 
     auto result_left_side = MatrixMultiplyBF(
         random_matrix1, MatrixAdd(random_matrix2a, random_matrix2b));
