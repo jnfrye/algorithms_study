@@ -33,7 +33,8 @@ protected:
 class RandomizedMatrixTest: public ::testing::Test {
 public:
     Matrix random_matrix1;
-    Matrix random_matrix2;
+    Matrix random_matrix2a;
+    Matrix random_matrix2b;
     Matrix random_matrix3;
 
 protected:
@@ -46,11 +47,13 @@ protected:
         int cols3 = RandomInterval(1, 12);
 
         random_matrix1 = Matrix(rows1, std::vector<int>(rows2));
-        random_matrix2 = Matrix(rows2, std::vector<int>(rows3));
+        random_matrix2a = Matrix(rows2, std::vector<int>(rows3));
+        random_matrix2b = Matrix(rows2, std::vector<int>(rows3));
         random_matrix3 = Matrix(rows3, std::vector<int>(cols3));
 
         RandomlyFillMatrix(random_matrix1, -12, 12);
-        RandomlyFillMatrix(random_matrix2, -12, 12);
+        RandomlyFillMatrix(random_matrix2a, -12, 12);
+        RandomlyFillMatrix(random_matrix2b, -12, 12);
         RandomlyFillMatrix(random_matrix3, -12, 12);
     }
 };
@@ -76,9 +79,9 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
 
     auto left_side = MatrixMultiplyBF(
         random_matrix1,
-        MatrixMultiplyBF(random_matrix2, random_matrix3));
+        MatrixMultiplyBF(random_matrix2a, random_matrix3));
     auto right_side = MatrixMultiplyBF(
-        MatrixMultiplyBF(random_matrix1, random_matrix2),
+        MatrixMultiplyBF(random_matrix1, random_matrix2a),
         random_matrix3);
 
     EXPECT_EQ(left_side, right_side) << error_message;
