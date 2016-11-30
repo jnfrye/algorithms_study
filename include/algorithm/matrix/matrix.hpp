@@ -13,6 +13,14 @@ typedef std::vector<Row> Matrix;
  */
 void PrintMatrix(const Matrix A);
 
+/** Add two matrices.
+ *
+ * @param A Left-hand matrix
+ * @param B Right-hand matrix
+ * @return  Result matrix.
+ */
+Matrix MatrixAdd(const Matrix A, const Matrix B);
+
 /** Multiply two matrices using the brute force algorithm.
  *
  * Worst-case performance is Theta(n^3)

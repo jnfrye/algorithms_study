@@ -12,6 +12,20 @@ void PrintMatrix(const Matrix A) {
     }
 }
 
+Matrix MatrixAdd(const Matrix A, const Matrix B) {
+    // Pre-conditions
+    if (A.size() != B.size() || A[0].size() != B[0].size())
+        throw std::runtime_error("Cannot add matrices of different sizes!");
+
+    // Iniitialize matrix full of zeros
+    Matrix C(A.size(), std::vector<int>(B[0].size(), 0));
+    for (int row = 0; row < A.size(); ++row)
+        for (int col = 0; col < A[0].size(); ++col)
+            C[row][col] = A[row][col] + B[row][col];
+
+    return C;
+}
+
 Matrix MatrixMultiplyBF(const Matrix A, const Matrix B) {
     // Pre-conditions
     if (A.size() == 0 || B.size() == 0)
