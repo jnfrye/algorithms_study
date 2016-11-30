@@ -12,6 +12,15 @@ void PrintMatrix(const Matrix A) {
     }
 }
 
+Matrix MatrixScalarMultiply(const int scalar, const Matrix& A) {
+    Matrix C(A);    // copy matrix A
+    for (int row = 0; row < C.size(); ++row)
+        for (int col = 0; col < C[0].size(); ++col)
+            C[row][col] *= scalar;
+
+    return C;
+}
+
 Matrix MatrixAdd(const Matrix A, const Matrix B) {
     // Pre-conditions
     if (A.size() != B.size() || A[0].size() != B[0].size())

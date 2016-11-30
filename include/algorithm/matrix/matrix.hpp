@@ -13,6 +13,14 @@ typedef std::vector<Row> Matrix;
  */
 void PrintMatrix(const Matrix A);
 
+/** Multiply a matrix by a scalar.
+ *
+ * @param scalar    Scalar to multiply matrix by.
+ * @param A         Matrix to get multiplied by scalar.
+ * @return          Result of scalar multiplied by matrix.
+ */
+Matrix MatrixScalarMultiply(const int scalar, const Matrix& A);
+
 /** Add two matrices.
  *
  * @param A Left-hand matrix
