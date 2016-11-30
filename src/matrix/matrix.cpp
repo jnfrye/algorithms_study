@@ -35,6 +35,10 @@ Matrix MatrixAdd(const Matrix &A, const Matrix &B) {
     return C;
 }
 
+Matrix MatrixSubtract(const Matrix &A, const Matrix &B) {
+    return MatrixAdd(A, MatrixScalarMultiply(-1, B));
+}
+
 Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B) {
     // Pre-conditions
     if (A.size() == 0 || B.size() == 0)

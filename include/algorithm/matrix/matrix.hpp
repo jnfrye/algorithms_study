@@ -29,6 +29,16 @@ Matrix MatrixScalarMultiply(const int scalar, const Matrix &A);
  */
 Matrix MatrixAdd(const Matrix &A, const Matrix &B);
 
+/** Subtract one matrix from another (A - B).
+ *
+ * The second argument is subtracted from the first (A - B).
+ *
+ * @param A     Matrix to be subtracted from.
+ * @param B     Matrix to be subtracted.
+ * @return      Result of subtraction.
+ */
+Matrix MatrixSubtract(const Matrix &A, const Matrix &B);
+
 /** Multiply two matrices using the brute force algorithm.
  *
  * Worst-case performance is Theta(n^3)
