@@ -64,11 +64,14 @@ Matrix UnsplitMatrix(const std::vector<std::vector<Matrix>> &split_matrix);
  */
 Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B);
 
-Matrix MatrixMultiplyDACOld(
-        const Matrix &left, const Matrix &right,
-        const int left_row_begin, const int left_row_end,
-        const int left_col_begin, const int left_col_end,
-        const int right_row_begin, const int right_row_end,
-        const int right_col_begin, const int right_col_end);
+/** Multiply two matrices using the recursive divide-and-conquer algorithm.
+ *
+ * Worst-case performance is Theta(n^3).
+ *
+ * @param left  Left-hand matrix
+ * @param right Right-hand matrix
+ * @return      Result matrix.
+ */
+Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right);
 
 #endif //ALGORITHMS_STUDY_CPP_MATRIX_HPP
