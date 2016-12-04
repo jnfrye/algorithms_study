@@ -113,19 +113,22 @@ Matrix UnsplitMatrix(const std::vector<std::vector<Matrix>> &split_matrix) {
     }
     // Fun with indices!
     Matrix unsplit_matrix(num_subrows, Row(num_subcols));
-    for (int row = 0; row < num_rows; ++row)
-        for (int col = 0; col < num_cols; ++col){
-            Matrix temp(split_matrix[row][col]);
+    for (int row = 0; row < num_rows; ++row) {
+        int subrow_offset = std::accumulate(
+            row_dims.begin(), row_dims.begin() + row, 0);
+        for (int col = 0; col < num_cols; ++col) {
+            int subcol_offset = std::accumulate(
+                col_dims.begin(), col_dims.begin() + col, 0);
 
             for (int subrow = 0; subrow < row_dims[row]; ++subrow)
-                for (int subcol = 0; subcol < col_dims[col]; ++subcol)
-                     unsplit_matrix
-                         [subrow + std::accumulate(
-                            row_dims.begin(), row_dims.begin() + row, 0)]
-                         [subcol + std::accumulate(
-                            col_dims.begin(), col_dims.begin() + col, 0)]
-                                = temp[subrow][subcol];
+                for (int subcol = 0; subcol < col_dims[col]; ++subcol) {
+                    unsplit_matrix
+                        [subrow + subrow_offset]
+                        [subcol + subcol_offset]
+                        = split_matrix[row][col][subrow][subcol];
+                }
         }
+    }
     return unsplit_matrix;
 }
 
