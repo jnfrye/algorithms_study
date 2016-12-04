@@ -14,6 +14,7 @@ public:
     Matrix singleton;
     Matrix matrix1;
     Matrix matrix2;
+    Matrix matrix3;
 
 protected:
     virtual void SetUp() {
@@ -25,6 +26,11 @@ protected:
             {10},
             {-3},
             {7}};
+        matrix3 = {
+            {8, -3, 6},
+            {2, 1, 1},
+            {-5, 0, 9},
+            {0, -4, 4}};
     }
 };
 
@@ -69,6 +75,31 @@ TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
 
     EXPECT_EQ(result_matrix, expected_result)
         << "Matrix multiplication failed basic test!";
+
+}
+
+/** Basic test of matrix splitting.
+ */
+TEST_F(GeneralMatrixTest, SplitMatrixOnBasicMatrix) {
+    auto results = SplitMatrix(matrix3);
+
+    std::vector<std::vector<Matrix>> expected_result(2, std::vector<Matrix>(2));
+
+    expected_result[0][0] = {
+        {8},
+        {2}};
+    expected_result[0][1] = {
+        {-3, 6},
+        {1, 1}};
+    expected_result[1][0] = {
+        {-5},
+        {0}};
+    expected_result[1][1] = {
+        {0, 9},
+        {-4, 4}};
+
+    EXPECT_EQ(results, expected_result)
+        << "Matrix splitting failed basic test!";
 
 }
 
