@@ -40,6 +40,13 @@ Matrix MatrixAdd(const Matrix &A, const Matrix &B);
  */
 Matrix MatrixSubtract(const Matrix &A, const Matrix &B);
 
+/** Transpose matrix.
+ *
+ * @param A Matrix to be transposed
+ * @return  Transposed matrix
+ */
+Matrix MatrixTranspose(const Matrix &A);
+
 /** Split matrix into quadrants (returns a matrix of matrices).
  *
  * @param A Matrix to be split

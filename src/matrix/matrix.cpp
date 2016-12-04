@@ -41,6 +41,18 @@ Matrix MatrixSubtract(const Matrix &A, const Matrix &B) {
     return MatrixAdd(A, MatrixScalarMultiply(-1, B));
 }
 
+Matrix MatrixTranspose(const Matrix &A) {
+    int num_rows = A.size();
+    int num_cols = A[0].size();
+
+    Matrix A_transpose(num_cols, Row(num_rows));
+    for (int row = 0; row < num_rows; ++row)
+        for (int col = 0; col < num_cols; ++col)
+            A_transpose[col][row] = A[row][col];
+
+    return A_transpose;
+}
+
 Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B) {
     // Pre-conditions
     if (A.size() == 0 || B.size() == 0)
