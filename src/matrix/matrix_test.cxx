@@ -147,3 +147,12 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
 
     EXPECT_EQ(left_side, right_side) << error_message;
 }
+
+/** Splitting then unsplitting a matrix should yield original matrix.
+ */
+TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
+    auto result_matrix = UnsplitMatrix(SplitMatrix(random_matrix1));
+
+    EXPECT_EQ(result_matrix, random_matrix1)
+        << "Splitting then unsplitting a matrix should yield original matrix.";
+}
