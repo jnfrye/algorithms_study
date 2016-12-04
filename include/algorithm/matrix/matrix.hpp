@@ -6,6 +6,7 @@
 
 #include <vector>
 
+
 typedef std::vector<int> Row;
 typedef std::vector<Row> Matrix;
 
@@ -39,6 +40,13 @@ Matrix MatrixAdd(const Matrix &A, const Matrix &B);
  */
 Matrix MatrixSubtract(const Matrix &A, const Matrix &B);
 
+/** Split matrix into quadrants (returns a matrix of matrices).
+ *
+ * @param A Matrix to be split
+ * @return  Matrix of matrices.
+ */
+std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A);
+
 /** Multiply two matrices using the brute force algorithm.
  *
  * Worst-case performance is Theta(n^3)
@@ -48,5 +56,12 @@ Matrix MatrixSubtract(const Matrix &A, const Matrix &B);
  * @return  Result matrix.
  */
 Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B);
+
+Matrix MatrixMultiplyDACOld(
+        const Matrix &left, const Matrix &right,
+        const int left_row_begin, const int left_row_end,
+        const int left_col_begin, const int left_col_end,
+        const int right_row_begin, const int right_row_end,
+        const int right_col_begin, const int right_col_end);
 
 #endif //ALGORITHMS_STUDY_CPP_MATRIX_HPP
