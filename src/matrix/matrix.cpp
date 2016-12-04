@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cmath>
+#include <numeric>
 
 
 void PrintMatrix(const Matrix &A) {
@@ -92,6 +93,40 @@ std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A) {
             split_matrix[row][col] = temp;
         }
     return split_matrix;
+}
+
+Matrix UnsplitMatrix(const std::vector<std::vector<Matrix>> &split_matrix) {
+    int num_rows = split_matrix.size();
+    int num_cols = split_matrix[0].size();
+
+    Row row_dims(num_rows);
+    int num_subrows = 0;
+    for (int row = 0; row < num_rows; ++row) {
+        row_dims[row] = split_matrix[row][0].size();
+        num_subrows += row_dims[row];
+    }
+    Row col_dims(num_cols);
+    int num_subcols = 0;
+    for (int col = 0; col < num_cols; ++col) {
+        col_dims[col] = split_matrix[0][col][0].size();
+        num_subcols += col_dims[col];
+    }
+    // Fun with indices!
+    Matrix unsplit_matrix(num_subrows, Row(num_subcols));
+    for (int row = 0; row < num_rows; ++row)
+        for (int col = 0; col < num_cols; ++col){
+            Matrix temp(split_matrix[row][col]);
+
+            for (int subrow = 0; subrow < row_dims[row]; ++subrow)
+                for (int subcol = 0; subcol < col_dims[col]; ++subcol)
+                     unsplit_matrix
+                         [subrow + std::accumulate(
+                            row_dims.begin(), row_dims.begin() + row, 0)]
+                         [subcol + std::accumulate(
+                            col_dims.begin(), col_dims.begin() + col, 0)]
+                                = temp[subrow][subcol];
+        }
+    return unsplit_matrix;
 }
 
 Matrix MatrixMultiplyDACOld(

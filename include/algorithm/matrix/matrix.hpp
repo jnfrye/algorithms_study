@@ -47,6 +47,13 @@ Matrix MatrixSubtract(const Matrix &A, const Matrix &B);
  */
 std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A);
 
+/** Unsplit a matrix of matrices (returns a matrix of values).
+ *
+ * @param split_matrix  Matrix to be unsplit.
+ * @return              Unsplit matrix.
+ */
+Matrix UnsplitMatrix(const std::vector<std::vector<Matrix>> &split_matrix);
+
 /** Multiply two matrices using the brute force algorithm.
  *
  * Worst-case performance is Theta(n^3)
