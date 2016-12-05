@@ -54,8 +54,12 @@ Matrix MatrixTranspose(const Matrix &A) {
 }
 
 std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A) {
-    if (A.size() < 2 || A[0].size() < 2)
-        throw std::runtime_error("Too few rows or columns to split matrix!");
+    if (A.size() < 2 || A[0].size() < 2) {
+        std::string error_message =
+            "Too few rows (" + std::to_string(A.size()) + ") or columns (" +
+            std::to_string(A[0].size()) + ") to split matrix!";
+        throw std::runtime_error(error_message);
+    }
 
     int num_rows = A.size();
     int num_cols = A[0].size();
@@ -149,7 +153,8 @@ Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right) {
 
     Matrix product(num_rows, Row(num_cols));
 
-    if (num_rows == 1 || num_cols == 1) {
+    if (num_rows == 1 || left[0].size() == 1 ||
+            right.size() == 1 || num_cols == 1) {
         product = MatrixMultiplyBF(left, right);
     }
     else {
