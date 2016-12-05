@@ -42,6 +42,7 @@ public:
     Matrix random_matrix2a;
     Matrix random_matrix2b;
     Matrix random_matrix3;
+    Matrix random_matrix4;
 
 protected:
     virtual void SetUp() {
@@ -51,16 +52,20 @@ protected:
         int rows2 = RandomInterval(1, 12);
         int rows3 = RandomInterval(1, 12);
         int cols3 = RandomInterval(1, 12);
+        int rows4 = RandomInterval(2, 12);
+        int cols4 = RandomInterval(2, 12);
 
-        random_matrix1 = Matrix(rows1, std::vector<int>(rows2));
-        random_matrix2a = Matrix(rows2, std::vector<int>(rows3));
-        random_matrix2b = Matrix(rows2, std::vector<int>(rows3));
-        random_matrix3 = Matrix(rows3, std::vector<int>(cols3));
+        random_matrix1 = Matrix(rows1, Row(rows2));
+        random_matrix2a = Matrix(rows2, Row(rows3));
+        random_matrix2b = Matrix(rows2, Row(rows3));
+        random_matrix3 = Matrix(rows3, Row(cols3));
+        random_matrix4 = Matrix(rows4, Row(cols4));
 
         RandomlyFillMatrix(random_matrix1, -12, 12);
         RandomlyFillMatrix(random_matrix2a, -12, 12);
         RandomlyFillMatrix(random_matrix2b, -12, 12);
         RandomlyFillMatrix(random_matrix3, -12, 12);
+        RandomlyFillMatrix(random_matrix4, -12, 12);
     }
 };
 
@@ -154,21 +159,29 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationRightDistributive) {
 TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
     std::string error_message = "Matrix multiplication should be associative!";
 
-    auto left_side = MatrixMultiplyBF(
+    auto BF_left_side = MatrixMultiplyBF(
         random_matrix1,
         MatrixMultiplyBF(random_matrix2a, random_matrix3));
-    auto right_side = MatrixMultiplyBF(
+    auto BF_right_side = MatrixMultiplyBF(
         MatrixMultiplyBF(random_matrix1, random_matrix2a),
         random_matrix3);
 
-    EXPECT_EQ(left_side, right_side) << error_message;
+    auto DAC_left_side = MatrixMultiplyDAC(
+        random_matrix1,
+        MatrixMultiplyDAC(random_matrix2a, random_matrix3));
+    auto DAC_right_side = MatrixMultiplyDAC(
+        MatrixMultiplyDAC(random_matrix1, random_matrix2a),
+        random_matrix3);
+
+    EXPECT_EQ(BF_left_side, BF_right_side) << error_message;
+    EXPECT_EQ(DAC_left_side, DAC_right_side) << error_message;
 }
 
 /** Splitting then unsplitting a matrix should yield original matrix.
  */
 TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
-    auto result_matrix = UnsplitMatrix(SplitMatrix(random_matrix1));
+    auto result_matrix = UnsplitMatrix(SplitMatrix(random_matrix4));
 
-    EXPECT_EQ(result_matrix, random_matrix1)
+    EXPECT_EQ(result_matrix, random_matrix4)
         << "Splitting then unsplitting a matrix should yield original matrix.";
 }
