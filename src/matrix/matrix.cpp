@@ -175,3 +175,66 @@ Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right) {
     }
     return product;
 }
+
+Matrix MatrixMultiplyStrassen(const Matrix &left, const Matrix &right) {
+    int num_rows = left.size();
+    int num_cols = right[0].size();
+
+    Matrix result(num_rows, Row(num_cols));
+
+    // TODO Need to make it so if the matrix size is not a power of 2, we fill
+    // TODO it with zeros to make it that way (I think ?).
+    // TODO This is necessary for now because if a dimension is odd, then when
+    // TODO the matrix is split the submatrices will be of different dimensions
+    // TODO and so cannot be added.
+    if (num_rows % 2 == 1 || left[0].size() % 2 == 1 ||
+            right.size() % 2 == 1 || num_cols % 2 == 1) {
+        result = MatrixMultiplyBF(left, right);
+    }
+    else {
+        auto split_left = SplitMatrix(left);
+        auto split_right = SplitMatrix(right);
+
+        std::vector<Matrix> products(7);
+
+        products[0] = MatrixMultiplyStrassen(
+                split_left[0][0],
+                MatrixSubtract(split_right[0][1], split_right[1][1]));
+        products[1] = MatrixMultiplyStrassen(
+                MatrixAdd(split_left[0][0], split_left[0][1]),
+                split_right[1][1]);
+        products[2] = MatrixMultiplyStrassen(
+                MatrixAdd(split_left[1][0], split_left[1][1]),
+                split_right[0][0]);
+        products[3] = MatrixMultiplyStrassen(
+                split_left[1][1],
+                MatrixSubtract(split_right[1][0], split_right[0][0]));
+        products[4] = MatrixMultiplyStrassen(
+                MatrixAdd(split_left[0][0], split_left[1][1]),
+                MatrixAdd(split_right[0][0], split_right[1][1]));
+        products[5] = MatrixMultiplyStrassen(
+                MatrixSubtract(split_left[0][1], split_left[1][1]),
+                MatrixAdd(split_right[1][0], split_right[1][1]));
+        products[6] = MatrixMultiplyStrassen(
+                MatrixSubtract(split_left[0][0], split_left[1][0]),
+                MatrixAdd(split_right[0][0], split_right[0][1]));
+
+        auto split_result = SplitMatrix(result);
+
+        split_result[0][0] = MatrixAdd(
+            products[4],
+            MatrixAdd(
+                products[5],
+                MatrixSubtract(products[3], products[1])));
+        split_result[0][1] = MatrixAdd(products[0], products[1]);
+        split_result[1][0] = MatrixAdd(products[2], products[3]);
+        split_result[1][1] = MatrixAdd(
+            products[4],
+            MatrixSubtract(
+                MatrixSubtract(products[0], products[2]),
+                products[6]));
+
+        result = UnsplitMatrix(split_result);
+    }
+    return result;
+}

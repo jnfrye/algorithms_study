@@ -81,4 +81,14 @@ Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B);
  */
 Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right);
 
+/** Multiply two matrices using the recursive Strassen algorithm.
+ *
+ * Worst-case performance is Theta(n^(lg 7)).
+ *
+ * @param left  Left-hand matrix
+ * @param right Right-hand matrix
+ * @return      Result matrix.
+ */
+Matrix MatrixMultiplyStrassen(const Matrix &left, const Matrix &right);
+
 #endif //ALGORITHMS_STUDY_CPP_MATRIX_HPP
