@@ -110,6 +110,15 @@ TEST_F(GeneralMatrixTest, SplitMatrixOnBasicMatrix) {
 
 }
 
+/** Splitting then unsplitting a matrix should yield original matrix.
+ */
+TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
+    auto result_matrix = UnsplitMatrix(SplitMatrix(random_matrix4));
+
+    EXPECT_EQ(result_matrix, random_matrix4)
+        << "Splitting then unsplitting a matrix should yield original matrix.";
+}
+
 /** Matrix multiplication should be left-distributive over addition.
  */
 TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive) {
@@ -175,13 +184,4 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
 
     EXPECT_EQ(BF_left_side, BF_right_side) << error_message;
     EXPECT_EQ(DAC_left_side, DAC_right_side) << error_message;
-}
-
-/** Splitting then unsplitting a matrix should yield original matrix.
- */
-TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
-    auto result_matrix = UnsplitMatrix(SplitMatrix(random_matrix4));
-
-    EXPECT_EQ(result_matrix, random_matrix4)
-        << "Splitting then unsplitting a matrix should yield original matrix.";
 }
