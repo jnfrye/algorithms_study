@@ -111,13 +111,20 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive) {
     std::string error_message = "Matrix multiplication should be left-"
         "distributive over addition.";
 
-    auto result_left_side = MatrixMultiplyBF(
+    auto BF_result_left_side = MatrixMultiplyBF(
         random_matrix1, MatrixAdd(random_matrix2a, random_matrix2b));
-    auto result_right_side = MatrixAdd(
+    auto BF_result_right_side = MatrixAdd(
         MatrixMultiplyBF(random_matrix1, random_matrix2a),
         MatrixMultiplyBF(random_matrix1, random_matrix2b));
 
-    EXPECT_EQ(result_left_side, result_right_side) << error_message;
+    auto DAC_result_left_side = MatrixMultiplyDAC(
+        random_matrix1, MatrixAdd(random_matrix2a, random_matrix2b));
+    auto DAC_result_right_side = MatrixAdd(
+        MatrixMultiplyDAC(random_matrix1, random_matrix2a),
+        MatrixMultiplyDAC(random_matrix1, random_matrix2b));
+
+    EXPECT_EQ(BF_result_left_side, BF_result_right_side) << error_message;
+    EXPECT_EQ(DAC_result_left_side, DAC_result_right_side) << error_message;
 }
 
 /** Matrix multiplication should be right-distributive over addition.
