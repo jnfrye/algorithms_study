@@ -54,16 +54,16 @@ Matrix MatrixTranspose(const Matrix &A) {
 }
 
 std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A) {
-
-    std::vector<std::vector<Matrix>> split_matrix(2, std::vector<Matrix>(2));
+    if (A.size() < 2 || A[0].size() < 2)
+        throw std::runtime_error("Too few rows or columns to split matrix!");
 
     int num_rows = A.size();
     int num_cols = A[0].size();
 
-    int middle_row = static_cast<int>(
-        std::floor(num_rows/2.));
-    int middle_col = static_cast<int>(
-        std::floor(num_cols/2.));
+    std::vector<std::vector<Matrix>> split_matrix(2, std::vector<Matrix>(2));
+
+    int middle_row = static_cast<int>(std::floor(num_rows/2.));
+    int middle_col = static_cast<int>(std::floor(num_cols/2.));
 
     Row row_dims = {middle_row, num_rows - middle_row};
     Row col_dims = {middle_col, num_cols - middle_col};
