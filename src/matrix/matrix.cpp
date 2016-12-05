@@ -150,10 +150,8 @@ Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right) {
 
     Matrix product(num_rows, Row(num_cols));
 
-    if (num_rows == 1 && num_cols == 1) {
-        product[0][0] = 0;
-        for (int i = 0; i < left[0].size(); ++i)
-            product[0][0] += left[0][i] * right[i][0];
+    if (num_rows == 1 || num_cols == 1) {
+        product = MatrixMultiplyBF(left, right);
     }
     else {
         auto split_product = SplitMatrix(product);
