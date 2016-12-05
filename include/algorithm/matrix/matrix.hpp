@@ -83,6 +83,12 @@ Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right);
 
 /** Multiply two matrices using the recursive Strassen algorithm.
  *
+ * Currently, this uses Strassen's algorithm recursively until the sub-
+ * matrices have odd dimensions, at which point it switches to the brute
+ * force algorithm. Thus, if the input matrices are square and have a power
+ * of two dimension, Strassen's algorithm will be invoked recursively until
+ * the submatrices are singletons, which are then directly multiplied.
+ *
  * Worst-case performance is Theta(n^(lg 7)).
  *
  * @param left  Left-hand matrix
