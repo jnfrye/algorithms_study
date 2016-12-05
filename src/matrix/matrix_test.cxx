@@ -67,15 +67,17 @@ protected:
 /** Basic test of matrix multiplication.
  */
 TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
-    auto result_matrix = MatrixMultiplyBF(matrix1, matrix2);
+    auto BF_result_matrix = MatrixMultiplyBF(matrix1, matrix2);
+    auto DAC_result_matrix = MatrixMultiplyDAC(matrix1, matrix2);
 
     Matrix expected_result = {
         {131},
         {40}};
 
-    EXPECT_EQ(result_matrix, expected_result)
+    EXPECT_EQ(BF_result_matrix, expected_result)
         << "Matrix multiplication failed basic test!";
-
+    EXPECT_EQ(DAC_result_matrix, expected_result)
+        << "Matrix multiplication failed basic test!";
 }
 
 /** Basic test of matrix splitting.
