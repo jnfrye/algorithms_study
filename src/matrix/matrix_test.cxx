@@ -108,6 +108,7 @@ TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
 TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
     auto BF_result_matrix = MatrixMultiplyBF(matrix1, matrix2);
     auto DAC_result_matrix = MatrixMultiplyDAC(matrix1, matrix2);
+    auto Str_result_matrix = MatrixMultiplyStrassen(matrix1, matrix2);
 
     Matrix expected_result = {
         {131},
@@ -116,6 +117,8 @@ TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
     EXPECT_EQ(BF_result_matrix, expected_result)
         << "Matrix multiplication failed basic test!";
     EXPECT_EQ(DAC_result_matrix, expected_result)
+        << "Matrix multiplication failed basic test!";
+    EXPECT_EQ(Str_result_matrix, expected_result)
         << "Matrix multiplication failed basic test!";
 }
 
@@ -137,8 +140,15 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive) {
         MatrixMultiplyDAC(random_matrix1, random_matrix2a),
         MatrixMultiplyDAC(random_matrix1, random_matrix2b));
 
+    auto Str_result_left_side = MatrixMultiplyStrassen(
+        random_matrix1, MatrixAdd(random_matrix2a, random_matrix2b));
+    auto Str_result_right_side = MatrixAdd(
+        MatrixMultiplyStrassen(random_matrix1, random_matrix2a),
+        MatrixMultiplyStrassen(random_matrix1, random_matrix2b));
+
     EXPECT_EQ(BF_result_left_side, BF_result_right_side) << error_message;
     EXPECT_EQ(DAC_result_left_side, DAC_result_right_side) << error_message;
+    EXPECT_EQ(Str_result_left_side, Str_result_right_side) << error_message;
 }
 
 /** Matrix multiplication should be right-distributive over addition.
@@ -159,8 +169,15 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationRightDistributive) {
         MatrixMultiplyDAC(random_matrix2a, random_matrix3),
         MatrixMultiplyDAC(random_matrix2b, random_matrix3));
 
+    auto Str_result_left_side = MatrixMultiplyStrassen(
+        MatrixAdd(random_matrix2a, random_matrix2b), random_matrix3);
+    auto Str_result_right_side = MatrixAdd(
+        MatrixMultiplyStrassen(random_matrix2a, random_matrix3),
+        MatrixMultiplyStrassen(random_matrix2b, random_matrix3));
+
     EXPECT_EQ(BF_result_left_side, BF_result_right_side) << error_message;
     EXPECT_EQ(DAC_result_left_side, DAC_result_right_side) << error_message;
+    EXPECT_EQ(Str_result_left_side, Str_result_right_side) << error_message;
 }
 
 /** Matrix multiplication should be associative
@@ -182,6 +199,14 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
         MatrixMultiplyDAC(random_matrix1, random_matrix2a),
         random_matrix3);
 
+    auto Str_left_side = MatrixMultiplyStrassen(
+        random_matrix1,
+        MatrixMultiplyStrassen(random_matrix2a, random_matrix3));
+    auto Str_right_side = MatrixMultiplyStrassen(
+        MatrixMultiplyStrassen(random_matrix1, random_matrix2a),
+        random_matrix3);
+
     EXPECT_EQ(BF_left_side, BF_right_side) << error_message;
     EXPECT_EQ(DAC_left_side, DAC_right_side) << error_message;
+    EXPECT_EQ(Str_left_side, Str_right_side) << error_message;
 }
