@@ -69,22 +69,6 @@ protected:
     }
 };
 
-/** Basic test of matrix multiplication.
- */
-TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
-    auto BF_result_matrix = MatrixMultiplyBF(matrix1, matrix2);
-    auto DAC_result_matrix = MatrixMultiplyDAC(matrix1, matrix2);
-
-    Matrix expected_result = {
-        {131},
-        {40}};
-
-    EXPECT_EQ(BF_result_matrix, expected_result)
-        << "Matrix multiplication failed basic test!";
-    EXPECT_EQ(DAC_result_matrix, expected_result)
-        << "Matrix multiplication failed basic test!";
-}
-
 /** Basic test of matrix splitting.
  */
 TEST_F(GeneralMatrixTest, SplitMatrixOnBasicMatrix) {
@@ -117,6 +101,22 @@ TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
 
     EXPECT_EQ(result_matrix, random_matrix4)
         << "Splitting then unsplitting a matrix should yield original matrix.";
+}
+
+/** Basic test of matrix multiplication.
+ */
+TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
+    auto BF_result_matrix = MatrixMultiplyBF(matrix1, matrix2);
+    auto DAC_result_matrix = MatrixMultiplyDAC(matrix1, matrix2);
+
+    Matrix expected_result = {
+        {131},
+        {40}};
+
+    EXPECT_EQ(BF_result_matrix, expected_result)
+        << "Matrix multiplication failed basic test!";
+    EXPECT_EQ(DAC_result_matrix, expected_result)
+        << "Matrix multiplication failed basic test!";
 }
 
 /** Matrix multiplication should be left-distributive over addition.
