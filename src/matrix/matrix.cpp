@@ -69,13 +69,16 @@ std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A) {
     Row col_dims = {middle_col, num_cols - middle_col};
 
     for (int row = 0; row < 2; ++row)
-        for (int col = 0; col < 2; ++col)
+        for (int col = 0; col < 2; ++col){
+            split_matrix[row][col] = Matrix(row_dims[row], Row(col_dims[col]));
+
             for (int subrow = 0; subrow < row_dims[row]; ++subrow)
                 for (int subcol = 0; subcol < col_dims[col]; ++subcol)
                     split_matrix[row][col][subrow][subcol] = A
                         [subrow + row * row_dims[0]]
                         [subcol + col * col_dims[0]];
 
+        }
     return split_matrix;
 }
 
