@@ -17,7 +17,7 @@
  * @param max   (Inclusive) upper bound for random range.
  * @return      Random number in desired range.
  */
-int RandomInterval(const int min, const int max);
+int RandomInteger(const int min, const int max);
 
 /** Return a random real number in the desired range.
  *
@@ -48,7 +48,7 @@ double RandomReal(const double min, const double max, const int power_of_two);
  *        (for now it chooses twice the minimum number of iterations).
  * @return              Random number in desired range.
  */
-int RandomIntervalBinary(
+int RandomIntegerBinaryMethod(
         const int min, const int max, const int iterations = 0);
 
 /** Fill a vector with random values in the specified range.

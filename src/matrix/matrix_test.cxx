@@ -48,12 +48,12 @@ protected:
     virtual void SetUp() {
         std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
 
-        int rows1 = RandomInterval(1, 32);
-        int rows2 = RandomInterval(1, 32);
-        int rows3 = RandomInterval(1, 32);
-        int cols3 = RandomInterval(1, 32);
-        int rows4 = RandomInterval(2, 32);
-        int cols4 = RandomInterval(2, 32);
+        int rows1 = RandomInteger(1, 32);
+        int rows2 = RandomInteger(1, 32);
+        int rows3 = RandomInteger(1, 32);
+        int cols3 = RandomInteger(1, 32);
+        int rows4 = RandomInteger(2, 32);
+        int cols4 = RandomInteger(2, 32);
 
         random_matrix1 = Matrix(rows1, Row(rows2));
         random_matrix2a = Matrix(rows2, Row(rows3));
