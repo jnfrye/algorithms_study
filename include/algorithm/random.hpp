@@ -25,13 +25,13 @@ int RandomInteger(const int min, const int max);
  *
  * @param min           (Inclusive) lower bound for random range.
  * @param max           (Exclusive) upper bound for random range.
- * @param power_of_two  Controls how 'fine grained' the randomness is. The
- *        interval is divided evenly into two to this power. For example, if
+ * @param iterations    Controls how 'fine grained' the randomness is. The
+ *        interval is divided evenly into 2 to this power. For example, if
  *        this value is 3, there will be 8 possible returned values with equal
  *        probability.
  * @return              Random real number in the desired range.
  */
-double RandomReal(const double min, const double max, const int power_of_two);
+double RandomReal(const double min, const double max, const int iterations);
 
 /** Generate a random integer in the (inclusive) interval.
  *
