@@ -1,6 +1,7 @@
 #include "algorithm/random.hpp"
 
 #include <random>
+#include <cmath>
 #include <vector>
 
 
@@ -30,7 +31,17 @@ double RandomReal(const double min, const double max, const int iterations) {
 
 int RandomIntegerBinaryMethod(
         const int min, const int max, const int iterations /*= 0*/) {
+    int minimum_iterations = (int)std::ceil(std::log2(max - min + 1));
 
+    int max_exponent;
+    if (iterations == 0)
+        max_exponent = 2 * minimum_iterations;
+    else if (iterations < minimum_iterations)
+        max_exponent = minimum_iterations;
+    else
+        max_exponent = iterations;
+
+    return (int)std::floor(RandomReal(min, max + 1, max_exponent));
 }
 
 void RandomlyFillVector(
