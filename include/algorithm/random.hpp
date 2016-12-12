@@ -19,6 +19,24 @@
  */
 int RandomInterval(const int min, const int max);
 
+/** Generate a random integer in the (inclusive) interval.
+ *
+ * This procedure allows you to control how uniformly random the results are.
+ *
+ * @param min           (Inclusive) lower bound for random range.
+ * @param max           (Inclusive) upper bound for random range.
+ * @param iterations    Number of iterations of the binary RNG procedure to run.
+ *        The more iterations, the more uniformly random the results are. There
+ *        must be at least `ceiling(log_2(max - min))` iterations to ensure all
+ *        numbers in the range can actually be returned.
+ *
+ *        The default is 0, which lets the code decide how many iterations
+ *        (for now it chooses twice the minimum number of iterations).
+ * @return              Random number in desired range.
+ */
+int RandomIntervalBinary(
+        const int min, const int max, const int iterations = 0);
+
 /** Fill a vector with random values in the specified range.
  *
  * @param vec           Vector to be filled.
@@ -36,5 +54,6 @@ void RandomlyFillVector(
  */
 void RandomlyFillMatrix(
         Matrix &A, const int lower_bound, const int upper_bound);
+
 
 #endif //ALGORITHMS_STUDY_CPP_RANDOM_HPP

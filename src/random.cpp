@@ -13,6 +13,11 @@ int RandomInterval(const int min, const int max) {
     return random_distribution(rng);
 }
 
+int RandomIntervalBinary(
+        const int min, const int max, const int iterations /*= 0*/) {
+
+}
+
 void RandomlyFillVector(
         std::vector<int> &vec, const int lower_bound, const int upper_bound) {
     for (int i = 0; i < vec.size(); ++i)
