@@ -13,6 +13,12 @@ int RandomInterval(const int min, const int max) {
     return random_distribution(rng);
 }
 
+double RandomReal(const double min, const double max, const int power_of_two) {
+    std::uniform_int_distribution<int> coin_flip(0, 1);
+
+
+}
+
 int RandomIntervalBinary(
         const int min, const int max, const int iterations /*= 0*/) {
 
