@@ -14,9 +14,18 @@ int RandomInterval(const int min, const int max) {
 }
 
 double RandomReal(const double min, const double max, const int power_of_two) {
+    // Create coin flip RNG
     std::uniform_int_distribution<int> coin_flip(0, 1);
 
+    // First we get a random integer in [0, 2^power_of_two)
+    int random_integer = 0;
+    for (int exponent = 0; exponent < power_of_two; ++exponent)
+        // The expression (1 << exponent) is equivalent to
+        // ((int)pow(2, exponent))
+        random_integer += coin_flip(rng) * (1 << exponent);
 
+    double zero_to_one = random_integer / (double)(1 << power_of_two);
+    return min + zero_to_one * (max - min);
 }
 
 int RandomIntervalBinary(
