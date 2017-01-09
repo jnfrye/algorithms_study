@@ -29,8 +29,18 @@ int LinearSearch(const std::vector<int> &vec, const int value);
  * @param   begin_index Searching for minimum begins at this index.
  * @return              Index that the value was found at.
  */
-
 int MinIndex(const std::vector<int> &vec, const int begin_index = 0);
+
+/** Find the index of the maximum value in a vector.
+ *
+ *  If there are two or more maxima, the index of the first is returned.
+ *  Worst-case performance: O(n)
+ *
+ * @param   vec         Vector to be searched.
+ * @param   begin_index Searching for maximum begins at this index.
+ * @return              Index that the value was found at.
+ */
+int MaxIndex(const std::vector<int> &vec, const int begin_index = 0);
 
 /** Search a sorted vector for a value; return index if found; else throw.
  *
