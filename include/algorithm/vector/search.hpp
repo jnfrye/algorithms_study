@@ -36,6 +36,8 @@ int MinIndex(const std::vector<int> &vec, const int begin_index = 0);
  *  If there are two or more maxima, the index of the first is returned.
  *  Worst-case performance: O(n)
  *
+ *  Note that this is isomorphic to the "hiring problem" in the algorithms book.
+ *
  * @param   vec         Vector to be searched.
  * @param   begin_index Searching for maximum begins at this index.
  * @return              Index that the value was found at.
