@@ -78,6 +78,18 @@ TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
         << "Search disagreed with standard library search.";
 }
 
+/** Basic test of vector min index and max index search.
+ */
+TEST_F(GeneralSearchingTest, MaxMinSearchFindsCorrectItems) {
+    int min_search_result = MinIndex(vec);
+    int max_search_result = MaxIndex(vec);
+
+    EXPECT_EQ(min_search_result, 7)
+        << "Minimum index function disagrees with expected index.";
+    EXPECT_EQ(max_search_result, 9)
+        << "Maximum index function disagrees with expected index.";
+}
+
 /** Item search algorithms should throw exception if item not found.
  */
 TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
