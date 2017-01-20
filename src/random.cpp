@@ -3,6 +3,7 @@
 #include <random>
 #include <cmath>
 #include <vector>
+#include <algorithm>
 
 
 std::random_device rng_seed;     // only used once to initialise (seed) engine
@@ -64,4 +65,20 @@ void RandomlyPermute(std::vector<int> &vec) {
         vec[i] = vec[random_index];
         vec[random_index] = swap;
     }
+};
+
+std::vector<int> RandomlySample(std::vector<int> &vec, int num_samples) {
+    std::vector<int> sample_vec;
+    for (int i = 0; i < num_samples; ++i) {
+        int sample_range = vec.size() - num_samples + i;
+        auto random_int = RandomInteger(0, sample_range);
+        if ( // This just checks if the item is already in the sample
+                std::find(
+                    sample_vec.begin(), sample_vec.end(), vec[random_int]
+                ) != sample_vec.end())
+            sample_vec.push_back(vec[sample_range]);
+        else
+            sample_vec.push_back(vec[random_int]);
+    }
+    return sample_vec;
 };

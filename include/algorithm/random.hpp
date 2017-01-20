@@ -71,8 +71,23 @@ void RandomlyFillMatrix(
 
 /** Randomly permute the input vector in-place.
  *
+ * The permutations are uniformly randomly distributed.
+ *
+ * Worst-case performance: O(n)
+ *
  * @param vec   Vector to be permuted.
  */
 void RandomlyPermute(std::vector<int> &vec);
+
+/** Randomly sample the input vector.
+ *
+ * The samples are uniformly randomly distributed.
+ *
+ * Worst-case performance: O(num_samples * vec.size())
+ *
+ * @param vec   Vector to be sampled.
+ * @return      Vector containing the random samples.
+ */
+std::vector<int> RandomlySample(std::vector<int> &vec, int num_samples);
 
 #endif //ALGORITHMS_STUDY_CPP_RANDOM_HPP
