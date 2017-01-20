@@ -57,13 +57,11 @@ void RandomlyFillMatrix(
             A[row][col] = RandomInteger(lower_bound, upper_bound);
 }
 
-std::vector<int> RandomPermutation(std::vector<int> vec) {
+void RandomlyPermute(std::vector<int> &vec) {
     for (int i = 0; i < vec.size(); ++i) {
         int swap = vec[i];
         int random_index = RandomInteger(i, vec.size() - 1);
         vec[i] = vec[random_index];
         vec[random_index] = swap;
     }
-
-    return vec;
 };

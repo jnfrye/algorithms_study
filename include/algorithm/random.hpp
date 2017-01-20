@@ -69,11 +69,10 @@ void RandomlyFillVector(
 void RandomlyFillMatrix(
         Matrix &A, const int lower_bound, const int upper_bound);
 
-/** Return a uniformly random permutation of the input vector.
+/** Randomly permute the input vector in-place.
  *
  * @param vec   Vector to be permuted.
- * @return      Vector containing permutation of input.
  */
-std::vector<int> RandomPermutation(std::vector<int> vec);
+void RandomlyPermute(std::vector<int> &vec);
 
 #endif //ALGORITHMS_STUDY_CPP_RANDOM_HPP
