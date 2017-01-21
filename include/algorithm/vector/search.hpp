@@ -44,6 +44,21 @@ int MinIndex(const std::vector<int> &vec, const int begin_index = 0);
  */
 int MaxIndex(const std::vector<int> &vec, const int begin_index = 0);
 
+/** Find the index of the relative maximum value in a vector.
+ *
+ *  This returns the first value larger than the values before `begin_index`;
+ *  if none are larger, the last item is returned.
+ *  Worst-case performance: O(n)
+ *
+ *  Note that this is isomorphic to the "blind hiring problem" in the
+ *  algorithms book.
+ *
+ * @param   vec         Vector to be searched.
+ * @param   begin_index Searching for maximum begins at this index.
+ * @return              Index that the value was found at.
+ */
+int RelativeMaxIndex(const std::vector<int> &vec, const int begin_index);
+
 /** Search a sorted vector for a value; return index if found; else throw.
  *
  *  Note that the input vector must be sorted; if it isn't, errors can occur.

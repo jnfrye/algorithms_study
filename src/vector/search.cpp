@@ -52,6 +52,22 @@ int MaxIndex(const std::vector<int> &vec, const int begin_index /*= 0*/) {
     return max_index;
 }
 
+int RelativeMaxIndex(const std::vector<int> &vec, const int begin_index) {
+    assert(begin_index < vec.size() &&
+        "Cannot begin search at index larger than size of vector!");
+
+    int max_value = -std::numeric_limits<int>::max();
+    for (int search_index = 0; search_index < begin_index; ++search_index) {
+        if (vec[search_index] > max_value)
+            max_value = vec[search_index];
+    }
+    for (int search_index = 0; search_index < vec.size(); ++search_index) {
+        if (vec[search_index] > max_value)
+            return search_index;
+    }
+    return vec.size() - 1;
+};
+
 int BinarySearch(
         const std::vector<int> &vec, const int begin_index, const int end_index,
         const int value) {
