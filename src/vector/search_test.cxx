@@ -90,6 +90,15 @@ TEST_F(GeneralSearchingTest, MaxMinSearchFindsCorrectItems) {
         << "Maximum index function disagrees with expected index.";
 }
 
+/** Basic test of vector relative max index search.
+ */
+TEST_F(GeneralSearchingTest, RelativeMaxSearchFindsCorrectItem) {
+    int max_search_result = RelativeMaxIndex(vec, 7);
+
+    EXPECT_EQ(max_search_result, 8)
+        << "Relative maximum index function disagrees with expected index.";
+}
+
 /** Item search algorithms should throw exception if item not found.
  */
 TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
