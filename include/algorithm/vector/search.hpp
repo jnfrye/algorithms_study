@@ -1,6 +1,5 @@
-//
-// Created by jfrye on 11/7/16.
-//
+/** Vector searching functions.
+ */
 
 #ifndef ALGORITHMS_STUDY_CPP_SEARCHING_H
 #define ALGORITHMS_STUDY_CPP_SEARCHING_H
