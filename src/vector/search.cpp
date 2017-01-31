@@ -1,7 +1,3 @@
-//
-// Created by jfrye on 11/7/16.
-//
-
 #include <vector>
 #include <tuple>
 #include <iostream>

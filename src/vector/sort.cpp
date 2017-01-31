@@ -1,7 +1,3 @@
-//
-// Created by jfrye on 11/2/16.
-//
-
 #include <iostream>
 #include <vector>
 #include <limits>
