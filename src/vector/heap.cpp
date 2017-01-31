@@ -24,11 +24,11 @@ void MaxHeapify(std::vector<int> heap, const int node) {
     int right_child = RightChild(node);
 
     int largest_node;
-    if (left_child <= heap.size() && heap[left_child] > heap[node])
+    if (left_child < heap.size() && heap[left_child] > heap[node])
         largest_node = left_child;
     else
         largest_node = node;
-    if (right_child <= heap.size() && heap[right_child] > heap[largest_node])
+    if (right_child < heap.size() && heap[right_child] > heap[largest_node])
         largest_node = right_child;
 
     if (largest_node != node) {
