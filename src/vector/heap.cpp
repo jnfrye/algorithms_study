@@ -20,5 +20,23 @@ int Parent(int node) {
 }
 
 void MaxHeapify(std::vector<int> heap, int node) {
+    int left_child = LeftChild(node);
+    int right_child = RightChild(node);
 
+    int largest_node;
+    if (left_child <= heap.size() && heap[left_child] > heap[node])
+        largest_node = left_child;
+    else
+        largest_node = node;
+    if (right_child <= heap.size() && heap[right_child] > heap[largest_node])
+        largest_node = right_child;
+
+    if (largest_node != node) {
+        // If this is the case, the node is not in the right position and must
+        // be moved. After, we must check if it needs to moved again.
+        int temp = heap[node];
+        heap[node] = heap[largest_node];
+        heap[largest_node] = temp;
+        MaxHeapify(heap, largest_node);
+    }
 }
