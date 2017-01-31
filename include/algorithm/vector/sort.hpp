@@ -1,6 +1,5 @@
-//
-// Created by jfrye on 11/2/16.
-//
+/** Sorting functions.
+ */
 
 #ifndef ALGORITHMS_STUDY_CPP_SORTING_H
 #define ALGORITHMS_STUDY_CPP_SORTING_H
