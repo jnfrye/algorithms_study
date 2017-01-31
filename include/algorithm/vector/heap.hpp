@@ -21,6 +21,13 @@ int LeftChild(int node);
  */
 int RightChild(int node);
 
+/** Return index of parent of this node.
+ *
+ * @param node  Index of node to retrieve parent of.
+ * @return      Index of parent node.
+ */
+int Parent(int node);
+
 /** Enforce the max-heap property on the specified node.
  *
  * \warning{
