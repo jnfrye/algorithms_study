@@ -7,6 +7,20 @@
 #include <vector>
 
 
+/** Return index of left child of the node in a binary heap.
+ *
+ * @param   node    Index of node in heap.
+ * @return  Index of left child of input node.
+ */
+int LeftChild(int node);
+
+/** Return index of right child of the node in a binary heap.
+ *
+ * @param   node    Index of node in heap.
+ * @return  Index of right child of input node.
+ */
+int RightChild(int node);
+
 /** Enforce the max-heap property on the specified node.
  *
  * \warning{
