@@ -38,6 +38,6 @@ int Parent(int node);
  * @param heap  Heap containing the node to be max-heapified.
  * @param node  Index of the node to be max-heapified.
  */
-void MaxHeapify(std::vector<int> heap, int node);
+void MaxHeapify(std::vector<int> &heap, int node);
 
 #endif //ALGORITHMS_STUDY_CPP_HEAP_HPP
