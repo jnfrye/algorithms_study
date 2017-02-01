@@ -35,10 +35,11 @@ int Parent(int node);
  * heaps! This function deoes not check if this is the case, so if it isn't,
  * bad things might happen!}
  *
- * @param heap  Heap containing the node to be max-heapified.
- * @param node  Index of the node to be max-heapified.
+ * @param heap          Heap containing the node to be max-heapified.
+ * @param node          Index of the node to be max-heapified.
+ * @param heap_order    Number of nodes in the max-heap.
  */
-void MaxHeapify(std::vector<int> &heap, int node);
+void MaxHeapify(std::vector<int> &heap, int node, const int heap_order);
 
 /** Rearrange the items in the vector so it becomes a binary max-heap.
  *

@@ -33,7 +33,7 @@ protected:
 TEST_F(GeneralHeapTest, MaxHeapifyCorrectsHeap) {
     std::string error_msg = "Heap was incorrectly adjusted by max-heapify";
 
-    MaxHeapify(bad_max_heap, 1);
+    MaxHeapify(bad_max_heap, 1, bad_max_heap.size());
 
     EXPECT_EQ(bad_max_heap, corrected_bad_max_heap) << error_msg;
 }
