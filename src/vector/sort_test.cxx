@@ -55,6 +55,10 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
     test_vec = vec; // reset vector
     MergeSort(test_vec, 0, test_vec.size());
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
+
+    test_vec = vec; // reset vector
+    HeapSort(test_vec);
+    EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 }
 
 TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors) {
