@@ -95,4 +95,18 @@ void MergeSortedSubvectors(
 void MergeSort(
         std::vector<int> &vec, const int begin_index, const int end_index);
 
+/** Sort the vector (in-place) in ascending order.
+ *
+ * Uses the "heapsort" algorithm.
+ *
+ * Heapsort rearranges the vector into a nearly complete binary tree called a
+ * "max-heap", then moves the largest item to the end of the vector and
+ * rearranges the remaining items until it is again a max-heap, and so on.
+ *
+ * Worst-case performance: Theta(n lg n)
+ *
+ * @param vec   Vector to be sorted.
+ */
+void HeapSort(std::vector<int> &vec);
+
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H

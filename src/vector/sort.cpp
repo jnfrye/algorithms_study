@@ -2,9 +2,11 @@
 #include <vector>
 #include <limits>
 #include <cmath>
+#include <utility>
 
 #include "algorithm/vector/search.hpp"
 #include "algorithm/vector/sort.hpp"
+#include "algorithm/vector/heap.hpp"
 
 
 void InsertIntoSortedSubvector(
@@ -84,5 +86,15 @@ void MergeSort(
         MergeSort(vec, begin_index, middle_index);
         MergeSort(vec, middle_index, end_index);
         MergeSortedSubvectors(vec, begin_index, middle_index, end_index);
+    }
+}
+
+void HeapSort(std::vector<int> &vec) {
+    BuildMaxHeap(vec);
+    int heap_order = vec.size();
+    for (int i = vec.size() - 1; i >= 1; i--) {
+        std::swap(vec[0], vec[i]);
+        --heap_order;
+        MaxHeapify(vec, 0, heap_order);
     }
 }
