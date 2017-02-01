@@ -41,3 +41,8 @@ void MaxHeapify(std::vector<int> &heap, const int node) {
         MaxHeapify(heap, largest_node);
     }
 }
+
+void BuildMaxHeap(std::vector<int> &vec) {
+    for (int i = (int)std::floor((vec.size() - 1)/2.); i >= 0; --i)
+        MaxHeapify(vec, i);
+}

@@ -40,4 +40,14 @@ int Parent(int node);
  */
 void MaxHeapify(std::vector<int> &heap, int node);
 
+/** Rearrange the items in the vector so it becomes a binary max-heap.
+ *
+ * Rearrangement occurs in-place with constant order memory usage.
+ *
+ * Worst-case performance: O(lg (heap.size()))
+ *
+ * @param vec   Vector to be rearranged into a binary max-heap.
+ */
+void BuildMaxHeap(std::vector<int> &vec);
+
 #endif //ALGORITHMS_STUDY_CPP_HEAP_HPP
