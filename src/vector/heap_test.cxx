@@ -68,3 +68,29 @@ TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedMaxHeap) {
 
     EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
 }
+
+/** Tests that max-heap node value increaser produces correct max-heap.
+ *
+ * In this case, the new node value is a new maximum for the heap.
+ */
+TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyWithNewMaxProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected max-heap from key increase";
+
+    IncreaseMaxHeapKey(corrected_bad_max_heap, 7, 10);
+    std::vector<int> expected_heap = {10, 9, 7, 8, 4, 6, 2, 5, 3, 0};
+
+    EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
+}
+
+/** Tests that max-heap node value increaser produces correct max-heap.
+ *
+ * In this case, the new node value is not a new maximum for the heap.
+ */
+TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected max-heap from key increase";
+
+    IncreaseMaxHeapKey(corrected_bad_max_heap, 7, 8);
+    std::vector<int> expected_heap = {9, 8, 7, 8, 4, 6, 2, 5, 3, 0};
+
+    EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
+}
