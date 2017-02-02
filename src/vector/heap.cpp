@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <utility>
+#include <assert.h>
 
 #include "algorithm/vector/heap.hpp"
 
@@ -53,4 +54,17 @@ int ExtractMaxFromHeap(std::vector<int> &max_heap) {
     max_heap.pop_back();
     MaxHeapify(max_heap, 0, max_heap.size());
     return max;
+}
+
+void IncreaseMaxHeapKey(
+        std::vector<int> &max_heap, const int node, const int new_key) {
+    assert (new_key > max_heap[node] && "New key must be larger than old key!");
+
+    max_heap[node] = new_key;
+    int current_node = node;
+    while (current_node > 0 &&
+            max_heap[Parent(current_node)] < max_heap[current_node]) {
+        std::swap(max_heap[current_node], max_heap[Parent(current_node)]);
+        current_node = Parent(current_node);
+    }
 }

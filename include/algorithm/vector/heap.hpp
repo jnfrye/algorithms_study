@@ -61,4 +61,15 @@ void BuildMaxHeap(std::vector<int> &vec);
  */
 int ExtractMaxFromHeap(std::vector<int> &max_heap);
 
+/** Sets the key of a node in a max heap to a larger value.
+ *
+ * \warning{The new key value must be larger than the previous value!}
+ *
+ * @param max_heap  Max heap containing the node to be modified
+ * @param node      Index of the node to be modified
+ * @param new_key   New value for the node; must be larger than old value!
+ */
+void IncreaseMaxHeapKey(
+        std::vector<int> &max_heap, const int node, const int new_key);
+
 #endif //ALGORITHMS_STUDY_CPP_HEAP_HPP
