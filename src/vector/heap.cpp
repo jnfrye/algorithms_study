@@ -46,3 +46,11 @@ void BuildMaxHeap(std::vector<int> &vec) {
     for (int i = (int)std::floor((vec.size() - 1)/2.); i >= 0; --i)
         MaxHeapify(vec, i, vec.size());
 }
+
+int ExtractMaxFromHeap(std::vector<int> &max_heap) {
+    auto max = max_heap[0];
+    max_heap[0] = max_heap[max_heap.size() - 1];
+    max_heap.pop_back();
+    MaxHeapify(max_heap, 0, max_heap.size());
+    return max;
+}

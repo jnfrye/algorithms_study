@@ -51,4 +51,14 @@ void MaxHeapify(std::vector<int> &heap, int node, const int heap_order);
  */
 void BuildMaxHeap(std::vector<int> &vec);
 
+/** Removes and returns the largest value from a max-heap.
+ *
+ * \warning{
+ * Assumes the input satisfies the properties of a max-heap!}
+ *
+ * @param max_heap  Max heap to have max value extracted
+ * @return          Largest value from the max heap
+ */
+int ExtractMaxFromHeap(std::vector<int> &max_heap);
+
 #endif //ALGORITHMS_STUDY_CPP_HEAP_HPP
