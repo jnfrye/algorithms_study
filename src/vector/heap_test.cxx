@@ -47,3 +47,24 @@ TEST_F(GeneralHeapTest, BuildMaxHeapProducesExpectedHeap) {
 
     EXPECT_EQ(bad_max_heap2, corrected_bad_max_heap2) << error_msg;
 }
+
+/** Tests that the max heap largest node extractor gets the value right.
+ */
+TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedValue) {
+    std::string error_msg = "Returned incorrect max value from max heap.";
+
+    auto max_value = ExtractMaxFromHeap(corrected_bad_max_heap2);
+
+    EXPECT_EQ(max_value, 84) << error_msg;
+}
+
+/** Tests that max-heap largest node extractor has correct max-heap after.
+ */
+TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedMaxHeap) {
+    std::string error_msg = "Returned incorrect max-heap after node extraction";
+
+    ExtractMaxFromHeap(corrected_bad_max_heap);
+    std::vector<int> expected_heap = {8, 5, 7, 3, 4, 6, 2, 1, 0};
+
+    EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
+}
