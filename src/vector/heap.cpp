@@ -102,6 +102,21 @@ void MaxHeapIncreaseKey(
     max_heap[current_node] = new_key;
 }
 
+void MinHeapDecreaseKey(
+        std::vector<int> &min_heap, const int node, const int new_key) {
+    assert (new_key < min_heap[node]
+            && "New key must be smaller than old key!");
+
+    min_heap[node] = new_key;
+    int current_node = node;
+    while (current_node > 0 &&
+            min_heap[Parent(current_node)] > new_key) {
+        min_heap[current_node] = min_heap[Parent(current_node)];
+        current_node = Parent(current_node);
+    }
+    min_heap[current_node] = new_key;
+}
+
 void MaxHeapInsert(std::vector<int> &max_heap, const int key) {
     // First append "negative infinity" to the end of the vector
     max_heap.push_back(-std::numeric_limits<int>::max());
