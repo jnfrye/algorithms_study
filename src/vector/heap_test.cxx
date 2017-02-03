@@ -130,6 +130,19 @@ TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyWithNewMaxProducesCorrectHeap) {
     EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
 }
 
+/** Tests that min-heap node value increaser produces correct min-heap.
+ *
+ * In this case, the new node value is a new minimum for the heap.
+ */
+TEST_F(GeneralHeapTest, DecreaseMinHeapKeyWithNewMinProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected min-heap from key decrease";
+
+    MinHeapDecreaseKey(corrected_bad_min_heap, 7, -1);
+    std::vector<int> expected_heap = {-1, 0, 2, 1, 4, 5, 6, 3, 8, 9};
+
+    EXPECT_EQ(corrected_bad_min_heap, expected_heap) << error_msg;
+}
+
 /** Tests that max-heap node value increaser produces correct max-heap.
  *
  * In this case, the new node value is not a new maximum for the heap.
@@ -141,6 +154,19 @@ TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyProducesCorrectHeap) {
     std::vector<int> expected_heap = {9, 8, 7, 8, 4, 6, 2, 5, 3, 0};
 
     EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
+}
+
+/** Tests that min-heap node value increaser produces correct min-heap.
+ *
+ * In this case, the new node value is not a new minimum for the heap.
+ */
+TEST_F(GeneralHeapTest, DecreaseMinHeapKeyProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected min-heap from key decrease";
+
+    MinHeapDecreaseKey(corrected_bad_min_heap, 7, 0);
+    std::vector<int> expected_heap = {0, 0, 2, 1, 4, 5, 6, 3, 8, 9};
+
+    EXPECT_EQ(corrected_bad_min_heap, expected_heap) << error_msg;
 }
 
 /** Tests max-heap inserter with known result.
