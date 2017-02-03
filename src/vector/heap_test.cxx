@@ -85,6 +85,16 @@ TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedValue) {
     EXPECT_EQ(max_value, 84) << error_msg;
 }
 
+/** Tests that the min-heap smallest node extractor gets the value right.
+ */
+TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedValue) {
+    std::string error_msg = "Returned incorrect min value from min-heap.";
+
+    auto min_value = MinHeapExtractMin(corrected_bad_min_heap2);
+
+    EXPECT_EQ(min_value, 0) << error_msg;
+}
+
 /** Tests that max-heap largest node extractor has correct max-heap after.
  */
 TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedMaxHeap) {
@@ -94,6 +104,17 @@ TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedMaxHeap) {
     std::vector<int> expected_heap = {8, 5, 7, 3, 4, 6, 2, 1, 0};
 
     EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
+}
+
+/** Tests that min-heap smallest node extractor has correct min-heap after.
+ */
+TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedMinHeap) {
+    std::string error_msg = "Returned incorrect min-heap after node extraction";
+
+    MinHeapExtractMin(corrected_bad_min_heap);
+    std::vector<int> expected_heap = {1, 3, 2, 7, 4, 5, 6, 9, 8};
+
+    EXPECT_EQ(corrected_bad_min_heap, expected_heap) << error_msg;
 }
 
 /** Tests that max-heap node value increaser produces correct max-heap.
