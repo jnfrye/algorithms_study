@@ -35,7 +35,7 @@ protected:
     }
 };
 
-/** Tests the max heapify function on a simple known result.
+/** Tests the max-heapify function on a simple known result.
  */
 TEST_F(GeneralHeapTest, MaxHeapifyCorrectsHeap) {
     std::string error_msg = "Heap was incorrectly adjusted by max-heapify";
@@ -45,7 +45,7 @@ TEST_F(GeneralHeapTest, MaxHeapifyCorrectsHeap) {
     EXPECT_EQ(bad_max_heap, corrected_bad_max_heap) << error_msg;
 }
 
-/** Tests the min heapify function on a simple known result.
+/** Tests the min-heapify function on a simple known result.
  */
 TEST_F(GeneralHeapTest, MinHeapifyCorrectsHeap) {
     std::string error_msg = "Heap was incorrectly adjusted by min-heapify";
@@ -55,7 +55,7 @@ TEST_F(GeneralHeapTest, MinHeapifyCorrectsHeap) {
     EXPECT_EQ(bad_min_heap, corrected_bad_min_heap) << error_msg;
 }
 
-/** Tests the max heap builder on a simple known result.
+/** Tests the max-heap builder on a simple known result.
  */
 TEST_F(GeneralHeapTest, BuildMaxHeapProducesExpectedHeap) {
     std::string error_msg = "Built heap does not match expected heap.";
@@ -75,7 +75,7 @@ TEST_F(GeneralHeapTest, BuildMinHeapProducesExpectedHeap) {
     EXPECT_EQ(bad_min_heap2, corrected_bad_min_heap2) << error_msg;
 }
 
-/** Tests that the max heap largest node extractor gets the value right.
+/** Tests that the max-heap largest node extractor gets the value right.
  */
 TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedValue) {
     std::string error_msg = "Returned incorrect max value from max heap.";
