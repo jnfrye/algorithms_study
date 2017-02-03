@@ -3,6 +3,7 @@
 #include <iostream>
 #include <utility>
 #include <assert.h>
+#include <limits>
 
 #include "algorithm/vector/heap.hpp"
 
@@ -67,4 +68,11 @@ void IncreaseMaxHeapKey(
         std::swap(max_heap[current_node], max_heap[Parent(current_node)]);
         current_node = Parent(current_node);
     }
+}
+
+void InsertIntoMaxHeap(std::vector<int> &max_heap, const int key) {
+    // First append "negative infinity" to the end of the vector
+    max_heap.push_back(-std::numeric_limits<int>::max());
+    // Then increase this key to the appropriate value
+    IncreaseMaxHeapKey(max_heap, max_heap.size() - 1, key);
 }

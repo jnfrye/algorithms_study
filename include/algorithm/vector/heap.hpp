@@ -72,4 +72,13 @@ int ExtractMaxFromHeap(std::vector<int> &max_heap);
 void IncreaseMaxHeapKey(
         std::vector<int> &max_heap, const int node, const int new_key);
 
+/** Inserts the key into a max heap in the appropriate location.
+ *
+ * The key is inserted into a location that preserves the max-heap property.
+ *
+ * @param max_heap  Max-heap to be modified
+ * @param key       Key to be inserted
+ */
+void InsertIntoMaxHeap(std::vector<int> &max_heap, const int key);
+
 #endif //ALGORITHMS_STUDY_CPP_HEAP_HPP
