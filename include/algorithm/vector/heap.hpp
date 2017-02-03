@@ -84,6 +84,16 @@ void MinHeapBuilder(std::vector<int> &vec);
  */
 int MaxHeapExtractMax(std::vector<int> &max_heap);
 
+/** Removes and returns the smallest value from a min-heap.
+ *
+ * \warning{
+ * Assumes the input satisfies the properties of a min-heap!}
+ *
+ * @param max_heap  Min-heap to have min value extracted
+ * @return          Smallest value from the min-heap
+ */
+int MinHeapExtractMin(std::vector<int> &min_heap);
+
 /** Sets the key of a node in a max heap to a larger value.
  *
  * \warning{The new key value must be larger than the previous value!}

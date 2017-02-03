@@ -80,6 +80,14 @@ int MaxHeapExtractMax(std::vector<int> &max_heap) {
     return max;
 }
 
+int MinHeapExtractMin(std::vector<int> &min_heap) {
+    auto min = min_heap[0];
+    min_heap[0] = min_heap[min_heap.size() - 1];
+    min_heap.pop_back();
+    MinHeapify(min_heap, 0, min_heap.size());
+    return min;
+}
+
 void MaxHeapIncreaseKey(
         std::vector<int> &max_heap, const int node, const int new_key) {
     assert (new_key > max_heap[node] && "New key must be larger than old key!");
