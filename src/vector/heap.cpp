@@ -64,10 +64,11 @@ void IncreaseMaxHeapKey(
     max_heap[node] = new_key;
     int current_node = node;
     while (current_node > 0 &&
-            max_heap[Parent(current_node)] < max_heap[current_node]) {
-        std::swap(max_heap[current_node], max_heap[Parent(current_node)]);
+            max_heap[Parent(current_node)] < new_key) {
+        max_heap[current_node] = max_heap[Parent(current_node)];
         current_node = Parent(current_node);
     }
+    max_heap[current_node] = new_key;
 }
 
 void InsertIntoMaxHeap(std::vector<int> &max_heap, const int key) {
