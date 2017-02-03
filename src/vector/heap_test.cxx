@@ -179,3 +179,14 @@ TEST_F(GeneralHeapTest, InsertIntoMaxHeapProducesCorrectHeap) {
 
     EXPECT_EQ(corrected_bad_max_heap2, expected_heap) << error_msg;
 }
+
+/** Tests min-heap inserter with known result.
+ */
+TEST_F(GeneralHeapTest, InsertIntoMinHeapProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected min-heap from key insertion";
+
+    MinHeapInsert(corrected_bad_min_heap2, 0);
+    std::vector<int> expected_heap = {0, 0, 3, 2, 1, 4, 7, 9, 6, 8, 5};
+
+    EXPECT_EQ(corrected_bad_min_heap2, expected_heap) << error_msg;
+}
