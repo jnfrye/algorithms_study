@@ -67,6 +67,11 @@ void MaxHeapBuilder(std::vector<int> &vec) {
         MaxHeapify(vec, i, vec.size());
 }
 
+void MinHeapBuilder(std::vector<int> &vec) {
+    for (int i = (int)std::floor((vec.size() - 1)/2.); i >= 0; --i)
+        MinHeapify(vec, i, vec.size());
+}
+
 int MaxHeapExtractMax(std::vector<int> &max_heap) {
     auto max = max_heap[0];
     max_heap[0] = max_heap[max_heap.size() - 1];

@@ -64,6 +64,16 @@ void MinHeapify(std::vector<int> &heap, int node, const int heap_order);
  */
 void MaxHeapBuilder(std::vector<int> &vec);
 
+/** Rearrange the items in the vector so it becomes a binary min-heap.
+ *
+ * Rearrangement occurs in-place with constant order memory usage.
+ *
+ * Worst-case performance: O(lg (heap.size()))
+ *
+ * @param vec   Vector to be rearranged into a binary min-heap.
+ */
+void MinHeapBuilder(std::vector<int> &vec);
+
 /** Removes and returns the largest value from a max-heap.
  *
  * \warning{
