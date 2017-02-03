@@ -94,3 +94,14 @@ TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyProducesCorrectHeap) {
 
     EXPECT_EQ(corrected_bad_max_heap, expected_heap) << error_msg;
 }
+
+/** Tests max-heap inserter with known result.
+ */
+TEST_F(GeneralHeapTest, InsertIntoMaxHeapProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected max-heap from key insertion";
+
+    InsertIntoMaxHeap(corrected_bad_max_heap2, 25);
+    std::vector<int> expected_heap = {84, 25, 19, 10, 22, 17, 6, 5, 9, 3};
+
+    EXPECT_EQ(corrected_bad_max_heap2, expected_heap) << error_msg;
+}
