@@ -41,6 +41,19 @@ int Parent(int node);
  */
 void MaxHeapify(std::vector<int> &heap, int node, const int heap_order);
 
+/** Enforce the min-heap property on the specified node.
+ *
+ * \warning{
+ * Assumes the subtrees rooted at the children of the specified node are min-
+ * heaps! This function deoes not check if this is the case, so if it isn't,
+ * bad things might happen!}
+ *
+ * @param heap          Heap containing the node to be min-heapified.
+ * @param node          Index of the node to be min-heapified.
+ * @param heap_order    Number of nodes in the min-heap.
+ */
+void MinHeapify(std::vector<int> &heap, int node, const int heap_order);
+
 /** Rearrange the items in the vector so it becomes a binary max-heap.
  *
  * Rearrangement occurs in-place with constant order memory usage.

@@ -44,6 +44,24 @@ void MaxHeapify(std::vector<int> &heap, const int node, const int heap_order) {
     }
 }
 
+void MinHeapify(std::vector<int> &heap, const int node, const int heap_order) {
+    int left_child = LeftChild(node);
+    int right_child = RightChild(node);
+
+    int smallest_node;
+    if (left_child < heap_order && heap[left_child] < heap[node])
+        smallest_node = left_child;
+    else
+        smallest_node = node;
+    if (right_child < heap_order && heap[right_child] < heap[smallest_node])
+        smallest_node = right_child;
+
+    if (smallest_node != node) {
+        std::swap(heap[node], heap[smallest_node]);
+        MinHeapify(heap, smallest_node, heap_order);
+    }
+}
+
 void MaxHeapBuilder(std::vector<int> &vec) {
     for (int i = (int)std::floor((vec.size() - 1)/2.); i >= 0; --i)
         MaxHeapify(vec, i, vec.size());
