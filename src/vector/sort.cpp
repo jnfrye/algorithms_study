@@ -90,7 +90,7 @@ void MergeSort(
 }
 
 void HeapSort(std::vector<int> &vec) {
-    BuildMaxHeap(vec);
+    MaxHeapBuilder(vec);
     int heap_order = vec.size();
     for (int i = vec.size() - 1; i >= 1; i--) {
         std::swap(vec[0], vec[i]);

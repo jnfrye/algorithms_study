@@ -44,12 +44,12 @@ void MaxHeapify(std::vector<int> &heap, const int node, const int heap_order) {
     }
 }
 
-void BuildMaxHeap(std::vector<int> &vec) {
+void MaxHeapBuilder(std::vector<int> &vec) {
     for (int i = (int)std::floor((vec.size() - 1)/2.); i >= 0; --i)
         MaxHeapify(vec, i, vec.size());
 }
 
-int ExtractMaxFromHeap(std::vector<int> &max_heap) {
+int MaxHeapExtractMax(std::vector<int> &max_heap) {
     auto max = max_heap[0];
     max_heap[0] = max_heap[max_heap.size() - 1];
     max_heap.pop_back();
@@ -57,7 +57,7 @@ int ExtractMaxFromHeap(std::vector<int> &max_heap) {
     return max;
 }
 
-void IncreaseMaxHeapKey(
+void MaxHeapIncreaseKey(
         std::vector<int> &max_heap, const int node, const int new_key) {
     assert (new_key > max_heap[node] && "New key must be larger than old key!");
 
@@ -71,9 +71,9 @@ void IncreaseMaxHeapKey(
     max_heap[current_node] = new_key;
 }
 
-void InsertIntoMaxHeap(std::vector<int> &max_heap, const int key) {
+void MaxHeapInsert(std::vector<int> &max_heap, const int key) {
     // First append "negative infinity" to the end of the vector
     max_heap.push_back(-std::numeric_limits<int>::max());
     // Then increase this key to the appropriate value
-    IncreaseMaxHeapKey(max_heap, max_heap.size() - 1, key);
+    MaxHeapIncreaseKey(max_heap, max_heap.size() - 1, key);
 }

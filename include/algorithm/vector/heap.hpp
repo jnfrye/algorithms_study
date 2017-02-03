@@ -49,7 +49,7 @@ void MaxHeapify(std::vector<int> &heap, int node, const int heap_order);
  *
  * @param vec   Vector to be rearranged into a binary max-heap.
  */
-void BuildMaxHeap(std::vector<int> &vec);
+void MaxHeapBuilder(std::vector<int> &vec);
 
 /** Removes and returns the largest value from a max-heap.
  *
@@ -59,7 +59,7 @@ void BuildMaxHeap(std::vector<int> &vec);
  * @param max_heap  Max heap to have max value extracted
  * @return          Largest value from the max heap
  */
-int ExtractMaxFromHeap(std::vector<int> &max_heap);
+int MaxHeapExtractMax(std::vector<int> &max_heap);
 
 /** Sets the key of a node in a max heap to a larger value.
  *
@@ -69,7 +69,7 @@ int ExtractMaxFromHeap(std::vector<int> &max_heap);
  * @param node      Index of the node to be modified
  * @param new_key   New value for the node; must be larger than old value!
  */
-void IncreaseMaxHeapKey(
+void MaxHeapIncreaseKey(
         std::vector<int> &max_heap, const int node, const int new_key);
 
 /** Inserts the key into a max heap in the appropriate location.
@@ -79,6 +79,6 @@ void IncreaseMaxHeapKey(
  * @param max_heap  Max-heap to be modified
  * @param key       Key to be inserted
  */
-void InsertIntoMaxHeap(std::vector<int> &max_heap, const int key);
+void MaxHeapInsert(std::vector<int> &max_heap, const int key);
 
 #endif //ALGORITHMS_STUDY_CPP_HEAP_HPP
