@@ -125,4 +125,13 @@ void MinHeapDecreaseKey(
  */
 void MaxHeapInsert(std::vector<int> &max_heap, const int key);
 
+/** Inserts the key into a min-heap in the appropriate location.
+ *
+ * The key is inserted into a location that preserves the min-heap property.
+ *
+ * @param min_heap  Min-heap to be modified
+ * @param key       Key to be inserted
+ */
+void MinHeapInsert(std::vector<int> &min_heap, const int key);
+
 #endif //ALGORITHMS_STUDY_CPP_HEAP_HPP

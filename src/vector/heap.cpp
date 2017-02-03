@@ -123,3 +123,10 @@ void MaxHeapInsert(std::vector<int> &max_heap, const int key) {
     // Then increase this key to the appropriate value
     MaxHeapIncreaseKey(max_heap, max_heap.size() - 1, key);
 }
+
+void MinHeapInsert(std::vector<int> &min_heap, const int key) {
+    // First append "postive infinity" to the end of the vector
+    min_heap.push_back(std::numeric_limits<int>::max());
+    // Then increase this key to the appropriate value
+    MinHeapDecreaseKey(min_heap, min_heap.size() - 1, key);
+}
