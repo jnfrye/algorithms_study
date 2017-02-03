@@ -18,6 +18,8 @@ public:
     std::vector<int> corrected_bad_min_heap;
     std::vector<int> bad_max_heap2;
     std::vector<int> corrected_bad_max_heap2;
+    std::vector<int> bad_min_heap2;
+    std::vector<int> corrected_bad_min_heap2;
 
 protected:
     virtual void SetUp() {
@@ -28,6 +30,8 @@ protected:
         corrected_bad_min_heap = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         bad_max_heap2 = {5, 3, 17, 10, 84, 19, 6, 22, 9};
         corrected_bad_max_heap2 = {84, 22, 19, 10, 3, 17, 6, 5, 9};
+        bad_min_heap2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        corrected_bad_min_heap2 = {0, 1, 3, 2, 5, 4, 7, 9, 6, 8};
     }
 };
 
@@ -59,6 +63,16 @@ TEST_F(GeneralHeapTest, BuildMaxHeapProducesExpectedHeap) {
     MaxHeapBuilder(bad_max_heap2);
 
     EXPECT_EQ(bad_max_heap2, corrected_bad_max_heap2) << error_msg;
+}
+
+/** Tests the min-heap builder on a simple known result.
+ */
+TEST_F(GeneralHeapTest, BuildMinHeapProducesExpectedHeap) {
+    std::string error_msg = "Built heap does not match expected heap.";
+
+    MinHeapBuilder(bad_min_heap2);
+
+    EXPECT_EQ(bad_min_heap2, corrected_bad_min_heap2) << error_msg;
 }
 
 /** Tests that the max heap largest node extractor gets the value right.
