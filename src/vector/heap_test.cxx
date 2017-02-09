@@ -201,3 +201,14 @@ TEST_F(GeneralHeapTest, MaxHeapDeleteProducesCorrectHeap) {
 
     EXPECT_EQ(corrected_bad_max_heap2, expected_heap) << error_msg;
 }
+
+/** Tests min-heap node deletion with known result.
+ */
+TEST_F(GeneralHeapTest, MinHeapDeleteProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected min-heap from node deletion";
+
+    MinHeapDelete(corrected_bad_min_heap2, 1);
+    std::vector<int> expected_heap = {0, 2, 3, 6, 5, 4, 7, 9, 8};
+
+    EXPECT_EQ(corrected_bad_min_heap2, expected_heap) << error_msg;
+}
