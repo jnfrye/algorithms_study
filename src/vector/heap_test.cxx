@@ -190,3 +190,14 @@ TEST_F(GeneralHeapTest, InsertIntoMinHeapProducesCorrectHeap) {
 
     EXPECT_EQ(corrected_bad_min_heap2, expected_heap) << error_msg;
 }
+
+/** Tests max-heap node deletion with known result.
+ */
+TEST_F(GeneralHeapTest, MaxHeapDeleteProducesCorrectHeap) {
+    std::string error_msg = "Got unexpected max-heap from node deletion";
+
+    MaxHeapDelete(corrected_bad_max_heap2, 1);
+    std::vector<int> expected_heap = {84, 10, 19, 9, 3, 17, 6, 5};
+
+    EXPECT_EQ(corrected_bad_max_heap2, expected_heap) << error_msg;
+}
