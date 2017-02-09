@@ -134,11 +134,18 @@ void MaxHeapInsert(std::vector<int> &max_heap, const int key);
  */
 void MinHeapInsert(std::vector<int> &min_heap, const int key);
 
-#endif //ALGORITHMS_STUDY_CPP_HEAP_HPP
-
 /** Delete the node from the max-heap while maintaining max-heap properties.
  *
  * @param max_heap  Max-heap to have node deleted from
  * @param node      Index of node to be deleted
  */
 void MaxHeapDelete(std::vector<int> &max_heap, const int node);
+
+/** Delete the node from the min-heap while maintaining min-heap properties.
+ *
+ * @param min_heap  Min-heap to have node deleted from
+ * @param node      Index of node to be deleted
+ */
+void MinHeapDelete(std::vector<int> &min_heap, const int node);
+
+#endif //ALGORITHMS_STUDY_CPP_HEAP_HPP

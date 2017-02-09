@@ -136,3 +136,9 @@ void MaxHeapDelete(std::vector<int> &max_heap, const int node) {
     MaxHeapify(max_heap, node, max_heap.size());
     max_heap.pop_back();
 }
+
+void MinHeapDelete(std::vector<int> &min_heap, const int node) {
+    min_heap[node] = min_heap[min_heap.size() - 1];
+    MinHeapify(min_heap, node, min_heap.size());
+    min_heap.pop_back();
+}
