@@ -130,3 +130,9 @@ void MinHeapInsert(std::vector<int> &min_heap, const int key) {
     // Then increase this key to the appropriate value
     MinHeapDecreaseKey(min_heap, min_heap.size() - 1, key);
 }
+
+void MaxHeapDelete(std::vector<int> &max_heap, const int node) {
+    max_heap[node] = max_heap[max_heap.size() - 1];
+    MaxHeapify(max_heap, node, max_heap.size());
+    max_heap.pop_back();
+}
