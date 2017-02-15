@@ -14,12 +14,14 @@ public:
     std::vector<int> singleton;
     std::vector<int> vec;
     std::vector<int> vec_sorted;
+    std::vector<int> vec2;
 
 protected:
     virtual void SetUp() {
         singleton = {5};
         vec = {5, 3, 6, 2, 8, 3, 1};
         vec_sorted = {1, 2, 3, 3, 5, 6, 8};
+        vec2 = {2, 8, 7, 1, 3, 5, 6, 4};
     }
 };
 
@@ -69,3 +71,16 @@ TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors) {
     EXPECT_EQ(test_vec, expected_vec)
         << "Merged vector does not match expected vector.";
 }
+
+TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector) {
+    std::string error_msg =
+        "Partitioned vector did not match with vector partitioned by hand!";
+
+    auto test_vec = vec2;
+    std::vector<int> expected_vec = {2, 1, 3, 4, 7, 5, 6, 8};
+
+    int p = QuicksortPartition(test_vec, 0, test_vec.size());
+    EXPECT_EQ(test_vec, expected_vec) << error_msg;
+    EXPECT_EQ(p, 3) << "Unexpected value for partition index";
+}
+
