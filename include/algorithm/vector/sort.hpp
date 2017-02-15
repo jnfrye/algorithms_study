@@ -109,4 +109,23 @@ void MergeSort(
  */
 void HeapSort(std::vector<int> &vec);
 
+/** Rearrange the subvector (in-place), partitioning it for quicksort.
+ *
+ * Uses the end of the subvector as a 'pivot', and partitions the subvector
+ * such that elements before the pivot are less than or equal to it, and
+ * elements after the pivot are greater than it.
+ *
+ * This is the part of quicksort that performs the rearrangements.
+ *
+ * Worst-case performance: Theta(n)
+ *
+ * @param vec           Vector containing the subvector to be partitioned
+ * @param begin_index   Index of the first item in the subvector to be
+ *          partitioned
+ * @param end_index     Index after the last item in the subvector to be
+ *          partitioned
+ * @return              Index of the item dividing the partitions (the 'pivot')
+ */
+int QuicksortPartition(std::vector<int> &vec, const int begin, const int end);
+
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H

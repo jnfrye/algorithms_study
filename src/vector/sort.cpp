@@ -98,3 +98,15 @@ void HeapSort(std::vector<int> &vec) {
         MaxHeapify(vec, 0, heap_order);
     }
 }
+
+int QuicksortPartition(std::vector<int> &vec, const int begin, const int end) {
+    auto pivot = vec[end - 1];
+    int left = begin - 1;
+    for (int right = begin; right < end - 1; ++right)
+        if (vec[right] <= pivot) {
+            ++left;
+            std::swap(vec[left], vec[right]);
+        }
+    std::swap(vec[left + 1], vec[end - 1]);
+    return left + 1;
+}
