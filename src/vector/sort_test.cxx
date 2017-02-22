@@ -7,8 +7,11 @@
 #include "gtest/gtest.h"
 
 #include "algorithm/vector/sort.hpp"
+#include "algorithm/random.hpp"
 
 
+/** General test fixture for vector sort algorithms.
+ */
 class GeneralSortingTest: public ::testing::Test {
 public:
     std::vector<int> singleton;
@@ -22,6 +25,22 @@ protected:
         vec = {5, 3, 6, 2, 8, 3, 1};
         vec_sorted = {1, 2, 3, 3, 5, 6, 8};
         vec2 = {2, 8, 7, 1, 3, 5, 6, 4};
+    }
+};
+
+/** Randomized test fixture for vector sort algorithms.
+ */
+class RandomizedSortingTest: public ::testing::Test {
+public:
+    std::vector<int> random_vec;
+
+protected:
+    virtual void SetUp() {
+        std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
+
+        int random_size = RandomInteger(2, 21);
+        random_vec = std::vector<int>((unsigned int)random_size);
+        RandomlyFillVector(random_vec, -20, 20);
     }
 };
 
@@ -90,5 +109,34 @@ TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector) {
     int p = QuicksortPartition(test_vec, 0, test_vec.size());
     EXPECT_EQ(test_vec, expected_vec) << error_msg;
     EXPECT_EQ(p, 3) << "Unexpected value for partition index";
+}
+
+/** Checks that all sorting algorithms produce the same sort of a random vector.
+ *
+ * NOTE: If this passes, either all are correct or all are incorrect in the
+ * same way. If not all pass, then some are guaranteed to be incorrect.
+ */
+TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector) {
+    std::string error_msg =
+        "Sorting algorithms disagree when sorting random vector!";
+
+    auto insertion_sort_vec(random_vec);
+    InsertionSort(insertion_sort_vec);
+
+    auto selection_sort_vec(random_vec);
+    SelectionSort(selection_sort_vec);
+    ASSERT_EQ(insertion_sort_vec, selection_sort_vec) << error_msg;
+
+    auto merge_sort_vec(random_vec);
+    MergeSort(merge_sort_vec, 0, (int)merge_sort_vec.size());
+    ASSERT_EQ(merge_sort_vec, insertion_sort_vec) << error_msg;
+
+    auto heap_sort_vec(random_vec);
+    HeapSort(heap_sort_vec);
+    ASSERT_EQ(heap_sort_vec, merge_sort_vec) << error_msg;
+
+    auto quick_sort_vec(random_vec);
+    Quicksort(quick_sort_vec, 0, (int)quick_sort_vec.size());
+    EXPECT_EQ(quick_sort_vec, heap_sort_vec) << error_msg;
 }
 
