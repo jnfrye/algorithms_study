@@ -38,7 +38,7 @@ protected:
     virtual void SetUp() {
         std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
 
-        int random_size = RandomInteger(2, 21);
+        int random_size = RandomInteger(2, 500);
         random_vec = std::vector<int>((unsigned int)random_size);
         RandomlyFillVector(random_vec, -20, 20);
     }
