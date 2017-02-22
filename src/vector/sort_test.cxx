@@ -39,6 +39,10 @@ TEST_F(GeneralSortingTest, PreservesSize1Vector) {
     ASSERT_EQ(singleton, original_singleton) << error_msg;
     MergeSort(singleton, 0, (int)singleton.size());
     ASSERT_EQ(singleton, original_singleton) << error_msg;
+    HeapSort(singleton);
+    ASSERT_EQ(singleton, original_singleton) << error_msg;
+    Quicksort(singleton, 0, (int)singleton.size());
+    ASSERT_EQ(singleton, original_singleton) << error_msg;
 }
 
 TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
@@ -55,11 +59,15 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 
     test_vec = vec; // reset vector
-    MergeSort(test_vec, 0, test_vec.size());
+    MergeSort(test_vec, 0, (int)test_vec.size());
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 
     test_vec = vec; // reset vector
     HeapSort(test_vec);
+    EXPECT_EQ(test_vec, vec_sorted) << error_msg;
+
+    test_vec = vec; // reset vector
+    Quicksort(test_vec, 0, (int)test_vec.size());
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 }
 
