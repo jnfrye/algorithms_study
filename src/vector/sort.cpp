@@ -110,3 +110,12 @@ int QuicksortPartition(std::vector<int> &vec, const int begin, const int end) {
     std::swap(vec[left + 1], vec[end - 1]);
     return left + 1;
 }
+
+void Quicksort(std::vector<int> &vec, const int begin, const int end) {
+    // Terminate recursion if subvector is singleton
+    if (1 < end - begin) {
+        int pivot = QuicksortPartition(vec, begin, end);
+        Quicksort(vec, begin, pivot);
+        Quicksort(vec, pivot + 1, end);
+    }
+}

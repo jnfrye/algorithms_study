@@ -128,4 +128,14 @@ void HeapSort(std::vector<int> &vec);
  */
 int QuicksortPartition(std::vector<int> &vec, const int begin, const int end);
 
+/** Sort the vector (in-place) in ascending order.
+ *
+ * Uses the quicksort recursive algorithm.
+ *
+ * Worst-case performance: Theta(n^2)
+ * Average-case performance: Theta(n lg n)
+ *
+ */
+void Quicksort(std::vector<int> &vec, const int begin, const int end);
+
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H
