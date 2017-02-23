@@ -7,7 +7,7 @@
 #include "algorithm/vector/search.hpp"
 #include "algorithm/vector/sort.hpp"
 #include "algorithm/vector/heap.hpp"
-
+#include "algorithm/random.hpp"
 
 void InsertIntoSortedSubvector(
         std::vector<int> &vec, const int index,
@@ -111,6 +111,13 @@ int QuicksortPartition(std::vector<int> &vec, const int begin, const int end) {
     return left + 1;
 }
 
+int RandomizedQuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end) {
+    int pivot = RandomInteger(begin, end - 1);
+    std::swap(vec[end - 1], vec[pivot]);
+    return QuicksortPartition(vec, begin, end);
+}
+
 void Quicksort(std::vector<int> &vec, const int begin, const int end) {
     // Terminate recursion if subvector is singleton
     if (1 < end - begin) {
@@ -119,3 +126,14 @@ void Quicksort(std::vector<int> &vec, const int begin, const int end) {
         Quicksort(vec, pivot + 1, end);
     }
 }
+
+void RandomizedQuicksort(
+        std::vector<int> &vec, const int begin, const int end) {
+    // Terminate recursion if subvector is singleton
+    if (1 < end - begin) {
+        int pivot = RandomizedQuicksortPartition(vec, begin, end);
+        RandomizedQuicksort(vec, begin, pivot);
+        RandomizedQuicksort(vec, pivot + 1, end);
+    }
+}
+
