@@ -148,6 +148,24 @@ int QuicksortPartition(std::vector<int> &vec, const int begin, const int end);
 int RandomizedQuicksortPartition(
         std::vector<int> &vec, const int begin, const int end);
 
+/** Rearrange the subvector (in-place), partitioning it for quicksort.
+ *
+ * Uses Hoare's partitioning algorithm.
+ *
+ * This is the part of quicksort that performs the rearrangements.
+ *
+ * Worst-case performance: Theta(n)
+ *
+ * @param vec           Vector containing the subvector to be partitioned
+ * @param begin_index   Index of the first item in the subvector to be
+ *          partitioned
+ * @param end_index     Index after the last item in the subvector to be
+ *          partitioned
+ * @return              Index of the item dividing the partitions (the 'pivot')
+ */
+int HoareQuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end);
+
 /** Sort the vector (in-place) in ascending order.
  *
  * Uses the quicksort recursive algorithm.

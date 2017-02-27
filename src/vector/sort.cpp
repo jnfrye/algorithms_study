@@ -118,6 +118,24 @@ int RandomizedQuicksortPartition(
     return QuicksortPartition(vec, begin, end);
 }
 
+int HoareQuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end) {
+    auto pivot = vec[begin];
+    int left = begin - 1;
+    int right = end;
+    while (true) {
+        do {
+        --right;
+        } while (vec[right] > pivot);
+        do {
+        ++left;
+        } while (vec[left] < pivot);
+
+        if (left < right) std::swap(vec[left], vec[right]);
+        else return right;
+    }
+}
+
 void Quicksort(std::vector<int> &vec, const int begin, const int end) {
     // Terminate recursion if subvector is singleton
     if (1 < end - begin) {
@@ -136,4 +154,3 @@ void RandomizedQuicksort(
         RandomizedQuicksort(vec, pivot + 1, end);
     }
 }
-
