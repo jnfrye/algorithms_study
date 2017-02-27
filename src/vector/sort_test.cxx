@@ -18,6 +18,7 @@ public:
     std::vector<int> vec;
     std::vector<int> vec_sorted;
     std::vector<int> vec2;
+    std::vector<int> vec3;
 
 protected:
     virtual void SetUp() {
@@ -25,6 +26,7 @@ protected:
         vec = {5, 3, 6, 2, 8, 3, 1};
         vec_sorted = {1, 2, 3, 3, 5, 6, 8};
         vec2 = {2, 8, 7, 1, 3, 5, 6, 4};
+        vec3 = {13, 19, 9, 5, 12, 8, 7, 4, 11, 2, 6, 21};
     }
 };
 
@@ -115,6 +117,18 @@ TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector) {
     int p = QuicksortPartition(test_vec, 0, test_vec.size());
     EXPECT_EQ(test_vec, expected_vec) << error_msg;
     EXPECT_EQ(p, 3) << "Unexpected value for partition index";
+}
+
+TEST_F(GeneralSortingTest, HoareCorrectlyPartitionsKnownVector) {
+    std::string error_msg =
+        "Hoare-partitioned vector did not match with expected partition!";
+
+    auto test_vec = vec3;
+    std::vector<int> expected_vec = {6, 2, 9, 5, 12, 8, 7, 4, 11, 19, 13, 21};
+
+    int p = HoareQuicksortPartition(test_vec, 0, test_vec.size());
+    EXPECT_EQ(test_vec, expected_vec) << error_msg;
+    EXPECT_EQ(p, 8) << "Unexpected value for partition index";
 }
 
 /** Checks that all sorting algorithms produce the same sort of a random vector.
