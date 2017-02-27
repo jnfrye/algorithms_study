@@ -66,6 +66,8 @@ TEST_F(GeneralSortingTest, PreservesSize1Vector) {
     ASSERT_EQ(singleton, original_singleton) << error_msg;
     RandomizedQuicksort(singleton, 0, (int)singleton.size());
     ASSERT_EQ(singleton, original_singleton) << error_msg;
+    HoareQuicksort(singleton, 0, (int)singleton.size());
+    ASSERT_EQ(singleton, original_singleton) << error_msg;
 }
 
 TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
@@ -95,6 +97,10 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
 
     test_vec = vec; // reset vector
     RandomizedQuicksort(test_vec, 0, (int)test_vec.size());
+    EXPECT_EQ(test_vec, vec_sorted) << error_msg;
+
+    test_vec = vec; // reset vector
+    HoareQuicksort(test_vec, 0, (int)test_vec.size());
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 }
 
@@ -160,8 +166,13 @@ TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector) {
     EXPECT_EQ(quick_sort_vec, heap_sort_vec) << error_msg;
 
     auto randomized_quick_sort_vec(random_vec);
-    Quicksort(
+    RandomizedQuicksort(
         randomized_quick_sort_vec, 0, (int)randomized_quick_sort_vec.size());
     EXPECT_EQ(randomized_quick_sort_vec, quick_sort_vec) << error_msg;
+
+    auto hoare_quick_sort_vec(random_vec);
+    HoareQuicksort(
+        hoare_quick_sort_vec, 0, (int)hoare_quick_sort_vec.size());
+    EXPECT_EQ(hoare_quick_sort_vec, randomized_quick_sort_vec) << error_msg;
 }
 
