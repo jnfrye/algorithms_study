@@ -154,3 +154,12 @@ void RandomizedQuicksort(
         RandomizedQuicksort(vec, pivot + 1, end);
     }
 }
+
+void HoareQuicksort(std::vector<int> &vec, const int begin, const int end) {
+    // Terminate recursion if subvector is singleton
+    if (1 < end - begin) {
+        int pivot = HoareQuicksortPartition(vec, begin, end);
+        HoareQuicksort(vec, begin, pivot + 1);
+        HoareQuicksort(vec, pivot + 1, end);
+    }
+}
