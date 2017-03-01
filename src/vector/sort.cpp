@@ -99,16 +99,25 @@ void HeapSort(std::vector<int> &vec) {
     }
 }
 
-int QuicksortPartition(std::vector<int> &vec, const int begin, const int end) {
+int QuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end,
+        const bool equality_check /*= true*/) {
     auto pivot = vec[end - 1];
     int left = begin - 1;
     for (int right = begin; right < end - 1; ++right)
-        if (vec[right] <= pivot) {
+        if (vec[right] < pivot || (equality_check && vec[right] == pivot)) {
             ++left;
             std::swap(vec[left], vec[right]);
         }
     std::swap(vec[left + 1], vec[end - 1]);
     return left + 1;
+}
+
+std::tuple<int, int> EqCheckQuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end) {
+    int pivot_end = QuicksortPartition(vec, begin, end) + 1;
+    int pivot_begin = QuicksortPartition(vec, begin, pivot_end, false);
+    return std::make_tuple(pivot_begin, pivot_end);
 }
 
 int RandomizedQuicksortPartition(

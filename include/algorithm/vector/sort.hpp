@@ -119,14 +119,43 @@ void HeapSort(std::vector<int> &vec);
  *
  * Worst-case performance: Theta(n)
  *
+ * @param vec               Vector containing the subvector to be partitioned
+ * @param begin_index       Index of the first item in the subvector to be
+ *      partitioned
+ * @param end_index         Index after the last item in the subvector to be
+ *      partitioned
+ * @param equality_check    If true, the left partition will contain items
+ *      equal to the pivot. Otherwise, they will be in right partition.
+ * @return                  Index of the item dividing the partitions (the
+ *      'pivot')
+ */
+int QuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end,
+        const bool equality_check = true);
+
+/** Rearrange the subvector (in-place), partitioning it for quicksort.
+ *
+ * Uses the value of the end of the subvector as a 'pivot', and partitions
+ * the subvector into three regions (in order):
+ * 1. elements less than the pivot
+ * 2. elements equal to the pivot
+ * 3. elements greater than the pivot
+ *
+ * This is the part of quicksort that performs the rearrangements.
+ *
+ * Worst-case performance: Theta(n)
+ *
  * @param vec           Vector containing the subvector to be partitioned
  * @param begin_index   Index of the first item in the subvector to be
  *          partitioned
  * @param end_index     Index after the last item in the subvector to be
  *          partitioned
- * @return              Index of the item dividing the partitions (the 'pivot')
+ * @return              2-tuple containing:
+ * 1. the index marking the beginning of the 'equal to pivot' partition
+ * 2. the index that is one after the end of the 'equal to pivot' partition.
  */
-int QuicksortPartition(std::vector<int> &vec, const int begin, const int end);
+std::tuple<int, int> EqCheckQuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end);
 
 /** Rearrange the subvector (in-place), partitioning it randomly for quicksort.
  *
