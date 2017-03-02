@@ -171,6 +171,16 @@ void RandomizedQuicksort(
     }
 }
 
+void RandomizedEqCheckQuicksort(
+        std::vector<int> &vec, const int begin, const int end) {
+    // Terminate recursion if subvector is singleton
+    if (1 < end - begin) {
+        auto pivot = RandomizedEqCheckQuicksortPartition(vec, begin, end);
+        RandomizedQuicksort(vec, begin, std::get<0>(pivot));
+        RandomizedQuicksort(vec, std::get<1>(pivot), end);
+    }
+}
+
 void HoareQuicksort(std::vector<int> &vec, const int begin, const int end) {
     // Terminate recursion if subvector is singleton
     if (1 < end - begin) {

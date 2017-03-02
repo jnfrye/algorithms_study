@@ -234,6 +234,16 @@ void RandomizedQuicksort(std::vector<int> &vec, const int begin, const int end);
 
 /** Sort the vector (in-place) in ascending order.
  *
+ * Uses the randomized equality-checking quicksort recursive algorithm.
+ *
+ * Worst-case performance: Theta(n^2)
+ * Average-case performance: Theta(n lg n)
+ */
+void RandomizedEqCheckQuicksort(
+        std::vector<int> &vec, const int begin, const int end);
+
+/** Sort the vector (in-place) in ascending order.
+ *
  * Uses the Hoare quicksort recursive algorithm.
  *
  * Worst-case performance: Theta(n^2)
