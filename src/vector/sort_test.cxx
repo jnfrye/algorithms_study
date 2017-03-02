@@ -186,9 +186,17 @@ TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector) {
         randomized_quick_sort_vec, 0, (int)randomized_quick_sort_vec.size());
     EXPECT_EQ(randomized_quick_sort_vec, quick_sort_vec) << error_msg;
 
+    auto randomized_eqcheck_quick_sort_vec(random_vec);
+    RandomizedEqCheckQuicksort(
+        randomized_eqcheck_quick_sort_vec, 0,
+        (int)randomized_eqcheck_quick_sort_vec.size());
+    EXPECT_EQ(randomized_eqcheck_quick_sort_vec, randomized_quick_sort_vec)
+        << error_msg;
+
     auto hoare_quick_sort_vec(random_vec);
     HoareQuicksort(
         hoare_quick_sort_vec, 0, (int)hoare_quick_sort_vec.size());
-    EXPECT_EQ(hoare_quick_sort_vec, randomized_quick_sort_vec) << error_msg;
+    EXPECT_EQ(randomized_eqcheck_quick_sort_vec, hoare_quick_sort_vec)
+        << error_msg;
 }
 
