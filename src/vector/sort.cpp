@@ -127,6 +127,13 @@ int RandomizedQuicksortPartition(
     return QuicksortPartition(vec, begin, end);
 }
 
+std::tuple<int, int> RandomizedEqCheckQuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end) {
+    int pivot = RandomInteger(begin, end - 1);
+    std::swap(vec[end - 1], vec[pivot]);
+    return EqCheckQuicksortPartition(vec, begin, end);
+}
+
 int HoareQuicksortPartition(
         std::vector<int> &vec, const int begin, const int end) {
     auto pivot = vec[begin];

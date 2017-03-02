@@ -177,6 +177,25 @@ std::tuple<int, int> EqCheckQuicksortPartition(
 int RandomizedQuicksortPartition(
         std::vector<int> &vec, const int begin, const int end);
 
+/** Rearrange the subvector (in-place), partitioning it randomly for quicksort.
+ *
+ * This calls the equality checking partitioner with a random element chosen
+ * as pivot.
+ *
+ * Worst-case performance: Theta(n)
+ *
+ * @param vec           Vector containing the subvector to be partitioned
+ * @param begin_index   Index of the first item in the subvector to be
+ *          partitioned
+ * @param end_index     Index after the last item in the subvector to be
+ *          partitioned
+ * @return              2-tuple containing:
+ * 1. the index marking the beginning of the 'equal to pivot' partition
+ * 2. the index that is one after the end of the 'equal to pivot' partition.
+ */
+std::tuple<int, int> RandomizedEqCheckQuicksortPartition(
+        std::vector<int> &vec, const int begin, const int end);
+
 /** Rearrange the subvector (in-place), partitioning it for quicksort.
  *
  * Uses Hoare's partitioning algorithm.
