@@ -68,6 +68,8 @@ TEST_F(GeneralSortingTest, PreservesSize1Vector) {
     ASSERT_EQ(singleton, original_singleton) << error_msg;
     RandomizedQuicksort(singleton, 0, (int)singleton.size());
     ASSERT_EQ(singleton, original_singleton) << error_msg;
+    RandomizedEqCheckQuicksort(singleton, 0, (int)singleton.size());
+    ASSERT_EQ(singleton, original_singleton) << error_msg;
     HoareQuicksort(singleton, 0, (int)singleton.size());
     ASSERT_EQ(singleton, original_singleton) << error_msg;
 }
@@ -99,6 +101,10 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
 
     test_vec = vec; // reset vector
     RandomizedQuicksort(test_vec, 0, (int)test_vec.size());
+    EXPECT_EQ(test_vec, vec_sorted) << error_msg;
+
+    test_vec = vec; // reset vector
+    RandomizedEqCheckQuicksort(test_vec, 0, (int)test_vec.size());
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
 
     test_vec = vec; // reset vector
