@@ -189,3 +189,28 @@ void HoareQuicksort(std::vector<int> &vec, const int begin, const int end) {
         HoareQuicksort(vec, pivot + 1, end);
     }
 }
+
+std::vector<int> CountingSort(
+        std::vector<int> &input_vec, const int min, const int max) {
+    auto possible_values = max - min + 1;
+    std::vector<int> value_counts(possible_values, 0);
+
+    // This vector contains the counts of each value in the input vector
+    // It is zero-indexed; the item in index 0 is the number of times the min
+    // value shows up in the input vector, the item in index 1 is the number of
+    // times the min + 1 shows up, and so on up to the max value
+    for (int i = 0; i < input_vec.size(); ++i)
+        ++value_counts[input_vec[i] - min];
+
+    // This causes the vector to contain the number of entries that have value
+    // less than or equal to this value
+    for (int value_index = 1; value_index < possible_values; ++value_index)
+        value_counts[value_index] += value_counts[value_index - 1];
+
+    std::vector<int> output_vec(input_vec.size());
+    for (int j = (int)input_vec.size() - 1; j >= 0; --j) {
+        output_vec[value_counts[input_vec[j] - min] - 1] = input_vec[j];
+        --value_counts[input_vec[j] - min];
+    }
+    return output_vec;
+}
