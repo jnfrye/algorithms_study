@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
 
 #include "gtest/gtest.h"
 
@@ -72,6 +73,12 @@ TEST_F(GeneralSortingTest, PreservesSize1Vector) {
     ASSERT_EQ(singleton, original_singleton) << error_msg;
     HoareQuicksort(singleton, 0, (int)singleton.size());
     ASSERT_EQ(singleton, original_singleton) << error_msg;
+    auto out = CountingSort(
+        singleton,
+        *std::min_element(singleton.begin(), singleton.end()),
+        *std::max_element(singleton.begin(), singleton.end())
+    );
+    ASSERT_EQ(out, original_singleton) << error_msg;
 }
 
 TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
@@ -110,6 +117,14 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
     test_vec = vec; // reset vector
     HoareQuicksort(test_vec, 0, (int)test_vec.size());
     EXPECT_EQ(test_vec, vec_sorted) << error_msg;
+
+    test_vec = vec; // reset vector
+    auto out_vec = CountingSort(
+        test_vec,
+        *std::min_element(test_vec.begin(), test_vec.end()),
+        *std::max_element(test_vec.begin(), test_vec.end())
+    );
+    EXPECT_EQ(out_vec, vec_sorted) << error_msg;
 }
 
 TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors) {
@@ -203,6 +218,15 @@ TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector) {
     HoareQuicksort(
         hoare_quick_sort_vec, 0, (int)hoare_quick_sort_vec.size());
     EXPECT_EQ(randomized_eqcheck_quick_sort_vec, hoare_quick_sort_vec)
+        << error_msg;
+
+    auto count_sort_vec(random_vec);
+    auto out_vec = CountingSort(
+        count_sort_vec,
+        *std::min_element(count_sort_vec.begin(), count_sort_vec.end()),
+        *std::max_element(count_sort_vec.begin(), count_sort_vec.end())
+    );
+    EXPECT_EQ(hoare_quick_sort_vec, out_vec)
         << error_msg;
 }
 
