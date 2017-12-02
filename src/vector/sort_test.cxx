@@ -13,7 +13,8 @@
 
 /** General test fixture for vector sort algorithms.
  */
-class GeneralSortingTest: public ::testing::Test {
+class GeneralSortingTest: public ::testing::Test
+{
 public:
 	std::vector<int> singleton;
 	std::vector<int> vec;
@@ -23,7 +24,8 @@ public:
 	std::vector<int> vec4;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		singleton = {5};
 		vec = {5, 3, 6, 2, 8, 3, 1};
 		vec_sorted = {1, 2, 3, 3, 5, 6, 8};
@@ -35,12 +37,14 @@ protected:
 
 /** Randomized test fixture for vector sort algorithms.
  */
-class RandomizedSortingTest: public ::testing::Test {
+class RandomizedSortingTest: public ::testing::Test
+{
 public:
 	std::vector<int> random_vec;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
 
 		int random_size = RandomInteger(2, 500);
@@ -49,7 +53,8 @@ protected:
 	}
 };
 
-TEST_F(GeneralSortingTest, PreservesSize1Vector) {
+TEST_F(GeneralSortingTest, PreservesSize1Vector)
+{
 	std::string error_msg = "A singleton should not change when sorted!";
 
 	std::vector<int> original_singleton(singleton);
@@ -81,7 +86,8 @@ TEST_F(GeneralSortingTest, PreservesSize1Vector) {
 	ASSERT_EQ(out, original_singleton) << error_msg;
 }
 
-TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
+TEST_F(GeneralSortingTest, CorrectlySortsKnownVector)
+{
 	std::string error_msg =
 		"Sorted vector did not match with vector sorted by hand!";
 
@@ -127,7 +133,8 @@ TEST_F(GeneralSortingTest, CorrectlySortsKnownVector) {
 	EXPECT_EQ(out_vec, vec_sorted) << error_msg;
 }
 
-TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors) {
+TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors)
+{
 	std::vector<int> test_vec =	 {2, 5, 6, 3, 5, 5, 8};
 	std::vector<int> expected_vec = {2, 3, 5, 5, 5, 6, 8};
 
@@ -136,7 +143,8 @@ TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors) {
 		<< "Merged vector does not match expected vector.";
 }
 
-TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector) {
+TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector)
+{
 	std::string error_msg =
 		"Partitioned vector did not match with vector partitioned by hand!";
 
@@ -148,7 +156,8 @@ TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector) {
 	EXPECT_EQ(p, 3) << "Unexpected value for partition index";
 }
 
-TEST_F(GeneralSortingTest, HoareCorrectlyPartitionsKnownVector) {
+TEST_F(GeneralSortingTest, HoareCorrectlyPartitionsKnownVector)
+{
 	std::string error_msg =
 		"Hoare-partitioned vector did not match with expected partition!";
 
@@ -160,7 +169,8 @@ TEST_F(GeneralSortingTest, HoareCorrectlyPartitionsKnownVector) {
 	EXPECT_EQ(p, 8) << "Unexpected value for partition index";
 }
 
-TEST_F(GeneralSortingTest, EqCheckCorrectlyPartitionsKnownVector) {
+TEST_F(GeneralSortingTest, EqCheckCorrectlyPartitionsKnownVector)
+{
 	std::string error_msg =
 		"Partitioned vector did not match with vector partitioned by hand!";
 
@@ -179,7 +189,8 @@ TEST_F(GeneralSortingTest, EqCheckCorrectlyPartitionsKnownVector) {
  * NOTE: If this passes, either all are correct or all are incorrect in the
  * same way. If not all pass, then some are guaranteed to be incorrect.
  */
-TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector) {
+TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector)
+{
 	std::string error_msg =
 		"Sorting algorithms disagree when sorting random vector!";
 

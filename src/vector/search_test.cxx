@@ -16,13 +16,15 @@
 
 /** General test fixture for vector search algorithms.
  */
-class GeneralSearchingTest: public ::testing::Test {
+class GeneralSearchingTest: public ::testing::Test
+{
 public:
 	std::vector<int> singleton;
 	std::vector<int> vec;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		singleton = {5};
 		vec = {-10, 3, -5, -3, 6, 2, 8, -24, 10, 11, -3};
 	}
@@ -30,7 +32,8 @@ protected:
 
 /** Randomized test fixture for vector search algorithms.
  */
-class RandomizedSearchingTest: public ::testing::Test {
+class RandomizedSearchingTest: public ::testing::Test
+{
 public:
 	std::vector<int> random_singleton;
 	std::vector<int> random_vec;
@@ -38,7 +41,8 @@ public:
 	std::vector<int> random_positive_vec;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
 
 		int random_size = RandomInteger(2, 21);
@@ -54,7 +58,8 @@ protected:
 
 /** Basic test of vector item search algorithms.
  */
-TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
+TEST_F(GeneralSearchingTest, SearchingFindsKnownItem)
+{
 	int search_value = 2;
 	int linear_search_result = LinearSearch(vec, search_value);
 
@@ -80,7 +85,8 @@ TEST_F(GeneralSearchingTest, SearchingFindsKnownItem) {
 
 /** Basic test of vector min index and max index search.
  */
-TEST_F(GeneralSearchingTest, MaxMinSearchFindsCorrectItems) {
+TEST_F(GeneralSearchingTest, MaxMinSearchFindsCorrectItems)
+{
 	int min_search_result = MinIndex(vec);
 	int max_search_result = MaxIndex(vec);
 
@@ -92,7 +98,8 @@ TEST_F(GeneralSearchingTest, MaxMinSearchFindsCorrectItems) {
 
 /** Basic test of vector relative max index search.
  */
-TEST_F(GeneralSearchingTest, RelativeMaxSearchFindsCorrectItem) {
+TEST_F(GeneralSearchingTest, RelativeMaxSearchFindsCorrectItem)
+{
 	int max_search_result = RelativeMaxIndex(vec, 7);
 
 	EXPECT_EQ(max_search_result, 8)
@@ -101,7 +108,8 @@ TEST_F(GeneralSearchingTest, RelativeMaxSearchFindsCorrectItem) {
 
 /** Item search algorithms should throw exception if item not found.
  */
-TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
+TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException)
+{
 	EXPECT_THROW(LinearSearch(vec, 20), std::runtime_error);
 
 	// To test binary search, we first sort the vector
@@ -111,7 +119,8 @@ TEST_F(GeneralSearchingTest, ItemNotFoundThrowsException) {
 
 /** Basic test of crossing subvector max sum search.
  */
-TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector) {
+TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector)
+{
 	auto results  = FindMaxCrossingSubvector(
 		vec, 0, (int)std::floor(vec.size()/2.), (int)vec.size());
 
@@ -121,7 +130,8 @@ TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector) {
 
 /** Basic test of subvector max sum search.
  */
-TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector) {
+TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector)
+{
 	std::string error_message =
 		"Max subvector does not match expected subvector.";
 
@@ -138,7 +148,8 @@ TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector) {
 
 /** Max subvector sum of a singleton should be the value of the item contained.
  */
-TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself) {
+TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself)
+{
 	std::string error_message =
 		"Max subvector sum of singleton should be the singleton.";
 
@@ -156,8 +167,8 @@ TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself) {
 
 /** Max crossing subvector of a negative vector should be the smallest one.
  */
-TEST_F(RandomizedSearchingTest,
-		MaxCrossingSubvectorOfRandomNegVecIsSmallestOne) {
+TEST_F(RandomizedSearchingTest, MaxCrossingSubvectorOfRandomNegVecIsSmallestOne)
+{
 	std::string error_message = "Max crossing subvector of a negative vector "
 		"should be the smallest one.";
 
@@ -175,8 +186,8 @@ TEST_F(RandomizedSearchingTest,
 
 /** Max crossing subvector of a positive vector should be the entire vector.
  */
-TEST_F(RandomizedSearchingTest,
-		MaxCrossingSubvectorOfRandomPosVecIsEntireVec) {
+TEST_F(RandomizedSearchingTest, MaxCrossingSubvectorOfRandomPosVecIsEntireVec)
+{
 	int middle_index = (int)std::floor(random_positive_vec.size()/2.);
 	auto results = FindMaxCrossingSubvector(
 		random_positive_vec, 0, middle_index,
@@ -194,7 +205,8 @@ TEST_F(RandomizedSearchingTest,
 
 /** Max subvector of a positive vector should be the entire vector.
  */
-TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec) {
+TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec)
+{
 	std::string error_message =
 		"Max subvector of a positive vector should be the entire vector.";
 
@@ -218,7 +230,8 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec) {
 
 /** Max subvector of a negative vector should be the least negative item.
  */
-TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
+TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem)
+{
 	std::string error_message =
 		"Max subvector of a negative vector should be the least negative item.";
 
@@ -250,8 +263,8 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem) {
 
 /** Algorithms for max subvector of a random vector should have same result.
  */
-TEST_F(RandomizedSearchingTest,
-		MaxSubvectorAlgorithmsOnRandomVectorShouldAgree) {
+TEST_F(RandomizedSearchingTest, MaxSubvectorAlgorithmsOnRandomVectorShouldAgree)
+{
 	std::string error_message =
 		"Algorithms for max subvector of a random vector should have same "
 		"result.";

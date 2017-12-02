@@ -9,7 +9,8 @@
 #include "algorithm/vector/heap.hpp"
 
 
-class GeneralHeapTest: public ::testing::Test {
+class GeneralHeapTest: public ::testing::Test
+{
 public:
 	std::vector<int> singleton;
 	std::vector<int> bad_max_heap;
@@ -22,7 +23,8 @@ public:
 	std::vector<int> corrected_bad_min_heap2;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		singleton = {5};
 		bad_max_heap = {9, 3, 7, 8, 4, 6, 2, 1, 5, 0};
 		corrected_bad_max_heap = {9, 8, 7, 5, 4, 6, 2, 1, 3, 0};
@@ -37,7 +39,8 @@ protected:
 
 /** Tests the max-heapify function on a simple known result.
  */
-TEST_F(GeneralHeapTest, MaxHeapifyCorrectsHeap) {
+TEST_F(GeneralHeapTest, MaxHeapifyCorrectsHeap)
+{
 	std::string error_msg = "Heap was incorrectly adjusted by max-heapify";
 
 	MaxHeapify(bad_max_heap, 1, bad_max_heap.size());
@@ -47,7 +50,8 @@ TEST_F(GeneralHeapTest, MaxHeapifyCorrectsHeap) {
 
 /** Tests the min-heapify function on a simple known result.
  */
-TEST_F(GeneralHeapTest, MinHeapifyCorrectsHeap) {
+TEST_F(GeneralHeapTest, MinHeapifyCorrectsHeap)
+{
 	std::string error_msg = "Heap was incorrectly adjusted by min-heapify";
 
 	MinHeapify(bad_min_heap, 1, bad_min_heap.size());
@@ -57,7 +61,8 @@ TEST_F(GeneralHeapTest, MinHeapifyCorrectsHeap) {
 
 /** Tests the max-heap builder on a simple known result.
  */
-TEST_F(GeneralHeapTest, BuildMaxHeapProducesExpectedHeap) {
+TEST_F(GeneralHeapTest, BuildMaxHeapProducesExpectedHeap)
+{
 	std::string error_msg = "Built heap does not match expected heap.";
 
 	MaxHeapBuilder(bad_max_heap2);
@@ -67,7 +72,8 @@ TEST_F(GeneralHeapTest, BuildMaxHeapProducesExpectedHeap) {
 
 /** Tests the min-heap builder on a simple known result.
  */
-TEST_F(GeneralHeapTest, BuildMinHeapProducesExpectedHeap) {
+TEST_F(GeneralHeapTest, BuildMinHeapProducesExpectedHeap)
+{
 	std::string error_msg = "Built heap does not match expected heap.";
 
 	MinHeapBuilder(bad_min_heap2);
@@ -77,7 +83,8 @@ TEST_F(GeneralHeapTest, BuildMinHeapProducesExpectedHeap) {
 
 /** Tests that the max-heap largest node extractor gets the value right.
  */
-TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedValue) {
+TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedValue)
+{
 	std::string error_msg = "Returned incorrect max value from max heap.";
 
 	auto max_value = MaxHeapExtractMax(corrected_bad_max_heap2);
@@ -87,7 +94,8 @@ TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedValue) {
 
 /** Tests that the min-heap smallest node extractor gets the value right.
  */
-TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedValue) {
+TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedValue)
+{
 	std::string error_msg = "Returned incorrect min value from min-heap.";
 
 	auto min_value = MinHeapExtractMin(corrected_bad_min_heap2);
@@ -97,7 +105,8 @@ TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedValue) {
 
 /** Tests that max-heap largest node extractor has correct max-heap after.
  */
-TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedMaxHeap) {
+TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedMaxHeap)
+{
 	std::string error_msg = "Returned incorrect max-heap after node extraction";
 
 	MaxHeapExtractMax(corrected_bad_max_heap);
@@ -108,7 +117,8 @@ TEST_F(GeneralHeapTest, ExtractMaxFromHeapProducesExpectedMaxHeap) {
 
 /** Tests that min-heap smallest node extractor has correct min-heap after.
  */
-TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedMinHeap) {
+TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedMinHeap)
+{
 	std::string error_msg = "Returned incorrect min-heap after node extraction";
 
 	MinHeapExtractMin(corrected_bad_min_heap);
@@ -121,7 +131,8 @@ TEST_F(GeneralHeapTest, ExtractMinFromHeapProducesExpectedMinHeap) {
  *
  * In this case, the new node value is a new maximum for the heap.
  */
-TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyWithNewMaxProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyWithNewMaxProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected max-heap from key increase";
 
 	MaxHeapIncreaseKey(corrected_bad_max_heap, 7, 10);
@@ -134,7 +145,8 @@ TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyWithNewMaxProducesCorrectHeap) {
  *
  * In this case, the new node value is a new minimum for the heap.
  */
-TEST_F(GeneralHeapTest, DecreaseMinHeapKeyWithNewMinProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, DecreaseMinHeapKeyWithNewMinProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected min-heap from key decrease";
 
 	MinHeapDecreaseKey(corrected_bad_min_heap, 7, -1);
@@ -147,7 +159,8 @@ TEST_F(GeneralHeapTest, DecreaseMinHeapKeyWithNewMinProducesCorrectHeap) {
  *
  * In this case, the new node value is not a new maximum for the heap.
  */
-TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected max-heap from key increase";
 
 	MaxHeapIncreaseKey(corrected_bad_max_heap, 7, 8);
@@ -160,7 +173,8 @@ TEST_F(GeneralHeapTest, IncreaseMaxHeapKeyProducesCorrectHeap) {
  *
  * In this case, the new node value is not a new minimum for the heap.
  */
-TEST_F(GeneralHeapTest, DecreaseMinHeapKeyProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, DecreaseMinHeapKeyProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected min-heap from key decrease";
 
 	MinHeapDecreaseKey(corrected_bad_min_heap, 7, 0);
@@ -171,7 +185,8 @@ TEST_F(GeneralHeapTest, DecreaseMinHeapKeyProducesCorrectHeap) {
 
 /** Tests max-heap inserter with known result.
  */
-TEST_F(GeneralHeapTest, InsertIntoMaxHeapProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, InsertIntoMaxHeapProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected max-heap from key insertion";
 
 	MaxHeapInsert(corrected_bad_max_heap2, 25);
@@ -182,7 +197,8 @@ TEST_F(GeneralHeapTest, InsertIntoMaxHeapProducesCorrectHeap) {
 
 /** Tests min-heap inserter with known result.
  */
-TEST_F(GeneralHeapTest, InsertIntoMinHeapProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, InsertIntoMinHeapProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected min-heap from key insertion";
 
 	MinHeapInsert(corrected_bad_min_heap2, 0);
@@ -193,7 +209,8 @@ TEST_F(GeneralHeapTest, InsertIntoMinHeapProducesCorrectHeap) {
 
 /** Tests max-heap node deletion with known result.
  */
-TEST_F(GeneralHeapTest, MaxHeapDeleteProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, MaxHeapDeleteProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected max-heap from node deletion";
 
 	MaxHeapDelete(corrected_bad_max_heap2, 1);
@@ -204,7 +221,8 @@ TEST_F(GeneralHeapTest, MaxHeapDeleteProducesCorrectHeap) {
 
 /** Tests min-heap node deletion with known result.
  */
-TEST_F(GeneralHeapTest, MinHeapDeleteProducesCorrectHeap) {
+TEST_F(GeneralHeapTest, MinHeapDeleteProducesCorrectHeap)
+{
 	std::string error_msg = "Got unexpected min-heap from node deletion";
 
 	MinHeapDelete(corrected_bad_min_heap2, 1);

@@ -102,8 +102,7 @@ int MinHeapExtractMin(std::vector<int> &min_heap);
  * @param node	  Index of the node to be modified
  * @param new_key   New value for the node; must be larger than old value!
  */
-void MaxHeapIncreaseKey(
-		std::vector<int> &max_heap, const int node, const int new_key);
+void MaxHeapIncreaseKey(std::vector<int> &max_heap, const int node, const int new_key);
 
 /** Sets the key of a node in a min-heap to a smaller value.
  *
@@ -113,8 +112,7 @@ void MaxHeapIncreaseKey(
  * @param node	  Index of the node to be modified
  * @param new_key   New value for the node; must be smaller than old value!
  */
-void MinHeapDecreaseKey(
-		std::vector<int> &min_heap, const int node, const int new_key);
+void MinHeapDecreaseKey(std::vector<int> &min_heap, const int node, const int new_key);
 
 /** Inserts the key into a max heap in the appropriate location.
  *

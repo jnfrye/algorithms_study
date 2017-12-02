@@ -9,21 +9,24 @@
 #include <assert.h>
 
 
-int LinearSearch(const std::vector<int> &vec, const int value) {
+int LinearSearch(const std::vector<int> &vec, const int value)
+{
 	for(int i = 0; i < vec.size(); i++)
 		if (vec[i] == value) return i;
 
 	throw std::runtime_error("Value not found!");
 }
 
-int MinIndex(const std::vector<int> &vec, const int begin_index /*= 0*/) {
+int MinIndex(const std::vector<int> &vec, const int begin_index /*= 0*/)
+{
 	assert(begin_index < vec.size() &&
 		"Cannot begin search at index larger than size of vector!");
 
 	int min_index = begin_index;
 
 	int search_index = begin_index + 1;
-	while (search_index < vec.size()) {
+	while (search_index < vec.size())
+	{
 		if (vec[search_index] < vec[min_index])
 			min_index = search_index;
 
@@ -32,14 +35,16 @@ int MinIndex(const std::vector<int> &vec, const int begin_index /*= 0*/) {
 	return min_index;
 }
 
-int MaxIndex(const std::vector<int> &vec, const int begin_index /*= 0*/) {
+int MaxIndex(const std::vector<int> &vec, const int begin_index /*= 0*/)
+{
 	assert(begin_index < vec.size() &&
 		"Cannot begin search at index larger than size of vector!");
 
 	int max_index = begin_index;
 
 	int search_index = begin_index + 1;
-	while (search_index < vec.size()) {
+	while (search_index < vec.size())
+	{
 		if (vec[search_index] > vec[max_index])
 			max_index = search_index;
 
@@ -48,16 +53,19 @@ int MaxIndex(const std::vector<int> &vec, const int begin_index /*= 0*/) {
 	return max_index;
 }
 
-int RelativeMaxIndex(const std::vector<int> &vec, const int begin_index) {
+int RelativeMaxIndex(const std::vector<int> &vec, const int begin_index)
+{
 	assert(begin_index < vec.size() &&
 		"Cannot begin search at index larger than size of vector!");
 
 	int max_value = -std::numeric_limits<int>::max();
-	for (int search_index = 0; search_index < begin_index; ++search_index) {
+	for (int search_index = 0; search_index < begin_index; ++search_index)
+	{
 		if (vec[search_index] > max_value)
 			max_value = vec[search_index];
 	}
-	for (int search_index = 0; search_index < vec.size(); ++search_index) {
+	for (int search_index = 0; search_index < vec.size(); ++search_index)
+	{
 		if (vec[search_index] > max_value)
 			return search_index;
 	}
@@ -66,12 +74,14 @@ int RelativeMaxIndex(const std::vector<int> &vec, const int begin_index) {
 
 int BinarySearch(
 		const std::vector<int> &vec, const int begin_index, const int end_index,
-		const int value) {
+		const int value) 
+{
 
 	int middle_index = static_cast<int>(
 		std::floor((begin_index + end_index)/2.));
 
-	if (end_index - begin_index > 1) {
+	if (end_index - begin_index > 1)
+	{
 		if (value < vec[middle_index])
 			BinarySearch(vec, begin_index, middle_index, value);
 		else
@@ -88,7 +98,8 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
 		const std::vector<int> vec,
 		const int begin_index,
 		const int middle_index,
-		const int end_index) {
+		const int end_index) 
+{
 	assert(end_index - begin_index > 1 &&
 		"Vector must have at least two items "
 		"to check for crossing subvectors!");
@@ -98,10 +109,11 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
 	int max_left_index;
 
 	int current_sum = 0;
-	for (int left_index = middle_index - 1; left_index >= begin_index;
-			--left_index) {
+	for (int left_index = middle_index - 1; left_index >= begin_index; --left_index) 
+	{
 		current_sum += vec[left_index];
-		if (current_sum > max_left_sum) {
+		if (current_sum > max_left_sum) 
+		{
 			max_left_sum = current_sum;
 			max_left_index = left_index;
 		}
@@ -111,16 +123,16 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
 	int max_right_index;
 
 	current_sum = 0;
-	for (int right_index = middle_index; right_index < end_index;
-			++right_index) {
+	for (int right_index = middle_index; right_index < end_index; ++right_index) 
+	{
 		current_sum += vec[right_index];
-		if (current_sum > max_right_sum) {
+		if (current_sum > max_right_sum) 
+		{
 			max_right_sum = current_sum;
 			max_right_index = right_index + 1;
 		}
 	}
-	return std::make_tuple(
-		max_left_index, max_right_index, max_left_sum + max_right_sum);
+	return std::make_tuple(max_left_index, max_right_index, max_left_sum + max_right_sum);
 }
 
 // TODO I should change this to std::map<std::str, int> instead of tuple.
@@ -133,12 +145,14 @@ std::tuple<int, int, int> FindMaxCrossingSubvector(
 std::tuple<int, int, int> FindMaxSubvectorDAC(
 		const std::vector<int> vec,
 		const int begin_index,
-		const int end_index) {
+		const int end_index) 
+{
 	// Base case; return the only entry
 	if (end_index - begin_index == 1)
 		return std::make_tuple(begin_index, end_index, vec[begin_index]);
 
-	else {
+	else
+	{
 		int middle_index = static_cast<int>(
 			std::floor((begin_index + end_index)/2.));
 
@@ -166,17 +180,20 @@ std::tuple<int, int, int> FindMaxSubvectorDAC(
 std::tuple<int, int, int> FindMaxSubvectorBF(
 		const std::vector<int> vec,
 		const int begin_index,
-		const int end_index) {
+		const int end_index) 
+{
 	int max_left_index;
 	int max_right_index;
 	int max_sum = -std::numeric_limits<int>::max();
 
-	for (int left_index = begin_index; left_index < end_index; ++left_index) {
+	for (int left_index = begin_index; left_index < end_index; ++left_index)
+	{
 		int sum = 0;
-		for (int right_index = left_index;
-				right_index < end_index; ++right_index) {
+		for (int right_index = left_index; right_index < end_index; ++right_index)
+		{
 			sum += vec[right_index];
-			if (sum >= max_sum) {
+			if (sum >= max_sum)
+			{
 				max_left_index = left_index;
 				max_right_index = right_index + 1;
 				max_sum = sum;
@@ -189,7 +206,8 @@ std::tuple<int, int, int> FindMaxSubvectorBF(
 std::tuple<int, int, int> FindMaxSubvector(
 		const std::vector<int> vec,
 		const int begin_index,
-		const int end_index) {
+		const int end_index) 
+{
 	int overall_max = vec[begin_index];
 	int max_ending_here = vec[begin_index];
 
@@ -197,18 +215,21 @@ std::tuple<int, int, int> FindMaxSubvector(
 	int overall_max_right_index = begin_index + 1;
 	int max_ending_here_left_index = begin_index;
 
-	for (int index = 1; index < end_index; ++index) {
+	for (int index = 1; index < end_index; ++index)
+	{
 		if (max_ending_here > 0)
 			// If the previous max ending here is positive, the max ending
 			// at the next index will be increased by adding it...
 			max_ending_here += vec[index];
-		else {
+		else
+		{
 			// ...Otherwise, it would only decrease the max ending at the next
 			// index, so we discard it.
 			max_ending_here = vec[index];
 			max_ending_here_left_index = index;
 		}
-		if (max_ending_here > overall_max) {
+		if (max_ending_here > overall_max)
+		{
 			overall_max = max_ending_here;
 			overall_max_left_index = max_ending_here_left_index;
 			overall_max_right_index = index + 1;

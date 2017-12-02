@@ -11,12 +11,14 @@ std::random_device rng_seed;	 // only used once to initialise (seed) engine
 std::mt19937 rng(rng_seed());	// random-number engine used (Mersenne-Twister in this case)
 
 
-int RandomInteger(const int min, const int max) {
+int RandomInteger(const int min, const int max)
+{
 	std::uniform_int_distribution<int> random_distribution(min, max);
 	return random_distribution(rng);
 }
 
-double RandomReal(const double min, const double max, const int iterations) {
+double RandomReal(const double min, const double max, const int iterations)
+{
 	// Create coin flip RNG
 	std::uniform_int_distribution<int> coin_flip(0, 1);
 
@@ -31,8 +33,8 @@ double RandomReal(const double min, const double max, const int iterations) {
 	return min + zero_to_one * (max - min);
 }
 
-int RandomIntegerBinaryMethod(
-		const int min, const int max, const int iterations /*= 0*/) {
+int RandomIntegerBinaryMethod(const int min, const int max, const int iterations) 
+{
 	int minimum_iterations = (int)std::ceil(std::log2(max - min + 1));
 
 	int max_exponent;
@@ -46,21 +48,23 @@ int RandomIntegerBinaryMethod(
 	return (int)std::floor(RandomReal(min, max + 1, max_exponent));
 }
 
-void RandomlyFillVector(
-		std::vector<int> &vec, const int lower_bound, const int upper_bound) {
+void RandomlyFillVector(std::vector<int> &vec, const int lower_bound, const int upper_bound) 
+{
 	for (int i = 0; i < vec.size(); ++i)
 		vec[i] = RandomInteger(lower_bound, upper_bound);
 }
 
-void RandomlyFillMatrix(
-		Matrix &A, const int lower_bound, const int upper_bound) {
+void RandomlyFillMatrix(Matrix &A, const int lower_bound, const int upper_bound) 
+{
 	for (int row = 0; row < A.size(); ++row)
 		for (int col = 0; col < A[0].size(); ++col)
 			A[row][col] = RandomInteger(lower_bound, upper_bound);
 }
 
-void RandomlyPermute(std::vector<int> &vec) {
-	for (int i = 0; i < vec.size(); ++i) {
+void RandomlyPermute(std::vector<int> &vec)
+{
+	for (int i = 0; i < vec.size(); ++i)
+	{
 		int swap = vec[i];
 		int random_index = RandomInteger(i, vec.size() - 1);
 		vec[i] = vec[random_index];
@@ -68,9 +72,11 @@ void RandomlyPermute(std::vector<int> &vec) {
 	}
 };
 
-std::vector<int> RandomlySample(std::vector<int> &vec, int num_samples) {
+std::vector<int> RandomlySample(std::vector<int> &vec, int num_samples)
+{
 	std::vector<int> sample_vec;
-	for (int i = 0; i < num_samples; ++i) {
+	for (int i = 0; i < num_samples; ++i)
+	{
 		int sample_range = vec.size() - num_samples + i;
 		auto random_int = RandomInteger(0, sample_range);
 		if ( // This just checks if the item is already in the sample

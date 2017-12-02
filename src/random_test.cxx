@@ -9,21 +9,24 @@
 #include "algorithm/random.hpp"
 
 
-class GeneralRandomTest: public ::testing::Test {
+class GeneralRandomTest: public ::testing::Test
+{
 public:
 	std::vector<int> singleton;
 	std::vector<int> vec;
 	std::vector<int> vec_sorted;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		singleton = {5};
 		vec = {5, 3, 6, 2, 8, 3, 1};
 		vec_sorted = {1, 2, 3, 3, 5, 6, 8};
 	}
 };
 
-TEST_F(GeneralRandomTest, PreservesSize1Vector) {
+TEST_F(GeneralRandomTest, PreservesSize1Vector)
+{
 	std::string error_msg = "A singleton should not change when permuted!";
 
 	std::vector<int> original_singleton(singleton);

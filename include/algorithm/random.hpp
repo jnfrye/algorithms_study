@@ -48,8 +48,7 @@ double RandomReal(const double min, const double max, const int iterations);
  *		(for now it chooses twice the minimum number of iterations).
  * @return			  Random number in desired range.
  */
-int RandomIntegerBinaryMethod(
-		const int min, const int max, const int iterations = 0);
+int RandomIntegerBinaryMethod(const int min, const int max, const int iterations = 0);
 
 /** Fill a vector with random values in the specified range.
  *
@@ -57,8 +56,7 @@ int RandomIntegerBinaryMethod(
  * @param lower_bound   Lowest possible random value.
  * @param upper_bound   Highest possible random value.
  */
-void RandomlyFillVector(
-		std::vector<int> &vec, const int lower_bound, const int upper_bound);
+void RandomlyFillVector(std::vector<int> &vec, const int lower_bound, const int upper_bound);
 
 /** Fill a matrix with random values in the specified range.
  *
@@ -66,8 +64,7 @@ void RandomlyFillVector(
  * @param lower_bound   Lowest possible random value.
  * @param upper_bound   Highest possible random value.
  */
-void RandomlyFillMatrix(
-		Matrix &A, const int lower_bound, const int upper_bound);
+void RandomlyFillMatrix(Matrix &A, const int lower_bound, const int upper_bound);
 
 /** Randomly permute the input vector in-place.
  *

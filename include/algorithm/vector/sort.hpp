@@ -94,8 +94,7 @@ void MergeSortedSubvectors(
  * @param begin_index   Index of the first item to be merge-sorted.
  * @param end_index	 Index after the last item to be merge-sorted.
  */
-void MergeSort(
-		std::vector<int> &vec, const int begin_index, const int end_index);
+void MergeSort(std::vector<int> &vec, const int begin_index, const int end_index);
 
 /** Sort the vector (in-place) in ascending order.
  *
@@ -176,8 +175,7 @@ std::tuple<int, int> EqCheckQuicksortPartition(
  *		  partitioned
  * @return			  Index of the item dividing the partitions (the 'pivot')
  */
-int RandomizedQuicksortPartition(
-		std::vector<int> &vec, const int begin, const int end);
+int RandomizedQuicksortPartition(std::vector<int> &vec, const int begin, const int end);
 
 /** Rearrange the subvector (in-place), partitioning it randomly for quicksort.
  *
@@ -213,8 +211,7 @@ std::tuple<int, int> RandomizedEqCheckQuicksortPartition(
  *		  partitioned
  * @return			  Index of the item dividing the partitions (the 'pivot')
  */
-int HoareQuicksortPartition(
-		std::vector<int> &vec, const int begin, const int end);
+int HoareQuicksortPartition(std::vector<int> &vec, const int begin, const int end);
 
 /** Sort the vector (in-place) in ascending order.
  *
@@ -241,8 +238,7 @@ void RandomizedQuicksort(std::vector<int> &vec, const int begin, const int end);
  * Worst-case performance: Theta(n^2)
  * Average-case performance: Theta(n lg n)
  */
-void RandomizedEqCheckQuicksort(
-		std::vector<int> &vec, const int begin, const int end);
+void RandomizedEqCheckQuicksort(std::vector<int> &vec, const int begin, const int end);
 
 /** Sort the vector (in-place) in ascending order.
  *
@@ -263,8 +259,7 @@ void HoareQuicksort(std::vector<int> &vec, const int begin, const int end);
  *
  * @return		  Sorted input vector
  */
-std::vector<int> CountingSort(
-		std::vector<int> &input_vec, const int min, const int max);
+std::vector<int> CountingSort(std::vector<int> &input_vec, const int min, const int max);
 
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H
 

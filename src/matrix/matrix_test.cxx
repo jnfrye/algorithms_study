@@ -9,7 +9,8 @@
 
 /** General test fixture for basic matrix functions.
  */
-class GeneralMatrixTest: public ::testing::Test {
+class GeneralMatrixTest: public ::testing::Test
+{
 public:
 	Matrix singleton;
 	Matrix matrix1;
@@ -17,26 +18,34 @@ public:
 	Matrix matrix3;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		singleton = {{5}};
-		matrix1 = {
+		matrix1 = 
+		{
 			{8, -3, 6},
-			{0, -4, 4}};
-		matrix2 = {
+			{0, -4, 4}
+		};
+		matrix2 = 
+		{
 			{10},
 			{-3},
-			{7}};
-		matrix3 = {
+			{7}
+		};
+		matrix3 = 
+		{
 			{8, -3, 6},
 			{2, 1, 1},
 			{-5, 0, 9},
-			{0, -4, 4}};
+			{0, -4, 4}
+		};
 	}
 };
 
 /** Randomized test fixture for basic matrix functions.
  */
-class RandomizedMatrixTest: public ::testing::Test {
+class RandomizedMatrixTest: public ::testing::Test
+{
 public:
 	Matrix random_matrix1;
 	Matrix random_matrix2a;
@@ -45,7 +54,8 @@ public:
 	Matrix random_matrix4;
 
 protected:
-	virtual void SetUp() {
+	virtual void SetUp()
+	{
 		std::srand((unsigned int)std::time(nullptr)); // Seed the RNG
 
 		int rows1 = RandomInteger(1, 32);
@@ -71,23 +81,32 @@ protected:
 
 /** Basic test of matrix splitting.
  */
-TEST_F(GeneralMatrixTest, SplitMatrixOnBasicMatrix) {
+TEST_F(GeneralMatrixTest, SplitMatrixOnBasicMatrix)
+{
 	auto results = SplitMatrix(matrix3);
 
 	std::vector<std::vector<Matrix>> expected_result(2, std::vector<Matrix>(2));
 
-	expected_result[0][0] = {
+	expected_result[0][0] =
+	{
 		{8},
-		{2}};
-	expected_result[0][1] = {
+		{2}
+	};
+	expected_result[0][1] =
+	{
 		{-3, 6},
-		{1, 1}};
-	expected_result[1][0] = {
+		{1, 1}
+	};
+	expected_result[1][0] =
+	{
 		{-5},
-		{0}};
-	expected_result[1][1] = {
+		{0}
+	};
+	expected_result[1][1] =
+	{
 		{0, 9},
-		{-4, 4}};
+		{-4, 4}
+	};
 
 	EXPECT_EQ(results, expected_result)
 		<< "Matrix splitting failed basic test!";
@@ -96,7 +115,8 @@ TEST_F(GeneralMatrixTest, SplitMatrixOnBasicMatrix) {
 
 /** Splitting then unsplitting a matrix should yield original matrix.
  */
-TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
+TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix)
+{
 	auto result_matrix = UnsplitMatrix(SplitMatrix(random_matrix4));
 
 	EXPECT_EQ(result_matrix, random_matrix4)
@@ -105,14 +125,17 @@ TEST_F(RandomizedMatrixTest, SplittingIsInverseOfUnsplittingMatrix) {
 
 /** Basic test of matrix multiplication.
  */
-TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
+TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices)
+{
 	auto BF_result_matrix = MatrixMultiplyBF(matrix1, matrix2);
 	auto DAC_result_matrix = MatrixMultiplyDAC(matrix1, matrix2);
 	auto Str_result_matrix = MatrixMultiplyStrassen(matrix1, matrix2);
 
-	Matrix expected_result = {
+	Matrix expected_result =
+	{
 		{131},
-		{40}};
+		{40}
+	};
 
 	EXPECT_EQ(BF_result_matrix, expected_result)
 		<< "Matrix multiplication failed basic test!";
@@ -124,7 +147,8 @@ TEST_F(GeneralMatrixTest, MatrixMultiplicationOnBasicMatrices) {
 
 /** Matrix multiplication should be left-distributive over addition.
  */
-TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive) {
+TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive)
+{
 	std::string error_message = "Matrix multiplication should be left-"
 		"distributive over addition.";
 
@@ -153,7 +177,8 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationLeftDistributive) {
 
 /** Matrix multiplication should be right-distributive over addition.
  */
-TEST_F(RandomizedMatrixTest, MatrixMultiplicationRightDistributive) {
+TEST_F(RandomizedMatrixTest, MatrixMultiplicationRightDistributive)
+{
 	std::string error_message = "Matrix multiplication should be right-"
 		"distributive over addition.";
 
@@ -182,7 +207,8 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationRightDistributive) {
 
 /** Matrix multiplication should be associative
  */
-TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative) {
+TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative)
+{
 	std::string error_message = "Matrix multiplication should be associative!";
 
 	auto BF_left_side = MatrixMultiplyBF(
