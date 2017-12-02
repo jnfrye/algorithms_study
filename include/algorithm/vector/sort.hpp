@@ -4,6 +4,8 @@
 #ifndef ALGORITHMS_STUDY_CPP_SORTING_H
 #define ALGORITHMS_STUDY_CPP_SORTING_H
 
+#include <vector>
+
 
 /** Insert value into correct place in sorted vector.
  *

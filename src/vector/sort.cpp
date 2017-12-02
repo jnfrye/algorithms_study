@@ -1,13 +1,14 @@
+#include "algorithm/vector/sort.hpp"
+
+#include "algorithm/vector/search.hpp"
+#include "algorithm/vector/heap.hpp"
+#include "algorithm/random.hpp"
+
 #include <iostream>
 #include <vector>
 #include <limits>
 #include <cmath>
 #include <utility>
-
-#include "algorithm/vector/search.hpp"
-#include "algorithm/vector/sort.hpp"
-#include "algorithm/vector/heap.hpp"
-#include "algorithm/random.hpp"
 
 void InsertIntoSortedSubvector(
         std::vector<int> &vec, const int index,

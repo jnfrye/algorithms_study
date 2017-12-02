@@ -1,11 +1,11 @@
+#include "algorithm/vector/heap.hpp"
+
 #include <vector>
 #include <cmath>
 #include <iostream>
 #include <utility>
 #include <assert.h>
 #include <limits>
-
-#include "algorithm/vector/heap.hpp"
 
 int LeftChild(const int node) {
     // Part in parenthesis is what this would need to be if the binary tree were

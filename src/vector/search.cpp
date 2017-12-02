@@ -1,3 +1,5 @@
+#include "algorithm/vector/search.hpp"
+
 #include <vector>
 #include <tuple>
 #include <iostream>
@@ -5,8 +7,6 @@
 #include <limits>
 #include <algorithm>
 #include <assert.h>
-
-#include "algorithm/vector/search.hpp"
 
 
 int LinearSearch(const std::vector<int> &vec, const int value) {
