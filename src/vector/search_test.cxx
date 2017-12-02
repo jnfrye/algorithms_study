@@ -1,17 +1,19 @@
 /** Unit tests for `searching.cpp`
  */
 
-#include <string>	   // std::string
-#include <vector>	   // std::vector
-#include <tuple>		// std::tuple
-#include <algorithm>	// std::find
-#include <ctime>		// std::time
+#include "algorithm/vector/search.hpp"
+
+#include "algorithm/vector/sort.hpp"
+#include "algorithm/random.hpp"
 
 #include "gtest/gtest.h"
 
-#include "algorithm/vector/search.hpp"
-#include "algorithm/vector/sort.hpp"
-#include "algorithm/random.hpp"
+#include <string>
+#include <vector>
+#include <tuple>
+#include <algorithm>
+#include <ctime>
+#include <cmath>
 
 
 /** General test fixture for vector search algorithms.
