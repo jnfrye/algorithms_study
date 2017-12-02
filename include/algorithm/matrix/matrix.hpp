@@ -16,9 +16,9 @@ void PrintMatrix(const Matrix &A);
 
 /** Multiply a matrix by a scalar.
  *
- * @param scalar    Scalar to multiply matrix by.
- * @param A         Matrix to get multiplied by scalar.
- * @return          Result of scalar multiplied by matrix.
+ * @param scalar	Scalar to multiply matrix by.
+ * @param A		 Matrix to get multiplied by scalar.
+ * @return		  Result of scalar multiplied by matrix.
  */
 Matrix MatrixScalarMultiply(const int scalar, const Matrix &A);
 
@@ -34,9 +34,9 @@ Matrix MatrixAdd(const Matrix &A, const Matrix &B);
  *
  * The second argument is subtracted from the first (A - B).
  *
- * @param A     Matrix to be subtracted from.
- * @param B     Matrix to be subtracted.
- * @return      Result of subtraction.
+ * @param A	 Matrix to be subtracted from.
+ * @param B	 Matrix to be subtracted.
+ * @return	  Result of subtraction.
  */
 Matrix MatrixSubtract(const Matrix &A, const Matrix &B);
 
@@ -57,7 +57,7 @@ std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A);
 /** Unsplit a matrix of matrices (returns a matrix of values).
  *
  * @param split_matrix  Matrix to be unsplit.
- * @return              Unsplit matrix.
+ * @return			  Unsplit matrix.
  */
 Matrix UnsplitMatrix(const std::vector<std::vector<Matrix>> &split_matrix);
 
@@ -77,7 +77,7 @@ Matrix MatrixMultiplyBF(const Matrix &A, const Matrix &B);
  *
  * @param left  Left-hand matrix
  * @param right Right-hand matrix
- * @return      Result matrix.
+ * @return	  Result matrix.
  */
 Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right);
 
@@ -93,7 +93,7 @@ Matrix MatrixMultiplyDAC(const Matrix &left, const Matrix &right);
  *
  * @param left  Left-hand matrix
  * @param right Right-hand matrix
- * @return      Result matrix.
+ * @return	  Result matrix.
  */
 Matrix MatrixMultiplyStrassen(const Matrix &left, const Matrix &right);
 

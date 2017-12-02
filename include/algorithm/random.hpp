@@ -15,7 +15,7 @@
  *
  * @param min   (Inclusive) lower bound for random range.
  * @param max   (Inclusive) upper bound for random range.
- * @return      Random number in desired range.
+ * @return	  Random number in desired range.
  */
 int RandomInteger(const int min, const int max);
 
@@ -23,13 +23,13 @@ int RandomInteger(const int min, const int max);
  *
  * The possible returned values includes the minimum and excludes the maximum.
  *
- * @param min           (Inclusive) lower bound for random range.
- * @param max           (Exclusive) upper bound for random range.
- * @param iterations    Controls how 'fine grained' the randomness is. The
- *        interval is divided evenly into 2 to this power. For example, if
- *        this value is 3, there will be 8 possible returned values with equal
- *        probability.
- * @return              Random real number in the desired range.
+ * @param min		   (Inclusive) lower bound for random range.
+ * @param max		   (Exclusive) upper bound for random range.
+ * @param iterations	Controls how 'fine grained' the randomness is. The
+ *		interval is divided evenly into 2 to this power. For example, if
+ *		this value is 3, there will be 8 possible returned values with equal
+ *		probability.
+ * @return			  Random real number in the desired range.
  */
 double RandomReal(const double min, const double max, const int iterations);
 
@@ -37,37 +37,37 @@ double RandomReal(const double min, const double max, const int iterations);
  *
  * This procedure allows you to control how uniformly random the results are.
  *
- * @param min           (Inclusive) lower bound for random range.
- * @param max           (Inclusive) upper bound for random range.
- * @param iterations    Number of iterations of the binary RNG procedure to run.
- *        The more iterations, the more uniformly random the results are. There
- *        must be at least `ceiling(log_2(max - min))` iterations to ensure all
- *        numbers in the range can actually be returned.
+ * @param min		   (Inclusive) lower bound for random range.
+ * @param max		   (Inclusive) upper bound for random range.
+ * @param iterations	Number of iterations of the binary RNG procedure to run.
+ *		The more iterations, the more uniformly random the results are. There
+ *		must be at least `ceiling(log_2(max - min))` iterations to ensure all
+ *		numbers in the range can actually be returned.
  *
- *        The default is 0, which lets the code decide how many iterations
- *        (for now it chooses twice the minimum number of iterations).
- * @return              Random number in desired range.
+ *		The default is 0, which lets the code decide how many iterations
+ *		(for now it chooses twice the minimum number of iterations).
+ * @return			  Random number in desired range.
  */
 int RandomIntegerBinaryMethod(
-        const int min, const int max, const int iterations = 0);
+		const int min, const int max, const int iterations = 0);
 
 /** Fill a vector with random values in the specified range.
  *
- * @param vec           Vector to be filled.
+ * @param vec		   Vector to be filled.
  * @param lower_bound   Lowest possible random value.
  * @param upper_bound   Highest possible random value.
  */
 void RandomlyFillVector(
-        std::vector<int> &vec, const int lower_bound, const int upper_bound);
+		std::vector<int> &vec, const int lower_bound, const int upper_bound);
 
 /** Fill a matrix with random values in the specified range.
  *
- * @param A             Matrix to be filled.
+ * @param A			 Matrix to be filled.
  * @param lower_bound   Lowest possible random value.
  * @param upper_bound   Highest possible random value.
  */
 void RandomlyFillMatrix(
-        Matrix &A, const int lower_bound, const int upper_bound);
+		Matrix &A, const int lower_bound, const int upper_bound);
 
 /** Randomly permute the input vector in-place.
  *
@@ -86,7 +86,7 @@ void RandomlyPermute(std::vector<int> &vec);
  * Worst-case performance: O(num_samples * vec.size())
  *
  * @param vec   Vector to be sampled.
- * @return      Vector containing the random samples.
+ * @return	  Vector containing the random samples.
  */
 std::vector<int> RandomlySample(std::vector<int> &vec, int num_samples);
 

@@ -12,14 +12,14 @@
  *  It is assumed that the vector is sorted in ascending order, from index 0
  *  to `index - 1`.
  *
- * @param   vec         Vector whose head is sorted.
- * @param   index       Index of the item to be inserted into its place in the
- *          sorted head.
+ * @param   vec		 Vector whose head is sorted.
+ * @param   index	   Index of the item to be inserted into its place in the
+ *		  sorted head.
  * @param   ascending   If true, sort in ascending order.
- *          Otherwise, sort in descending order.
+ *		  Otherwise, sort in descending order.
  */
 void InsertIntoSortedSubvector(
-        std::vector<int> &vec, const int index, const bool ascending = true);
+		std::vector<int> &vec, const int index, const bool ascending = true);
 
 /** Sort the vector (in-place) in ascending or descending order.
  *
@@ -35,9 +35,9 @@ void InsertIntoSortedSubvector(
  *
  *  Worst-case performance: O(n^2)
  *
- * @param   vec         Vector to be sorted
+ * @param   vec		 Vector to be sorted
  * @param   ascending   If true, sort in ascending order.
- *          Otherwise, sort in descending order.
+ *		  Otherwise, sort in descending order.
  */
 void InsertionSort(std::vector<int> &vec, const bool ascending = true);
 
@@ -45,9 +45,9 @@ void InsertionSort(std::vector<int> &vec, const bool ascending = true);
  *
  *  A recursive version of the insertion sort algorithm is used.
  *
- * @param vec            Vector to be sorted.
+ * @param vec			Vector to be sorted.
  * @param subvector_size Size of subvector to be sorted (assumed to start from
- *        head of vector).
+ *		head of vector).
  */
 void InsertionSortRecursive(std::vector<int> &vec, const int subvector_size);
 
@@ -69,14 +69,14 @@ void SelectionSort(std::vector<int> &vec);
  *
  *  Worst-case performance: O(n)
  *
- * @param vec           Vector whose subvectors are to be merged.
+ * @param vec		   Vector whose subvectors are to be merged.
  * @param begin_index   Index of the first item of the first subvector.
  * @param middle_index  Index of the first item of the second subvector.
- * @param end_index     Index after the last item of the second subvector.
+ * @param end_index	 Index after the last item of the second subvector.
  */
 void MergeSortedSubvectors(
-        std::vector<int> &vec, const int begin_index, const int middle_index,
-        const int end_index);
+		std::vector<int> &vec, const int begin_index, const int middle_index,
+		const int end_index);
 
 /** Sort the vector (in-place) in ascending order.
  *
@@ -90,12 +90,12 @@ void MergeSortedSubvectors(
  *
  *  Worst-case performance: O(n log n)
  *
- * @param vec           Vector to be sorted
+ * @param vec		   Vector to be sorted
  * @param begin_index   Index of the first item to be merge-sorted.
- * @param end_index     Index after the last item to be merge-sorted.
+ * @param end_index	 Index after the last item to be merge-sorted.
  */
 void MergeSort(
-        std::vector<int> &vec, const int begin_index, const int end_index);
+		std::vector<int> &vec, const int begin_index, const int end_index);
 
 /** Sort the vector (in-place) in ascending order.
  *
@@ -121,19 +121,19 @@ void HeapSort(std::vector<int> &vec);
  *
  * Worst-case performance: Theta(n)
  *
- * @param vec               Vector containing the subvector to be partitioned
- * @param begin_index       Index of the first item in the subvector to be
- *      partitioned
- * @param end_index         Index after the last item in the subvector to be
- *      partitioned
- * @param equality_check    If true, the left partition will contain items
- *      equal to the pivot. Otherwise, they will be in right partition.
- * @return                  Index of the item dividing the partitions (the
- *      'pivot')
+ * @param vec			   Vector containing the subvector to be partitioned
+ * @param begin_index	   Index of the first item in the subvector to be
+ *	  partitioned
+ * @param end_index		 Index after the last item in the subvector to be
+ *	  partitioned
+ * @param equality_check	If true, the left partition will contain items
+ *	  equal to the pivot. Otherwise, they will be in right partition.
+ * @return				  Index of the item dividing the partitions (the
+ *	  'pivot')
  */
 int QuicksortPartition(
-        std::vector<int> &vec, const int begin, const int end,
-        const bool equality_check = true);
+		std::vector<int> &vec, const int begin, const int end,
+		const bool equality_check = true);
 
 /** Rearrange the subvector (in-place), partitioning it for quicksort.
  *
@@ -147,17 +147,17 @@ int QuicksortPartition(
  *
  * Worst-case performance: Theta(n)
  *
- * @param vec           Vector containing the subvector to be partitioned
+ * @param vec		   Vector containing the subvector to be partitioned
  * @param begin_index   Index of the first item in the subvector to be
- *          partitioned
- * @param end_index     Index after the last item in the subvector to be
- *          partitioned
- * @return              2-tuple containing:
+ *		  partitioned
+ * @param end_index	 Index after the last item in the subvector to be
+ *		  partitioned
+ * @return			  2-tuple containing:
  * 1. the index marking the beginning of the 'equal to pivot' partition
  * 2. the index that is one after the end of the 'equal to pivot' partition.
  */
 std::tuple<int, int> EqCheckQuicksortPartition(
-        std::vector<int> &vec, const int begin, const int end);
+		std::vector<int> &vec, const int begin, const int end);
 
 /** Rearrange the subvector (in-place), partitioning it randomly for quicksort.
  *
@@ -169,15 +169,15 @@ std::tuple<int, int> EqCheckQuicksortPartition(
  *
  * Worst-case performance: Theta(n)
  *
- * @param vec           Vector containing the subvector to be partitioned
+ * @param vec		   Vector containing the subvector to be partitioned
  * @param begin_index   Index of the first item in the subvector to be
- *          partitioned
- * @param end_index     Index after the last item in the subvector to be
- *          partitioned
- * @return              Index of the item dividing the partitions (the 'pivot')
+ *		  partitioned
+ * @param end_index	 Index after the last item in the subvector to be
+ *		  partitioned
+ * @return			  Index of the item dividing the partitions (the 'pivot')
  */
 int RandomizedQuicksortPartition(
-        std::vector<int> &vec, const int begin, const int end);
+		std::vector<int> &vec, const int begin, const int end);
 
 /** Rearrange the subvector (in-place), partitioning it randomly for quicksort.
  *
@@ -186,17 +186,17 @@ int RandomizedQuicksortPartition(
  *
  * Worst-case performance: Theta(n)
  *
- * @param vec           Vector containing the subvector to be partitioned
+ * @param vec		   Vector containing the subvector to be partitioned
  * @param begin_index   Index of the first item in the subvector to be
- *          partitioned
- * @param end_index     Index after the last item in the subvector to be
- *          partitioned
- * @return              2-tuple containing:
+ *		  partitioned
+ * @param end_index	 Index after the last item in the subvector to be
+ *		  partitioned
+ * @return			  2-tuple containing:
  * 1. the index marking the beginning of the 'equal to pivot' partition
  * 2. the index that is one after the end of the 'equal to pivot' partition.
  */
 std::tuple<int, int> RandomizedEqCheckQuicksortPartition(
-        std::vector<int> &vec, const int begin, const int end);
+		std::vector<int> &vec, const int begin, const int end);
 
 /** Rearrange the subvector (in-place), partitioning it for quicksort.
  *
@@ -206,15 +206,15 @@ std::tuple<int, int> RandomizedEqCheckQuicksortPartition(
  *
  * Worst-case performance: Theta(n)
  *
- * @param vec           Vector containing the subvector to be partitioned
+ * @param vec		   Vector containing the subvector to be partitioned
  * @param begin_index   Index of the first item in the subvector to be
- *          partitioned
- * @param end_index     Index after the last item in the subvector to be
- *          partitioned
- * @return              Index of the item dividing the partitions (the 'pivot')
+ *		  partitioned
+ * @param end_index	 Index after the last item in the subvector to be
+ *		  partitioned
+ * @return			  Index of the item dividing the partitions (the 'pivot')
  */
 int HoareQuicksortPartition(
-        std::vector<int> &vec, const int begin, const int end);
+		std::vector<int> &vec, const int begin, const int end);
 
 /** Sort the vector (in-place) in ascending order.
  *
@@ -242,7 +242,7 @@ void RandomizedQuicksort(std::vector<int> &vec, const int begin, const int end);
  * Average-case performance: Theta(n lg n)
  */
 void RandomizedEqCheckQuicksort(
-        std::vector<int> &vec, const int begin, const int end);
+		std::vector<int> &vec, const int begin, const int end);
 
 /** Sort the vector (in-place) in ascending order.
  *
@@ -258,13 +258,13 @@ void HoareQuicksort(std::vector<int> &vec, const int begin, const int end);
  * Uses the counting sort algorithm.
  *
  * @param input_vec Vector to be sorted
- * @param min       Smallest value in the input vector
- * @param max       Largest value in the input vector
+ * @param min	   Smallest value in the input vector
+ * @param max	   Largest value in the input vector
  *
- * @return          Sorted input vector
+ * @return		  Sorted input vector
  */
 std::vector<int> CountingSort(
-        std::vector<int> &input_vec, const int min, const int max);
+		std::vector<int> &input_vec, const int min, const int max);
 
 #endif //ALGORITHMS_STUDY_CPP_SORTING_H
 
