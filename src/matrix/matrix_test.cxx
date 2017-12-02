@@ -1,10 +1,11 @@
 /** Unit tests for `matrix.cpp`
  */
 
-#include "gtest/gtest.h"
-
 #include "algorithm/matrix/matrix.hpp"
+
 #include "algorithm/random.hpp"
+
+#include "gtest/gtest.h"
 
 
 /** General test fixture for basic matrix functions.
@@ -212,25 +213,19 @@ TEST_F(RandomizedMatrixTest, MatrixMultiplicationIsAssociative)
 	std::string error_message = "Matrix multiplication should be associative!";
 
 	auto BF_left_side = MatrixMultiplyBF(
-		random_matrix1,
-		MatrixMultiplyBF(random_matrix2a, random_matrix3));
+		random_matrix1, MatrixMultiplyBF(random_matrix2a, random_matrix3));
 	auto BF_right_side = MatrixMultiplyBF(
-		MatrixMultiplyBF(random_matrix1, random_matrix2a),
-		random_matrix3);
+		MatrixMultiplyBF(random_matrix1, random_matrix2a), random_matrix3);
 
 	auto DAC_left_side = MatrixMultiplyDAC(
-		random_matrix1,
-		MatrixMultiplyDAC(random_matrix2a, random_matrix3));
+		random_matrix1, MatrixMultiplyDAC(random_matrix2a, random_matrix3));
 	auto DAC_right_side = MatrixMultiplyDAC(
-		MatrixMultiplyDAC(random_matrix1, random_matrix2a),
-		random_matrix3);
+		MatrixMultiplyDAC(random_matrix1, random_matrix2a), random_matrix3);
 
 	auto Str_left_side = MatrixMultiplyStrassen(
-		random_matrix1,
-		MatrixMultiplyStrassen(random_matrix2a, random_matrix3));
+		random_matrix1, MatrixMultiplyStrassen(random_matrix2a, random_matrix3));
 	auto Str_right_side = MatrixMultiplyStrassen(
-		MatrixMultiplyStrassen(random_matrix1, random_matrix2a),
-		random_matrix3);
+		MatrixMultiplyStrassen(random_matrix1, random_matrix2a), random_matrix3);
 
 	EXPECT_EQ(BF_left_side, BF_right_side) << error_message;
 	EXPECT_EQ(DAC_left_side, DAC_right_side) << error_message;

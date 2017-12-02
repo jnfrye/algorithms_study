@@ -1,12 +1,12 @@
 /** Unit tests for `sorting.cpp`
  */
 
-#include <vector>
-#include <string>
+#include "algorithm/vector/heap.hpp"
 
 #include "gtest/gtest.h"
 
-#include "algorithm/vector/heap.hpp"
+#include <vector>
+#include <string>
 
 
 class GeneralHeapTest: public ::testing::Test

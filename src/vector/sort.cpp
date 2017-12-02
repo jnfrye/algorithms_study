@@ -10,9 +10,7 @@
 #include <cmath>
 #include <utility>
 
-void InsertIntoSortedSubvector(
-		std::vector<int> &vec, const int index,
-		const bool ascending /*= true*/) 
+void InsertIntoSortedSubvector(std::vector<int> &vec, const int index, const bool ascending) 
 {
 	int value_to_be_inserted = vec[index];
 
@@ -37,8 +35,9 @@ void InsertionSort(std::vector<int> &vec, const bool ascending)
 void InsertionSortRecursive(std::vector<int> &vec, const int subvector_size)
 {
 	if (subvector_size > 1)
+	{
 		InsertionSortRecursive(vec, subvector_size - 1);
-
+	}
 	InsertIntoSortedSubvector(vec, subvector_size - 1);
 }
 
@@ -62,10 +61,8 @@ void MergeSortedSubvectors(
 		const int end_index) 
 {
 	// Extract the subvectors
-	std::vector<int> subvec1(
-		vec.begin() + begin_index, vec.begin() + middle_index);
-	std::vector<int> subvec2(
-		vec.begin() + middle_index, vec.begin() + end_index);
+	std::vector<int> subvec1(vec.begin() + begin_index, vec.begin() + middle_index);
+	std::vector<int> subvec2(vec.begin() + middle_index, vec.begin() + end_index);
 
 	// Add the sentinels (largest possible integer is used)
 	subvec1.push_back(std::numeric_limits<int>::max());
@@ -93,8 +90,7 @@ void MergeSort(std::vector<int> &vec, const int begin_index, const int end_index
 {
 	if (begin_index < end_index - 1)
 	{
-		int middle_index = static_cast<int>(
-			std::floor((begin_index + end_index)/2.));
+		int middle_index = static_cast<int>(std::floor((begin_index + end_index)/2.));
 
 		MergeSort(vec, begin_index, middle_index);
 		MergeSort(vec, middle_index, end_index);
@@ -121,17 +117,19 @@ int QuicksortPartition(
 	auto pivot = vec[end - 1];
 	int left = begin - 1;
 	for (int right = begin; right < end - 1; ++right)
+	{
 		if (vec[right] < pivot || (equality_check && vec[right] == pivot))
 		{
 			++left;
 			std::swap(vec[left], vec[right]);
 		}
+	}
 	std::swap(vec[left + 1], vec[end - 1]);
 	return left + 1;
 }
 
-std::tuple<int, int> EqCheckQuicksortPartition(
-		std::vector<int> &vec, const int begin, const int end) 
+std::tuple<int, int> EqCheckQuicksortPartition(std::vector<int> &vec, const int begin, 
+		const int end) 
 {
 	int pivot_end = QuicksortPartition(vec, begin, end) + 1;
 	int pivot_begin = QuicksortPartition(vec, begin, pivot_end, false);
@@ -145,8 +143,8 @@ int RandomizedQuicksortPartition(std::vector<int> &vec, const int begin, const i
 	return QuicksortPartition(vec, begin, end);
 }
 
-std::tuple<int, int> RandomizedEqCheckQuicksortPartition(
-		std::vector<int> &vec, const int begin, const int end) 
+std::tuple<int, int> RandomizedEqCheckQuicksortPartition(std::vector<int> &vec, 
+		const int begin, const int end) 
 {
 	int pivot = RandomInteger(begin, end - 1);
 	std::swap(vec[end - 1], vec[pivot]);
@@ -172,8 +170,14 @@ int HoareQuicksortPartition(std::vector<int> &vec, const int begin, const int en
 		} 
 		while (vec[left] < pivot);
 
-		if (left < right) std::swap(vec[left], vec[right]);
-		else return right;
+		if (left < right) 
+		{
+			std::swap(vec[left], vec[right]);
+		}
+		else 
+		{
+			return right;
+		}
 	}
 }
 
@@ -231,12 +235,16 @@ std::vector<int> CountingSort(std::vector<int> &input_vec, const int min, const 
 	// value shows up in the input vector, the item in index 1 is the number of
 	// times the min + 1 shows up, and so on up to the max value
 	for (int i = 0; i < input_vec.size(); ++i)
+	{
 		++value_counts[input_vec[i] - min];
+	}
 
 	// This causes the vector to contain the number of entries that have value
 	// less than or equal to this value
 	for (int value_index = 1; value_index < possible_values; ++value_index)
+	{
 		value_counts[value_index] += value_counts[value_index - 1];
+	}
 
 	std::vector<int> output_vec(input_vec.size());
 	for (int j = (int)input_vec.size() - 1; j >= 0; --j)

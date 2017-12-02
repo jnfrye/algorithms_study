@@ -74,8 +74,7 @@ TEST_F(GeneralSearchingTest, SearchingFindsKnownItem)
 
 	// To test binary search, we first sort the vector
 	InsertionSort(vec);
-	int binary_search_result = BinarySearch(
-		vec, 0, (int)vec.size(), search_value);
+	int binary_search_result = BinarySearch(vec, 0, (int)vec.size(), search_value);
 
 	// Get the comparison index using standard library again
 	comparison_index = (int)std::distance(
@@ -92,10 +91,8 @@ TEST_F(GeneralSearchingTest, MaxMinSearchFindsCorrectItems)
 	int min_search_result = MinIndex(vec);
 	int max_search_result = MaxIndex(vec);
 
-	EXPECT_EQ(min_search_result, 7)
-		<< "Minimum index function disagrees with expected index.";
-	EXPECT_EQ(max_search_result, 9)
-		<< "Maximum index function disagrees with expected index.";
+	EXPECT_EQ(min_search_result, 7) << "Minimum index function disagrees with expected index.";
+	EXPECT_EQ(max_search_result, 9) << "Maximum index function disagrees with expected index.";
 }
 
 /** Basic test of vector relative max index search.
@@ -134,8 +131,7 @@ TEST_F(GeneralSearchingTest, MaxCrossingSubvectorWorksOnBasicVector)
  */
 TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector)
 {
-	std::string error_message =
-		"Max subvector does not match expected subvector.";
+	std::string error_message = "Max subvector does not match expected subvector.";
 
 	auto DAC_results = FindMaxSubvectorDAC(vec, 0, (int)vec.size());
 	auto BF_results = FindMaxSubvectorBF(vec, 0, (int)vec.size());
@@ -152,13 +148,11 @@ TEST_F(GeneralSearchingTest, MaxSubvectorWorksOnBasicVector)
  */
 TEST_F(GeneralSearchingTest, MaxSubvectorOfSingletonIsItself)
 {
-	std::string error_message =
-		"Max subvector sum of singleton should be the singleton.";
+	std::string error_message = "Max subvector sum of singleton should be the singleton.";
 
 	auto DAC_results = FindMaxSubvectorDAC(singleton, 0, (int)singleton.size());
 	auto BF_results = FindMaxSubvectorBF(singleton, 0, (int)singleton.size());
-	auto Kadane_results = FindMaxSubvector(
-		singleton, 0, (int)singleton.size());
+	auto Kadane_results = FindMaxSubvector(singleton, 0, (int)singleton.size());
 
 	auto expected_results = std::make_tuple(0, 1, singleton[0]);
 
@@ -179,10 +173,10 @@ TEST_F(RandomizedSearchingTest, MaxCrossingSubvectorOfRandomNegVecIsSmallestOne)
 	auto results = FindMaxCrossingSubvector(
 		random_negative_vec, 0, middle_index, (int)random_negative_vec.size());
 
-	int middle_sum = random_negative_vec[middle_index - 1] +
-		random_negative_vec[middle_index];
-	auto expected_results = std::make_tuple(
-		middle_index - 1, middle_index + 1, middle_sum);
+	int middle_sum 
+		= random_negative_vec[middle_index - 1] + random_negative_vec[middle_index];
+	auto expected_results 
+		= std::make_tuple(middle_index - 1, middle_index + 1, middle_sum);
 	EXPECT_EQ(results, expected_results) << error_message;
 }
 
@@ -197,12 +191,13 @@ TEST_F(RandomizedSearchingTest, MaxCrossingSubvectorOfRandomPosVecIsEntireVec)
 
 	int expected_sum = 0;
 	for (int i = 0; i < random_positive_vec.size(); ++i)
+	{
 		expected_sum += random_positive_vec[i];
+	}
 
 	EXPECT_EQ(results,
 		std::make_tuple(0, random_positive_vec.size(), expected_sum))
-		<< "Max crossing subvector of a positive vector should be the entire "
-		   "vector.";
+		<< "Max crossing subvector of a positive vector should be the entire vector.";
 }
 
 /** Max subvector of a positive vector should be the entire vector.
@@ -221,9 +216,10 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomPosVecIsEntireVec)
 
 	int expected_sum = 0;
 	for (int i = 0; i < random_positive_vec.size(); ++i)
+	{
 		expected_sum += random_positive_vec[i];
-	auto expected_results = std::make_tuple(
-		0, random_positive_vec.size(), expected_sum);
+	}
+	auto expected_results = std::make_tuple(0, random_positive_vec.size(), expected_sum);
 
 	EXPECT_EQ(DAC_results, expected_results) << error_message;
 	EXPECT_EQ(BF_results, expected_results) << error_message;
@@ -247,42 +243,31 @@ TEST_F(RandomizedSearchingTest, MaxSubvectorOfRandomNegVecIsMaxItem)
 	auto max_iterator = std::max_element(
 		random_negative_vec.begin(), random_negative_vec.end());
 	int max_value = *max_iterator;
-	int max_index = (int)std::distance(
-		random_negative_vec.begin(), max_iterator);
-	auto expected_results =
-		std::make_tuple(max_index, max_index + 1, max_value);
+	int max_index = (int)std::distance(random_negative_vec.begin(), max_iterator);
+	auto expected_results = std::make_tuple(max_index, max_index + 1, max_value);
 
 	// TODO For now I'm only testing the max subvector sum, not the indices,
 	// TODO because if there's multiple subvectors with the same max sum the
 	// TODO algorithms sometimes return different subvectors.
-	EXPECT_EQ(std::get<2>(DAC_results), std::get<2>(expected_results))
-		<< error_message;
-	EXPECT_EQ(std::get<2>(BF_results), std::get<2>(expected_results))
-		<< error_message;
-	EXPECT_EQ(std::get<2>(Kadane_results), std::get<2>(expected_results))
-		<< error_message;
+	EXPECT_EQ(std::get<2>(DAC_results), std::get<2>(expected_results)) << error_message;
+	EXPECT_EQ(std::get<2>(BF_results), std::get<2>(expected_results)) << error_message;
+	EXPECT_EQ(std::get<2>(Kadane_results), std::get<2>(expected_results)) << error_message;
 }
 
 /** Algorithms for max subvector of a random vector should have same result.
  */
 TEST_F(RandomizedSearchingTest, MaxSubvectorAlgorithmsOnRandomVectorShouldAgree)
 {
-	std::string error_message =
-		"Algorithms for max subvector of a random vector should have same "
-		"result.";
+	std::string error_message 
+		= "Algorithms for max subvector of a random vector should have same result.";
 
-	auto DAC_results = FindMaxSubvectorDAC(
-		random_vec, 0, (int)random_vec.size());
-	auto BF_results = FindMaxSubvectorBF(
-		random_vec, 0, (int)random_vec.size());
-	auto Kadane_results = FindMaxSubvector(
-		random_vec, 0, (int)random_vec.size());
+	auto DAC_results = FindMaxSubvectorDAC(random_vec, 0, (int)random_vec.size());
+	auto BF_results = FindMaxSubvectorBF(random_vec, 0, (int)random_vec.size());
+	auto Kadane_results = FindMaxSubvector(random_vec, 0, (int)random_vec.size());
 
 	// TODO For now I'm only testing the max subvector sum, not the indices,
 	// TODO because if there's multiple subvectors with the same max sum the
 	// TODO algorithms sometimes return different subvectors.
-	ASSERT_EQ(std::get<2>(DAC_results), std::get<2>(BF_results))
-		<< error_message;
-	EXPECT_EQ(std::get<2>(Kadane_results), std::get<2>(BF_results))
-		<< error_message;
+	ASSERT_EQ(std::get<2>(DAC_results), std::get<2>(BF_results)) << error_message;
+	EXPECT_EQ(std::get<2>(Kadane_results), std::get<2>(BF_results)) << error_message;
 }

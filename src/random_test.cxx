@@ -1,12 +1,12 @@
 /** Unit tests for `sorting.cpp`
  */
 
+#include "algorithm/random.hpp"
+
 #include <vector>
 #include <string>
 
 #include "gtest/gtest.h"
-
-#include "algorithm/random.hpp"
 
 
 class GeneralRandomTest: public ::testing::Test

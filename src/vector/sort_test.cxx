@@ -1,14 +1,15 @@
 /** Unit tests for `sorting.cpp`
  */
 
-#include <vector>
-#include <string>
-#include <algorithm>
+#include "algorithm/vector/sort.hpp"
+
+#include "algorithm/random.hpp"
 
 #include "gtest/gtest.h"
 
-#include "algorithm/vector/sort.hpp"
-#include "algorithm/random.hpp"
+#include <vector>
+#include <string>
+#include <algorithm>
 
 
 /** General test fixture for vector sort algorithms.
@@ -88,8 +89,7 @@ TEST_F(GeneralSortingTest, PreservesSize1Vector)
 
 TEST_F(GeneralSortingTest, CorrectlySortsKnownVector)
 {
-	std::string error_msg =
-		"Sorted vector did not match with vector sorted by hand!";
+	std::string error_msg = "Sorted vector did not match with vector sorted by hand!";
 
 	auto test_vec(vec); // copy the vector so we don't alter it
 
@@ -139,8 +139,7 @@ TEST(MergeSortedSubvectorsTest, CorrectlyMergesKnownVectors)
 	std::vector<int> expected_vec = {2, 3, 5, 5, 5, 6, 8};
 
 	MergeSortedSubvectors(test_vec, 0, 3, test_vec.size());
-	EXPECT_EQ(test_vec, expected_vec)
-		<< "Merged vector does not match expected vector.";
+	EXPECT_EQ(test_vec, expected_vec) << "Merged vector does not match expected vector.";
 }
 
 TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector)
@@ -158,8 +157,7 @@ TEST_F(GeneralSortingTest, CorrectlyPartitionsKnownVector)
 
 TEST_F(GeneralSortingTest, HoareCorrectlyPartitionsKnownVector)
 {
-	std::string error_msg =
-		"Hoare-partitioned vector did not match with expected partition!";
+	std::string error_msg = "Hoare-partitioned vector did not match with expected partition!";
 
 	auto test_vec = vec3;
 	std::vector<int> expected_vec = {6, 2, 9, 5, 12, 8, 7, 4, 11, 19, 13, 21};
@@ -177,11 +175,9 @@ TEST_F(GeneralSortingTest, EqCheckCorrectlyPartitionsKnownVector)
 	auto test_vec = vec4;
 	std::vector<int> expected_vec = {2, 3, 4, 4, 4, 8, 6, 7};
 
-	std::tuple<int, int> p =
-		EqCheckQuicksortPartition(test_vec, 0, test_vec.size());
+	std::tuple<int, int> p = EqCheckQuicksortPartition(test_vec, 0, test_vec.size());
 	EXPECT_EQ(test_vec, expected_vec) << error_msg;
-	EXPECT_EQ(p, std::make_tuple(2, 5)) <<
-		"Unexpected values for partition indices";
+	EXPECT_EQ(p, std::make_tuple(2, 5)) << "Unexpected values for partition indices";
 }
 
 /** Checks that all sorting algorithms produce the same sort of a random vector.
@@ -191,8 +187,7 @@ TEST_F(GeneralSortingTest, EqCheckCorrectlyPartitionsKnownVector)
  */
 TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector)
 {
-	std::string error_msg =
-		"Sorting algorithms disagree when sorting random vector!";
+	std::string error_msg = "Sorting algorithms disagree when sorting random vector!";
 
 	auto insertion_sort_vec(random_vec);
 	InsertionSort(insertion_sort_vec);
@@ -214,22 +209,18 @@ TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector)
 	EXPECT_EQ(quick_sort_vec, heap_sort_vec) << error_msg;
 
 	auto randomized_quick_sort_vec(random_vec);
-	RandomizedQuicksort(
-		randomized_quick_sort_vec, 0, (int)randomized_quick_sort_vec.size());
+	RandomizedQuicksort(randomized_quick_sort_vec, 0, (int)randomized_quick_sort_vec.size());
 	EXPECT_EQ(randomized_quick_sort_vec, quick_sort_vec) << error_msg;
 
 	auto randomized_eqcheck_quick_sort_vec(random_vec);
 	RandomizedEqCheckQuicksort(
 		randomized_eqcheck_quick_sort_vec, 0,
 		(int)randomized_eqcheck_quick_sort_vec.size());
-	EXPECT_EQ(randomized_eqcheck_quick_sort_vec, randomized_quick_sort_vec)
-		<< error_msg;
+	EXPECT_EQ(randomized_eqcheck_quick_sort_vec, randomized_quick_sort_vec) << error_msg;
 
 	auto hoare_quick_sort_vec(random_vec);
-	HoareQuicksort(
-		hoare_quick_sort_vec, 0, (int)hoare_quick_sort_vec.size());
-	EXPECT_EQ(randomized_eqcheck_quick_sort_vec, hoare_quick_sort_vec)
-		<< error_msg;
+	HoareQuicksort(hoare_quick_sort_vec, 0, (int)hoare_quick_sort_vec.size());
+	EXPECT_EQ(randomized_eqcheck_quick_sort_vec, hoare_quick_sort_vec) << error_msg;
 
 	auto count_sort_vec(random_vec);
 	auto out_vec = CountingSort(
@@ -237,7 +228,6 @@ TEST_F(RandomizedSortingTest, CorrectlySortsRandomVector)
 		*std::min_element(count_sort_vec.begin(), count_sort_vec.end()),
 		*std::max_element(count_sort_vec.begin(), count_sort_vec.end())
 	);
-	EXPECT_EQ(hoare_quick_sort_vec, out_vec)
-		<< error_msg;
+	EXPECT_EQ(hoare_quick_sort_vec, out_vec) << error_msg;
 }
 
