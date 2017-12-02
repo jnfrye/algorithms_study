@@ -1,4 +1,5 @@
-.idea
+/.idea
 build/
 notes/
 /main.cpp
+/.vscode
