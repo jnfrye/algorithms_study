@@ -9,15 +9,13 @@
 
 int LeftChild(const int node)
 {
-	// Part in parenthesis is what this would need to be if the binary tree were
-	// not zero-indexed.
+	// Part in parenthesis is what this would be if the binary tree weren't zero-indexed.
 	return (2 * node) + 1;
 }
 
 int RightChild(const int node)
 {
-	// Part in parenthesis is what this would need to be if the binary tree were
-	// not zero-indexed.
+	// Part in parenthesis is what this would be if the binary tree weren't zero-indexed.
 	return (2 * node + 1) + 1;
 }
 
@@ -40,6 +38,7 @@ void MaxHeapify(std::vector<int> &heap, const int node, const int heap_order)
 	{
 		largest_node = node;
 	}
+
 	if (right_child < heap_order && heap[right_child] > heap[largest_node])
 	{
 		largest_node = right_child;

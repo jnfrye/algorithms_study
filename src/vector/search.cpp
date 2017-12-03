@@ -21,7 +21,7 @@ int LinearSearch(const std::vector<int> &vec, const int value)
 	throw std::runtime_error("Value not found!");
 }
 
-int MinIndex(const std::vector<int> &vec, const int begin_index /*= 0*/)
+int MinIndex(const std::vector<int> &vec, const int begin_index)
 {
 	assert(begin_index < vec.size() &&
 		"Cannot begin search at index larger than size of vector!");
@@ -40,7 +40,7 @@ int MinIndex(const std::vector<int> &vec, const int begin_index /*= 0*/)
 	return min_index;
 }
 
-int MaxIndex(const std::vector<int> &vec, const int begin_index /*= 0*/)
+int MaxIndex(const std::vector<int> &vec, const int begin_index)
 {
 	assert(begin_index < vec.size() &&
 		"Cannot begin search at index larger than size of vector!");

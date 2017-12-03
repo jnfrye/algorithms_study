@@ -37,7 +37,6 @@ Matrix MatrixAdd(const Matrix &A, const Matrix &B)
 	{
 		throw std::runtime_error("Cannot add matrices of different sizes!");
 	}
-
 	// Iniitialize matrix full of zeros
 	Matrix C(A.size(), std::vector<int>(B[0].size(), 0));
 	for (int row = 0; row < A.size(); ++row)
@@ -75,8 +74,8 @@ std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A)
 {
 	if (A.size() < 2 || A[0].size() < 2)
 	{
-		std::string error_message =
-			"Too few rows (" + std::to_string(A.size()) + ") or columns ("
+		std::string error_message
+			= "Too few rows (" + std::to_string(A.size()) + ") or columns ("
 			+ std::to_string(A[0].size()) + ") to split matrix!";
 		throw std::runtime_error(error_message);
 	}
@@ -97,7 +96,6 @@ std::vector<std::vector<Matrix>> SplitMatrix(const Matrix &A)
 		for (int col = 0; col < 2; ++col)
 		{
 			split_matrix[row][col] = Matrix(row_dims[row], Row(col_dims[col]));
-
 			for (int subrow = 0; subrow < row_dims[row]; ++subrow)
 			{
 				for (int subcol = 0; subcol < col_dims[col]; ++subcol)
@@ -134,21 +132,18 @@ Matrix UnsplitMatrix(const std::vector<std::vector<Matrix>> &split_matrix)
 	Matrix unsplit_matrix(num_subrows, Row(num_subcols));
 	for (int row = 0; row < num_rows; ++row)
 	{
-		int subrow_offset = std::accumulate(
-			row_dims.begin(), row_dims.begin() + row, 0);
+		int subrow_offset = std::accumulate(row_dims.begin(), row_dims.begin() + row, 0);
 		for (int col = 0; col < num_cols; ++col)
 		{
-			int subcol_offset = std::accumulate(
-				col_dims.begin(), col_dims.begin() + col, 0);
-
+			int subcol_offset = std::accumulate(col_dims.begin(), col_dims.begin() + col, 0);
 			for (int subrow = 0; subrow < row_dims[row]; ++subrow)
+			{
+				for (int subcol = 0; subcol < col_dims[col]; ++subcol)
 				{
-					for (int subcol = 0; subcol < col_dims[col]; ++subcol)
-					{
-						unsplit_matrix[subrow + subrow_offset][subcol + subcol_offset]
-							= split_matrix[row][col][subrow][subcol];
-					}
+					unsplit_matrix[subrow + subrow_offset][subcol + subcol_offset]
+						= split_matrix[row][col][subrow][subcol];
 				}
+			}
 		}
 	}
 	return unsplit_matrix;
@@ -234,8 +229,7 @@ Matrix MatrixMultiplyStrassen(const Matrix &left, const Matrix &right)
 	// TODO This is necessary for now because if a dimension is odd, then when
 	// TODO the matrix is split the submatrices will be of different dimensions
 	// TODO and so cannot be added.
-	if (num_rows % 2 == 1 || left[0].size() % 2 == 1 
-			|| right.size() % 2 == 1 || num_cols % 2 == 1) 
+	if (num_rows % 2 == 1 || left[0].size() % 2 == 1 || right.size() % 2 == 1 || num_cols % 2 == 1) 
 	{
 		result = MatrixMultiplyBF(left, right);
 	}

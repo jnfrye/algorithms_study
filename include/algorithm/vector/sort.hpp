@@ -252,7 +252,7 @@ void HoareQuicksort(std::vector<int> &vec, const int begin, const int end);
 /** Return sorted version of input vector using counting sort.
  *
  * Uses the counting sort algorithm.
- *
+ * 
  * @param input_vec Vector to be sorted
  * @param min	   Smallest value in the input vector
  * @param max	   Largest value in the input vector

@@ -1,4 +1,5 @@
 #include "algorithm/random.hpp"
+
 #include "algorithm/matrix/matrix.hpp"
 
 #include <random>
